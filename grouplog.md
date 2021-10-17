@@ -1,20 +1,20 @@
 
 **Meeting 1** <br/>
-Date: 6 / 10 / 2021 
+**Date:** 6 / 10 / 2021 
 Participants: All members
 
 First meeting. Project repository is created. We talk about our ideas about project features and also ask questions to Eray Hoca.   
 
 
 **Meeting 2**  <br/>
-Date: 10 / 10 / 2021
+**Date:** 10 / 10 / 2021
 Participants: All members
 
 We created readme.md and wrote project descriptions.
 
 
 **Meeting 3**  <br/>
-Date: 17 / 10 / 2021
+**Date:** 17 / 10 / 2021
 Participants: All members
 
 It was decided to contact the Ministry of Health and BCC to gather information about the project.
