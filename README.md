@@ -37,3 +37,5 @@ Doctors from Bilkent Health Center will be able to get contact with the tested p
 -  Diognavir Center
 -  Instructors
 -  Cafeteria Employees
+
+[Meeting Logs](grouplog.md)
