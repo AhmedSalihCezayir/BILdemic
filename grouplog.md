@@ -35,4 +35,5 @@ Start the User Interface <br/>
 How will be the user interface of Main Menu/instructors/students <br/>
 
 **3. Wrap up**<br/>
-Meeting Critique
+Meeting Critique <br/>
+A new meeting is scheduled for Sunday, 24.10.2021 at 1.00 pm to start creating the diagrams.
