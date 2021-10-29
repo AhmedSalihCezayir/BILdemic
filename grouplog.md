@@ -119,6 +119,51 @@ A new meeting is scheduled for Thursday, 28.10.2021 at 9.00 pm to observe the pr
 **Meeting 8** <br/>
 **Date:** 
 start: 9.00 pm
+end: 11.30 pm
+Room: Discord
+Participants: All members
+
+**1. Objective:** <br/>
+The class Diagram drawn by Sergen and İkbal will be checked <br/>
+The use case diagram drawn by Salih will be checked
+
+**2. Discussion Items:** <br/>
+What is the problem with the use case diagram drawn with multiple users? <br/>
+Where can the UI be drawn?
+
+**3. Wrap up**<br/>
+Diagrams checked. <br/>
+A new meeting is scheduled for Friday, 29.10.2021 at 9.00 pm to take the new works.
+
+*******************************************************
+
+**Meeting 9** <br/>
+**Date:** 
+start: 2.00 pm
+end: 3.30 pm
+Room: Discord
+Participants: All members
+
+**1. Objective:** <br/>
+The class diagram discussion will end. <br/>
+The use case diagram discussion will end. <br/>
+New missions will be taken
+
+**2. Discussion Items:** <br/>
+When to talk to asistant?
+
+**3. Wrap up**<br/>
+Salih took activity diagram. <br/>
+İkbal and Sergen took state and sequence diagrams. <br/>
+Egemen took on the task of drawing user interfaces.  <br/>
+Ezgi Lena took to write to report part that "Who was spoken to?" and the explanations of the diagrams <br/>
+A new meeting is scheduled for Saturday, 30.10.2021 at 12.00 pm to check all work.
+
+*******************************************************
+
+**Meeting 10** <br/>
+**Date:** 
+start: 12.00 pm
 end: 
 Room: Discord
 Participants: All members
@@ -128,4 +173,4 @@ Participants: All members
 **2. Discussion Items:** <br/>
 
 **3. Wrap up**<br/>
-A new meeting is scheduled for Friday, 29.10.2021 at 9.00 pm to .
+A new meeting is scheduled for Sunday, 31.10.2021 at 9.00 pm to .
