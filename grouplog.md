@@ -117,10 +117,10 @@ A new meeting is scheduled for Thursday, 28.10.2021 at 9.00 pm to observe the pr
 *******************************************************
 
 **Meeting 8** <br/>
-**Date:** 
-start: 9.00 pm
-end: 11.30 pm
-Room: Discord
+**Date:** 28 / 10 / 2021 <br/> 
+start: 9.00 pm <br/> 
+end: 11.30 pm <br/> 
+Room: Discord <br/> 
 Participants: All members
 
 **1. Objective:** <br/>
@@ -138,10 +138,10 @@ A new meeting is scheduled for Friday, 29.10.2021 at 9.00 pm to take the new wor
 *******************************************************
 
 **Meeting 9** <br/>
-**Date:** 
-start: 2.00 pm
-end: 3.30 pm
-Room: Discord
+**Date:** 29 / 10 / 2021 <br/> 
+start: 2.00 pm <br/> 
+end: 3.30 pm <br/> 
+Room: Discord <br/> 
 Participants: All members
 
 **1. Objective:** <br/>
@@ -162,15 +162,77 @@ A new meeting is scheduled for Saturday, 30.10.2021 at 12.00 pm to check all wor
 *******************************************************
 
 **Meeting 10** <br/>
-**Date:** 
-start: 12.00 pm
-end: 
-Room: Discord
+**Date:** 30 / 10 / 2021 <br/> 
+start: 12.00 pm <br/> 
+end: 3.00 pm <br/> 
+Room: Discord <br/> 
 Participants: All members
 
 **1. Objective:** <br/>
+Some questions will be asked to TA Erdem at five pm. <br/>
+Drawing diagrams will end after asking the questions.
 
 **2. Discussion Items:** <br/>
+How can we write notations in state diagram for some unique elements? <br/>
+How can the use diagram less complicated? <br/>
 
 **3. Wrap up**<br/>
-A new meeting is scheduled for Sunday, 31.10.2021 at 9.00 pm to .
+A new meeting is scheduled for Saturday, 30.10.2021 at 9.00 pm to.
+
+*******************************************************
+
+**Meeting 11** <br/>
+**Date:** 30 / 10 / 2021 <br/> 
+start: 9.00 pm <br/> 
+end: 10.00 pm <br/> 
+Room: Discord <br/> 
+Participants: All members
+
+**1. Objective:** <br/>
+According to asked questions fix the diagrams. <br/>
+Seperate the works to member for report.
+
+**2. Discussion Items:** <br/>
+How can we seperate the diagrams explanations?
+
+**3. Wrap up**<br/>
+A new meeting is scheduled for Sunday, 31.10.2021 at 12.00 pm to .
+
+*******************************************************
+
+**Meeting 12** <br/>
+**Date:** 31 / 10 / 2021 <br/> 
+start: 12.00 pm <br/> 
+end: 11.00 pm <br/> 
+Room: Discord <br/> 
+Participants: All members
+
+**1. Objective:** <br/>
+Finish the whole report until midnight.
+
+**2. Discussion Items:** <br/>
+Should we delete some sequence diagrams since for some part they do the same thing?
+
+**3. Wrap up**<br/>
+No meeting scheduled because analysis report iteration 1 is done.
+
+*******************************************************
+
+**Meeting 13** <br/>
+**Date:** 09 / 11 / 2021 <br/> 
+start: 6.30 pm <br/> 
+end: 22.30 pm <br/> 
+Room: Library <br/> 
+Participants: All members
+
+**1. Objective:** <br/>
+Discuss what is missing in our project. <br/>
+Do the peer review for another group.
+
+**2. Discussion Items:** <br/>
+How can we grade the report of the other group's report? <br/>
+Should we write every single mistake we see? <br/>
+How will we seperate the works (backend/frontend) when we do the project coding?
+
+**3. Wrap up**<br/>
+No meeting scheduled because peer review is done.
