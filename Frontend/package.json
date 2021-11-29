@@ -10,7 +10,8 @@
     "@vue/compiler-sfc": "3.0.7",
     "vue": "^3.0.7",
     "vue-router": "4.0.5",
-    "vuex": "4.0.0"
+    "vuex": "4.0.0",
+    "bootstrap": "5.0.x"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.10.1",
