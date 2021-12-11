@@ -1,0 +1,21 @@
+export default {
+  Email: 'E-posta',
+  Password: 'Şifre',
+  Register: 'Kayıt ol',
+  SignIn: 'Giriş yap',
+  SignInUpperCase: 'GİRİŞ YAP',
+  ForgotPassword: 'Unuttum',
+  FullName: 'İsim - Soyisim',
+  Role: 'Rol',
+  ID: 'ID',
+  HESCode: 'HES Kodu',
+  ResideInDorm: 'Bilkent yurtlarında mı kalıyorsunuz?',
+  DormNumber: 'Yurt Numarası',
+  CreateAccount: 'Hesap oluştur',
+  Student: 'Öğrenci',
+  Instructor: 'Öğretmen',
+  DiagnovirTester: 'Diagnovir Test Çalışanı',
+  CafeteriaStaff: 'Yemekhane Çalışanı',
+  SportsCenterStaff: 'Spor Merkezi Çalışanı',
+  HealthCenterStaff: 'Sağlık Merkezi Çalışanı'
+}
