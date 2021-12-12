@@ -11,11 +11,13 @@ import { createStore } from 'vuex'
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
+import settings from './settings'
+let Store;
 
 export default store(function (/* { ssrContext } */) {
-  const Store = createStore({
+  Store = createStore({
     modules: {
-      // example
+      settings
     },
 
     // enable strict mode (adds overhead!)
@@ -25,3 +27,5 @@ export default store(function (/* { ssrContext } */) {
 
   return Store
 })
+
+export { Store };

@@ -17,5 +17,7 @@ export default {
   DiagnovirTester: 'Diagnovir Test Çalışanı',
   CafeteriaStaff: 'Yemekhane Çalışanı',
   SportsCenterStaff: 'Spor Merkezi Çalışanı',
-  HealthCenterStaff: 'Sağlık Merkezi Çalışanı'
+  HealthCenterStaff: 'Sağlık Merkezi Çalışanı',
+  Cancel: 'İptal et',
+  AreYouSure: 'Emin misiniz?'
 }

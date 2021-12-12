@@ -17,5 +17,7 @@ export default {
   DiagnovirTester: 'Diagnovir Tester',
   CafeteriaStaff: 'Cafeteria Staff',
   SportsCenterStaff: 'Sports Center Staff',
-  HealthCenterStaff: 'Health Center Staff'
+  HealthCenterStaff: 'Health Center Staff',
+  Cancel: 'Cancel',
+  AreYouSure: 'Are you sure?'
 }
