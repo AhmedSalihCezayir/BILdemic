@@ -19,5 +19,6 @@ export default {
   SportsCenterStaff: 'Spor Merkezi Çalışanı',
   HealthCenterStaff: 'Sağlık Merkezi Çalışanı',
   Cancel: 'İptal et',
+  Confirm: 'Kabul et',
   AreYouSure: 'Emin misiniz?'
 }

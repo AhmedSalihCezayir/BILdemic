@@ -19,5 +19,6 @@ export default {
   SportsCenterStaff: 'Sports Center Staff',
   HealthCenterStaff: 'Health Center Staff',
   Cancel: 'Cancel',
+  Confirm: 'Confirm',
   AreYouSure: 'Are you sure?'
 }

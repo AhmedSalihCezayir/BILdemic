@@ -1,8 +1,8 @@
 <template>
   <q-dialog v-model="confirm" persistent>
       <q-card style="width: 300px">
-        <q-card-section class="row items-center">
-          <span>{{ $t('AreYouSure') }} </span>
+        <q-card-section class="col items-center">
+          <slot/>
         </q-card-section>
 
         <q-card-actions :class="buttonAlignment">
