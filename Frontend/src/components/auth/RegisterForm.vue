@@ -6,7 +6,7 @@
         filled
         square
         v-model="name"
-        class="col-9 q-mr-md"
+        class="col-8 q-mr-md"
         color="secondary"
       />
 
@@ -70,7 +70,7 @@
 
     <div class="row" v-if="role == $t('Student')">
       <q-checkbox
-        :class="dormRowStyling"
+        class="bg-grey-2 text-grey-8 q-pa-sm q-mr-md text-body2 col-8"
         :label="$t('ResideInDorm')"
         color="secondary"
         keep-color
@@ -127,10 +127,6 @@ export default {
     isMobile: Boolean
   },
   computed: {
-    dormRowStyling() {
-      let styling =  'bg-grey-2 text-grey-8 q-pa-sm q-mr-md text-body2'
-      return styling.concat(this.isMobile ? ' col-8' : ' col-9');
-    },
     formStyling() {
       return this.isMobile ? "q-gutter-md" : "q-pa-md q-gutter-md";
     },
