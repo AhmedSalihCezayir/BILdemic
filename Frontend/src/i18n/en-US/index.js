@@ -20,5 +20,20 @@ export default {
   HealthCenterStaff: 'Health Center Staff',
   Cancel: 'Cancel',
   Confirm: 'Confirm',
-  AreYouSure: 'Are you sure?'
+  AreYouSure: 'Are you sure?',
+  Courses: 'Courses',
+  DiagnovirCenter: 'Diagnovir Center',
+  HealthCenter: 'Health Center',
+  SportsCenter: 'Sports Center',
+  Cafeteria: 'Cafeteria',
+  WeeklyReport: 'Weekly Report',
+  ProfileSettings: 'Profile Settings',
+  ImportantNumbers: 'Important Numbers',
+  LogOut: 'Log Out',
+  AllowedInCampus: 'You are allowed in the campus.',
+  NotAllowedInCampus: 'You are not allowed in campus.',
+  FullyVaccinated: 'You are fully vaccinated.',
+  YouAreRisky: 'You are risky.',
+  Oops: 'Oops, Nothing here...',
+  GoHome: 'Go Home'
 }

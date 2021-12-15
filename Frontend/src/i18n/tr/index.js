@@ -20,5 +20,20 @@ export default {
   HealthCenterStaff: 'Sağlık Merkezi Çalışanı',
   Cancel: 'İptal et',
   Confirm: 'Kabul et',
-  AreYouSure: 'Emin misiniz?'
+  AreYouSure: 'Emin misiniz?',
+  Courses: 'Derslerim',
+  DiagnovirCenter: 'Diagnovir Merkezi',
+  HealthCenter: 'Sağlık Merkezi',
+  SportsCenter: 'Sport Merkezi',
+  Cafeteria: 'Yemekhane',
+  WeeklyReport: 'Haftalık Rapor',
+  ProfileSettings: 'Profil Ayarları',
+  ImportantNumbers: 'Önemli Numaralar',
+  LogOut: 'Çıkış Yap',
+  AllowedInCampus: 'Kampüse girebilirsiniz.',
+  NotAllowedInCampus: 'Kampüse giremezsiniz.',
+  FullyVaccinated: 'Aşılarınız tamamdır.',
+  YouAreRisky: 'Riskli durumdasınız.',
+  Oops: 'Üzgünüz, ulaşmaya çalıştığınız sayfa bulunamadı.',
+  GoHome: 'Ana Sayfaya Dön'
 }

@@ -5,9 +5,11 @@
         404
       </div>
 
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+      <div class="text-h3" style="opacity:.4">
+        {{ $t('Oops') }}
       </div>
+
+      <router-link to="/home" class="text-h4 text-white"> {{ $t('GoHome') }} </router-link>
     </div>
   </div>
 </template>
@@ -19,3 +21,4 @@ export default defineComponent({
   name: 'Error404'
 })
 </script>
+

@@ -1,11 +1,14 @@
 import Login from "../pages/auth/Login.vue"
 import Register from "../pages/auth/Register.vue"
-import App from "../App.vue"
+import BaseIndex from '../layouts/BaseIndex.vue'
+import BaseLayoutTab from "../layouts/BaseLayoutTab.vue"
+import BaseLayoutPhoto from "../layouts/BaseLayoutPhoto.vue"
+import HomePage from '../pages/HomePage.vue'
 
 const routes = [
   {
-    path: '/',
-    component: App,
+    path: '/auth',
+    component: BaseIndex,
     children: [
       {
         path: 'login',
@@ -16,13 +19,20 @@ const routes = [
         path: 'register',
         name: 'Register',
         component: Register
-      },
+      }
     ]
   },
-  
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: '/',
+    component: BaseLayoutPhoto,
+    children: [
+      {
+        path: 'home',
+        name: "Home",
+        component: HomePage
+      }
+    ]
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
