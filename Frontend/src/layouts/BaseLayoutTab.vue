@@ -71,8 +71,8 @@
         <div class="absolute-top column items-center" active-class="bg-teal-2">
           <router-link to="/home">
             <q-img 
-              width="50px"
-              src="https://developer.android.com/distribute/google-play/resources/icon-design-specifications/images/rounded-corners-uniformed.png" 
+              width="110px"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
               class="q-mt-md"
             />
           </router-link>
@@ -85,10 +85,14 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router';
+
 export default {
   name: 'BaseLayoutTab',
 
   setup() {
+    const route = useRoute();
+
     const $q = useQuasar();
     const isMobile = computed(() => {
       return $q.screen.width < 800;
@@ -101,7 +105,7 @@ export default {
     })
 
     const toggleDrawer = () => {
-      drawer.value = !drawer.value
+      drawer.value = !drawer.value;
     }
 
     return {

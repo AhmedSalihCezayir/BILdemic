@@ -5,6 +5,7 @@ import BaseLayoutTab from "../layouts/BaseLayoutTab.vue"
 import BaseLayoutPhoto from "../layouts/BaseLayoutPhoto.vue"
 import HomePage from "../pages/HomePage.vue"
 import CoursesPage from "../pages/courses/CoursesPage.vue"
+import CourseSpecificPage from "../pages/courses/CourseSpecificPage.vue"
 
 const routes = [
   {
@@ -42,13 +43,13 @@ const routes = [
         path: 'courses',
         name: 'Courses',
         component: CoursesPage,
+      },
+      {
+        path: 'courses/:course',
+        name: 'CourseSpecificPage',
+        component: CourseSpecificPage,
       }
     ]
-  },
-  {
-    path: '/~/courses/:course',
-    name: 'CourseSpecificPage',
-    component: Login,
   },
   {
     path: '/:catchAll(.*)*',

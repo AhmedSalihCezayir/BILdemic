@@ -47,5 +47,9 @@ export default {
   Accept: 'Kabul et',
   Decline: 'Reddet',
   SelectSeat: 'Bu koltuğu seçmek istiyor musun?',
-  CoursesPageDesc: 'Bu dönem aldığınız dersler: '
+  CoursesPageDesc: 'Bu dönem aldığınız dersler: ',
+  EnterLectureCode: 'Ders kodunu giriniz',
+  Send: 'Gönder',
+  Enroll: 'Kaydol',
+  EnterCourseRegisterCode: 'Ders kayıt kodunu giriniz'
 }

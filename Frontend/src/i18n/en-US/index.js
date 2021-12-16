@@ -47,5 +47,9 @@ export default {
   Accept: 'Accept',
   Decline: 'Decline',
   SelectSeat: 'Are you sure to select this seat?',
-  CoursesPageDesc: 'The courses you are taking this semester:'
+  CoursesPageDesc: 'The courses you are taking this semester:',
+  EnterLectureCode: 'Enter lecture code',
+  Send: 'Send',
+  Enroll: 'Enroll',
+  EnterCourseRegisterCode: 'Enter course register code'
 }

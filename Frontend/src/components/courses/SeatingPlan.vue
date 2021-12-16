@@ -100,8 +100,8 @@
             {{ $t("YourSeatingCode") }} <b> 789-478 </b>
           </q-banner>
           <div class="row justify-center q-mt-md">
-            <q-input v-model="left" class="col q-mr-md" color="secondary" :label="$t('LeftCode')" type="tel" dense outlined mask="###-###"/>
-            <q-input v-model="right" class="col" color="secondary" :label="$t('RightCode')" type="tel" dense outlined mask="###-###"/>
+            <q-input v-if="hasLeft" v-model="left" :class="`col ${ hasRight ? 'q-mr-md' : ''}`" color="secondary" :label="$t('LeftCode')" type="tel" dense outlined mask="###-###"/>
+            <q-input v-if="hasRight" v-model="right" class="col" color="secondary" :label="$t('RightCode')" type="tel" dense outlined mask="###-###"/>
           </div>
         </q-card-section>
 
@@ -128,7 +128,9 @@ export default {
     seatingPlan: Array,
     personalRow: Number,
     personalCol: Number,
-    firstTime: Boolean
+    firstTime: Boolean,
+    hasLeft: Boolean,
+    hasRight: Boolean
   },
 
   setup(props) {
