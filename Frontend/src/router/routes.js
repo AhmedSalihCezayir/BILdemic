@@ -1,9 +1,10 @@
 import Login from "../pages/auth/Login.vue"
 import Register from "../pages/auth/Register.vue"
-import BaseIndex from '../layouts/BaseIndex.vue'
+import BaseIndex from "../layouts/BaseIndex.vue"
 import BaseLayoutTab from "../layouts/BaseLayoutTab.vue"
 import BaseLayoutPhoto from "../layouts/BaseLayoutPhoto.vue"
-import HomePage from '../pages/HomePage.vue'
+import HomePage from "../pages/HomePage.vue"
+import CoursesPage from "../pages/courses/CoursesPage.vue"
 
 const routes = [
   {
@@ -28,10 +29,26 @@ const routes = [
     children: [
       {
         path: 'home',
-        name: "Home",
+        name: 'Home',
         component: HomePage
       }
     ]
+  },
+  {
+    path: '/~',
+    component: BaseLayoutTab,
+    children: [
+      {
+        path: 'courses',
+        name: 'Courses',
+        component: CoursesPage,
+      }
+    ]
+  },
+  {
+    path: '/~/courses/:course',
+    name: 'CourseSpecificPage',
+    component: Login,
   },
   {
     path: '/:catchAll(.*)*',

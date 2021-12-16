@@ -46,5 +46,6 @@ export default {
   ClickToChangeSeatingStatus: 'Click to change seating status',
   Accept: 'Accept',
   Decline: 'Decline',
-  SelectSeat: 'Are you sure to select this seat?'
+  SelectSeat: 'Are you sure to select this seat?',
+  CoursesPageDesc: 'The courses you are taking this semester:'
 }

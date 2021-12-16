@@ -69,34 +69,34 @@ export default {
       {
         name: "Courses",
         icon: "mdi-book-open-variant",
-        route: "/courses",
+        route: "/~/courses",
         disable: !riskless.value
       },
       {
         name: "DiagnovirCenter",
         icon: "mdi-needle",
-        route: "diagnovir"
+        route: "/~/diagnovir"
       },
       {
         name: "HealthCenter",
         icon: "mdi-ambulance",
-        route: "health"
+        route: "/~/health"
       },
       {
         name: "SportsCenter",
         icon: "mdi-weight-lifter",
-        route: "sports",
+        route: "/~/sports",
         disable: !riskless.value
       },
       {
         name: "Cafeteria",
         icon: "mdi-food",
-        route: "cafeteria"
+        route: "/~/cafeteria"
       },
       {
         name: "WeeklyReport",
         icon: "mdi-newspaper",
-        route: "weekly"
+        route: "/~/weekly"
       },
     ]
 

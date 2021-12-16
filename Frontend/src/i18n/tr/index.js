@@ -46,5 +46,6 @@ export default {
   ClickToChangeSeatingStatus: 'Sıra durumunu değiştirmek için tıkla',
   Accept: 'Kabul et',
   Decline: 'Reddet',
-  SelectSeat: 'Bu koltuğu seçmek istiyor musun?'
+  SelectSeat: 'Bu koltuğu seçmek istiyor musun?',
+  CoursesPageDesc: 'Bu dönem aldığınız dersler: '
 }
