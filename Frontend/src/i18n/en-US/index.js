@@ -35,5 +35,21 @@ export default {
   FullyVaccinated: 'You are fully vaccinated.',
   YouAreRisky: 'You are risky.',
   Oops: 'Oops, Nothing here...',
-  GoHome: 'Go Home'
+  GoHome: 'Go Home',
+  YourSeatingCode: 'Your Seating Code: ',
+  LeftCode: 'Left Code',
+  RightCode: 'Right Code',
+  Submit: 'Submit',
+  YourSeat: 'This is your seat',
+  ClickToEnterNeigh: 'Click to enter seat neighbour info',
+  ClickToSelectSeat: 'Click to select your seat',
+  ClickToChangeSeatingStatus: 'Click to change seating status',
+  Accept: 'Accept',
+  Decline: 'Decline',
+  SelectSeat: 'Are you sure to select this seat?',
+  CoursesPageDesc: 'The courses you are taking this semester:',
+  EnterLectureCode: 'Enter lecture code',
+  Send: 'Send',
+  Enroll: 'Enroll',
+  EnterCourseRegisterCode: 'Enter course register code'
 }
