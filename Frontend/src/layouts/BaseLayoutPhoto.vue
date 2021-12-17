@@ -9,8 +9,8 @@
         <div class="absolute-top bg-teal-3 column justify-center items-center" style="height: 240px">
           <router-link to="/home">
             <q-img 
-              width="50px"
-              src="https://developer.android.com/distribute/google-play/resources/icon-design-specifications/images/rounded-corners-uniformed.png" 
+              width="110px"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
               class="q-mb-md"
             />
           </router-link>

@@ -35,5 +35,21 @@ export default {
   FullyVaccinated: 'Aşılarınız tamamdır.',
   YouAreRisky: 'Riskli durumdasınız.',
   Oops: 'Üzgünüz, ulaşmaya çalıştığınız sayfa bulunamadı.',
-  GoHome: 'Ana Sayfaya Dön'
+  GoHome: 'Ana Sayfaya Dön',
+  YourSeatingCode: 'Koltuk Kodunuz: ',
+  LeftCode: 'Sol koltuk',
+  RightCode: 'Sağ koltuk',
+  Submit: 'Gönder',
+  YourSeat: 'Burası senin yerin',
+  ClickToEnterNeigh: 'Sıra komşusu bilgisi girmek için tıkla',
+  ClickToSelectSeat: 'Sıra seçmek için tıkla',
+  ClickToChangeSeatingStatus: 'Sıra durumunu değiştirmek için tıkla',
+  Accept: 'Kabul et',
+  Decline: 'Reddet',
+  SelectSeat: 'Bu koltuğu seçmek istiyor musun?',
+  CoursesPageDesc: 'Bu dönem aldığınız dersler: ',
+  EnterLectureCode: 'Ders kodunu giriniz',
+  Send: 'Gönder',
+  Enroll: 'Kaydol',
+  EnterCourseRegisterCode: 'Ders kayıt kodunu giriniz'
 }

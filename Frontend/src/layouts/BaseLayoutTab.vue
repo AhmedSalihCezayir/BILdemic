@@ -9,37 +9,37 @@
         <div style="height: calc(100% - 100px); margin-top: 100px">
           <q-list class="q-py-none">
             <div>
-              <q-item clickable v-ripple to="/courses">
+              <q-item clickable v-ripple to="/~/courses" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('Courses') }}
                 </q-item-section>
               </q-item>
   
-              <q-item clickable v-ripple to="/diagnovir">
+              <q-item clickable v-ripple to="/~/diagnovir" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('DiagnovirCenter') }}
                 </q-item-section>
               </q-item>
   
-              <q-item clickable v-ripple to="/health">
+              <q-item clickable v-ripple to="/~/health" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('HealthCenter') }}
                 </q-item-section>
               </q-item>
   
-              <q-item clickable v-ripple to="/sports">
+              <q-item clickable v-ripple to="/~/sports" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('SportsCenter') }}
                 </q-item-section>
               </q-item>
   
-              <q-item clickable v-ripple to="/cafeteria">
+              <q-item clickable v-ripple to="/~/cafeteria" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('Cafeteria') }}
                 </q-item-section>
               </q-item>
   
-              <q-item clickable v-ripple to="/weekly">
+              <q-item clickable v-ripple to="/~/weekly" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('WeeklyReport') }}
                 </q-item-section>
@@ -47,13 +47,13 @@
             </div>
 
             <div class="fixed-bottom q-mb-sm">
-              <q-item clickable v-ripple style="min-height: 35px;" to="/settings">
+              <q-item clickable v-ripple style="min-height: 35px;" to="/~/settings" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                   {{ $t('ProfileSettings') }}
                 </q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple style="min-height: 35px;" to="/important">
+              <q-item clickable v-ripple style="min-height: 35px;" to="/~/important" active-class="bg-teal-2">
                 <q-item-section class="q-ml-sm">
                     {{ $t('ImportantNumbers') }}
                 </q-item-section>
@@ -68,11 +68,11 @@
           </q-list>
         </div>
 
-        <div class="absolute-top column items-center">
+        <div class="absolute-top column items-center" active-class="bg-teal-2">
           <router-link to="/home">
             <q-img 
-              width="50px"
-              src="https://developer.android.com/distribute/google-play/resources/icon-design-specifications/images/rounded-corners-uniformed.png" 
+              width="110px"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
               class="q-mt-md"
             />
           </router-link>
@@ -85,10 +85,14 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router';
+
 export default {
   name: 'BaseLayoutTab',
 
   setup() {
+    const route = useRoute();
+
     const $q = useQuasar();
     const isMobile = computed(() => {
       return $q.screen.width < 800;
@@ -101,7 +105,7 @@ export default {
     })
 
     const toggleDrawer = () => {
-      drawer.value = !drawer.value
+      drawer.value = !drawer.value;
     }
 
     return {

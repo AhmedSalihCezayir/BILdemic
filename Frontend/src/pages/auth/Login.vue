@@ -11,7 +11,7 @@
     </div>
 
     <q-img 
-      src="https://developer.android.com/distribute/google-play/resources/icon-design-specifications/images/rounded-corners-uniformed.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png"
       width="200px"
       class="q-mb-md"
     />
