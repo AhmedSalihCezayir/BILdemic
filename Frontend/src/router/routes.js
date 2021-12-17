@@ -6,6 +6,8 @@ import BaseLayoutPhoto from "../layouts/BaseLayoutPhoto.vue"
 import HomePage from "../pages/HomePage.vue"
 import CoursesPage from "../pages/courses/CoursesPage.vue"
 import CourseSpecificPage from "../pages/courses/CourseSpecificPage.vue"
+import DiagnovirPage from "../pages/diagnovir/DiagnovirPage.vue"
+import TestResultsPage from "../pages/diagnovir/TestResultsPage.vue"
 
 const routes = [
   {
@@ -48,6 +50,16 @@ const routes = [
         path: 'courses/:course',
         name: 'CourseSpecificPage',
         component: CourseSpecificPage,
+      },
+      {
+        path: 'diagnovir',
+        name: 'DiagnovirPage',
+        component: DiagnovirPage
+      },
+      {
+        path: 'diagnovir/tests',
+        name: 'TestResultsPage',
+        component: TestResultsPage
       }
     ]
   },
