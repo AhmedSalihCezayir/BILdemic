@@ -65,7 +65,7 @@ export default {
   TestResult: 'Diagnovir Test Result',
   Positive: 'Positive',
   Negative: 'Negative',
-  TestsPageDesc: 'Your last Diagnovir test results:',
+  TestsPageDesc: 'Your Last Diagnovir Test Results',
   DiagnovirPageDesc: 'Diagnovir Center',
   DiagnovirAppInfo: 'Diagnovir Test Appointment Info',
   MakeDiagnovirApp: 'Make Diagnovir Test Appointment',
@@ -87,5 +87,17 @@ export default {
   SelectTheSymptoms: 'Please select the symptoms you have from the following list',
   PatientForm: 'Patient Form',
   CallAnAmbulance: 'Call An Ambulance',
-  CallAnAmbulanceDesc: 'After you click confirm button to help you quickly, your communication information will be sent to Bilkent Health Center. Please do not leave your phone.'
+  CallAnAmbulanceDesc: 'After you click confirm button to help you quickly, your communication information will be sent to Bilkent Health Center. Please do not leave your phone.',
+  SportsCenterPageDesc: 'Sports Center',
+  ReservationActivity: 'Activity',
+  SportsCenterAppInfo: 'Sports Appointment Info',
+  SeeSportsReservations: 'See Sports Reservations',
+  MakeSportsApp: 'Make Sports Reservation',
+  SportsReservationsPageDesc: 'Your Sports Reservations',
+  CafeteriaPageDesc: 'Cafeteria',
+  MealOrderInfo: 'Meal Order Info',
+  MakeMealOrder: 'Make Meal Order',
+  DailyMenu: 'Daily Menu',
+  Lunch: 'Lunch',
+  Dinner: 'Dinner'
 }

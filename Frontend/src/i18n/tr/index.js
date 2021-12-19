@@ -65,7 +65,7 @@ export default {
   TestResult: 'Diagnovir Test Sonucu',
   Positive: 'Pozitif',
   Negative: 'Negatif',
-  TestsPageDesc: 'Son Diagnovir test sonuçlarınız:',
+  TestsPageDesc: 'Son Diagnovir Test Sonuçlarınız',
   DiagnovirPageDesc: 'Diagnovir Test Merkezi',
   DiagnovirAppInfo: 'Diagnovir Testi Randevu Bilgisi',
   MakeDiagnovirApp: 'Diagnovir Test Randevusu Al',
@@ -87,5 +87,17 @@ export default {
   SelectTheSymptoms: 'Lütfen aşağıdaki listeden sizde görülen semptomları seçiniz',
   PatientForm: 'Hasta formu',
   CallAnAmbulance: 'Ambulans Çağır',
-  CallAnAmbulanceDesc: 'Kabul tuşuna bastıktan sonra size en kısa sürede yardımcı olmak için iletişim bilgileriniz Bilkent Sağlık Merkezi\'ne iletilecektir. Lütfen telefonunuzu yanınızdan ayırmayınız.'
+  CallAnAmbulanceDesc: 'Kabul tuşuna bastıktan sonra size en kısa sürede yardımcı olmak için iletişim bilgileriniz Bilkent Sağlık Merkezi\'ne iletilecektir. Lütfen telefonunuzu yanınızdan ayırmayınız.',
+  SportsCenterPageDesc: 'Spor Merkezi',
+  ReservationActivity: 'Aktivite',
+  SportsCenterAppInfo: 'Spor Randevu Bilgisi',
+  SeeSportsReservations: 'Spor Randevularını Gör',
+  MakeSportsApp: 'Spor Randevusu Al',
+  SportsReservationsPageDesc: 'Spor Randevularınız ',
+  CafeteriaPageDesc: 'Yemekhane',
+  MealOrderInfo: 'Yemek Sipariş Bilgisi',
+  MakeMealOrder: 'Yemek Sipraişi Yap',
+  DailyMenu: 'Günün Yemeği',
+  Lunch: 'Öğle Yemeği',
+  Dinner: 'Akşam Yemeği'
 }

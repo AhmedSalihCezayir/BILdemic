@@ -2,26 +2,22 @@
   <div :style="pageStyling"> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
-      <b> {{ $t('DiagnovirPageDesc') }} </b> 
+      <b> {{ $t('SportsCenterPageDesc') }} </b> 
     </q-banner>
 
-    <my-reservations 
-      v-if="hasReservation" 
-      :slots="slots" 
-      :title="$t('DiagnovirAppInfo')"
-      class="q-mt-xl" />
-      
     <make-reservation 
-      v-if="!hasReservation" 
+      :hasPlace="true"
+      :hasActivity="true" 
       :hasDate="true" 
       :hasTime="true" 
-      :title="$t('MakeDiagnovirApp')" 
-      type="diagnovir"
-      class="q-mt-xl" />
+      :title="$t('MakeSportsApp')" 
+      type="sports"
+      class="q-mt-xl" />  
 
     <div class="column items-center q-mt-xl">
-      <q-btn :label="$t('SeeTestResults')" color="secondary" style="width: 50%" to="/~/diagnovir/tests"/>
+      <q-btn :label="$t('SeeSportsReservations')" color="secondary" style="width: 50%" to="/~/sports/reservations"/>
     </div>  
+
   </div>
 </template>
 
@@ -29,17 +25,23 @@
 import { computed, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import MakeReservation from '../../components/reservation/MakeReservation.vue'
-import MyReservations from '../../components/reservation/MyReservations.vue'
 
 export default {
-  name: "DiagnovirPage",
+  name: "SportsCenterPage",
   components: {
-    MakeReservation,
-    MyReservations
+    MakeReservation
   },
   computed: {
     slots() {
       return [
+        {
+          label: this.$t('ReservationPlace'), 
+          data:  'Main Campus Sports Hall'
+        },
+        {
+          label: this.$t('ReservationActivity'), 
+          data:  'Tennis'
+        },
         {
           label: this.$t('ReservationDate'), 
           data:  '11/12/2021'
@@ -47,13 +49,9 @@ export default {
         {
           label: this.$t('ReservationTime'), 
           data:  '08.30'
-        },
-        {
-          label: this.$t('ReservationPlace'), 
-          data:  'Health Center'
         }
       ]
-    }
+    },
   },
 
   setup(props, ctx) {
@@ -69,7 +67,7 @@ export default {
       open.value = !isMobile.value;
     })
 
-    const hasReservation = ref(true);
+    const hasReservation = ref(false);
 
     const toggleDrawer = () => {
       open.value = !open.value

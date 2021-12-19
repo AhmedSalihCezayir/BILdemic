@@ -2,26 +2,25 @@
   <div :style="pageStyling"> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
-      <b> {{ $t('DiagnovirPageDesc') }} </b> 
+      <b> {{ $t('CafeteriaPageDesc') }} </b> 
     </q-banner>
+
+    <daily-menu class="q-mt-lg"/>
 
     <my-reservations 
       v-if="hasReservation" 
       :slots="slots" 
-      :title="$t('DiagnovirAppInfo')"
-      class="q-mt-xl" />
+      :title="$t('MealOrderInfo')"
+      class="q-mt-md" />
       
     <make-reservation 
       v-if="!hasReservation" 
-      :hasDate="true" 
-      :hasTime="true" 
-      :title="$t('MakeDiagnovirApp')" 
-      type="diagnovir"
-      class="q-mt-xl" />
+      :hasMeal="true"
+      :hasPlace="true" 
+      :title="$t('MakeMealOrder')" 
+      type="meal"
+      class="q-mt-md" />
 
-    <div class="column items-center q-mt-xl">
-      <q-btn :label="$t('SeeTestResults')" color="secondary" style="width: 50%" to="/~/diagnovir/tests"/>
-    </div>  
   </div>
 </template>
 
@@ -30,12 +29,14 @@ import { computed, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import MakeReservation from '../../components/reservation/MakeReservation.vue'
 import MyReservations from '../../components/reservation/MyReservations.vue'
+import DailyMenu from '../../components/cafeteria/DailyMenu.vue'
 
 export default {
-  name: "DiagnovirPage",
+  name: "CafeteriaPage",
   components: {
     MakeReservation,
-    MyReservations
+    MyReservations,
+    DailyMenu
   },
   computed: {
     slots() {
@@ -69,7 +70,7 @@ export default {
       open.value = !isMobile.value;
     })
 
-    const hasReservation = ref(true);
+    const hasReservation = ref(false);
 
     const toggleDrawer = () => {
       open.value = !open.value
@@ -89,8 +90,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass" scoped>
-a
-  text-decoration: none
-</style>
