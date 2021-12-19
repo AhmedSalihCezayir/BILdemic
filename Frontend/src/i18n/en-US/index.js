@@ -91,5 +91,11 @@ export default {
   SportsCenterAppInfo: 'Sports Appointment Info',
   SeeSportsReservations: 'See Sports Reservations',
   MakeSportsApp: 'Make Sports Reservation',
-  SportsReservationsPageDesc: 'Your Sports Reservations'
+  SportsReservationsPageDesc: 'Your Sports Reservations',
+  CafeteriaPageDesc: 'Cafeteria',
+  MealOrderInfo: 'Meal Order Info',
+  MakeMealOrder: 'Make Meal Order',
+  DailyMenu: 'Daily Menu',
+  Lunch: 'Lunch',
+  Dinner: 'Dinner'
 }
