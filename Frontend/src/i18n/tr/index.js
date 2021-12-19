@@ -86,6 +86,8 @@ export default {
   ChestPain: 'Göğüs ağrısı',
   SelectTheSymptoms: 'Lütfen aşağıdaki listeden sizde görülen semptomları seçiniz',
   PatientForm: 'Hasta formu',
+  CallAnAmbulance: 'Ambulans Çağır',
+  CallAnAmbulanceDesc: 'Kabul tuşuna bastıktan sonra size en kısa sürede yardımcı olmak için iletişim bilgileriniz Bilkent Sağlık Merkezi\'ne iletilecektir. Lütfen telefonunuzu yanınızdan ayırmayınız.',
   SportsCenterPageDesc: 'Spor Merkezi',
   ReservationActivity: 'Aktivite',
   SportsCenterAppInfo: 'Spor Randevu Bilgisi',
