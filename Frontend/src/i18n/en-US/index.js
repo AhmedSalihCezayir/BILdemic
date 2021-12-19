@@ -69,5 +69,21 @@ export default {
   DiagnovirPageDesc: 'Diagnovir Center',
   DiagnovirAppInfo: 'Diagnovir Test Appointment Info',
   MakeDiagnovirApp: 'Make Diagnovir Test Appointment',
-  SeeTestResults: 'See Your Diagnovir Test Results'
+  SeeTestResults: 'See Your Diagnovir Test Results',
+  ContactHealthCenter: 'Contact Health Center',
+  HealthCenterPageDesc: 'Health Center',
+  HealthCenterAppInfo: 'Health Center Appointment Info',
+  MakeHealthCenterApp: 'Make Health Center Reservation',
+  Fever: 'Fever',
+  Cough: 'Cough',
+  Tiredness: 'Tiredness',
+  LossOfTaste: 'Loss of taste or smell',
+  SoreThroat: 'Sore throat',
+  Headache: 'Headache',
+  Diarrhea: 'Diarrhea',
+  DifficultyBreathing: 'Difficulty breathing or shortness of breath',
+  LossOfSpeech: 'Loss of speech or mobility, or confusion',
+  ChestPain: 'Chest pain',
+  SelectTheSymptoms: 'Please select the symptoms you have from the following list',
+  PatientForm: 'Patient Form'
 }
