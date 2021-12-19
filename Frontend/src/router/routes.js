@@ -8,6 +8,8 @@ import CoursesPage from "../pages/courses/CoursesPage.vue"
 import CourseSpecificPage from "../pages/courses/CourseSpecificPage.vue"
 import DiagnovirPage from "../pages/diagnovir/DiagnovirPage.vue"
 import TestResultsPage from "../pages/diagnovir/TestResultsPage.vue"
+import HealthCenterPage from "../pages/health/HealthCenterPage.vue"
+import HealthFormPage from "../pages/health/HealthFormPage.vue"
 
 const routes = [
   {
@@ -60,6 +62,16 @@ const routes = [
         path: 'diagnovir/tests',
         name: 'TestResultsPage',
         component: TestResultsPage
+      },
+      {
+        path: 'health',
+        name: 'HealthCenterPage',
+        component: HealthCenterPage
+      },
+      {
+        path: 'health/form',
+        name: 'HealthFormPage',
+        component: HealthFormPage
       }
     ]
   },
