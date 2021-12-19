@@ -65,7 +65,7 @@ export default {
   TestResult: 'Diagnovir Test Result',
   Positive: 'Positive',
   Negative: 'Negative',
-  TestsPageDesc: 'Your last Diagnovir test results:',
+  TestsPageDesc: 'Your Last Diagnovir Test Results',
   DiagnovirPageDesc: 'Diagnovir Center',
   DiagnovirAppInfo: 'Diagnovir Test Appointment Info',
   MakeDiagnovirApp: 'Make Diagnovir Test Appointment',
@@ -85,5 +85,11 @@ export default {
   LossOfSpeech: 'Loss of speech or mobility, or confusion',
   ChestPain: 'Chest pain',
   SelectTheSymptoms: 'Please select the symptoms you have from the following list',
-  PatientForm: 'Patient Form'
+  PatientForm: 'Patient Form',
+  SportsCenterPageDesc: 'Sports Center',
+  ReservationActivity: 'Activity',
+  SportsCenterAppInfo: 'Sports Appointment Info',
+  SeeSportsReservations: 'See Sports Reservations',
+  MakeSportsApp: 'Make Sports Reservation',
+  SportsReservationsPageDesc: 'Your Sports Reservations'
 }
