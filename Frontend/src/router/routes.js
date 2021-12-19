@@ -12,6 +12,7 @@ import HealthCenterPage from "../pages/health/HealthCenterPage.vue"
 import HealthFormPage from "../pages/health/HealthFormPage.vue"
 import SportsCenterPage from "../pages/sports/SportsCenterPage.vue"
 import SportsReservationsPage from "../pages/sports/SportsReservationsPage.vue"
+import CafeteriaPage from "../pages/cafeteria/CafeteriaPage.vue"
 
 const routes = [
   {
@@ -84,6 +85,11 @@ const routes = [
         path: 'sports/reservations',
         name: 'SportsReservationsPage',
         component: SportsReservationsPage
+      },
+      {
+        path: 'cafeteria',
+        name: 'CafeteriaPage',
+        component: CafeteriaPage
       },
     ]
   },
