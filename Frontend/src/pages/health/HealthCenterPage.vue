@@ -5,6 +5,10 @@
       <b> {{ $t('HealthCenterPageDesc') }} </b> 
     </q-banner>
 
+    <div class="column items-center q-mt-xl">
+      <q-btn :label="$t('CallAnAmbulance')" color="red" style="width: 50%" icon="mdi-ambulance" @click="show = true"/>
+    </div>  
+
     <my-reservations 
       v-if="hasReservation" 
       :slots="slots" 
@@ -18,6 +22,19 @@
     <div v-else class="row justify-center">
       <health-form class="q-mt-lg"/>
     </div>
+
+    <q-dialog v-model="show" persistent>
+      <q-card style="width: 500px">
+        <q-card-section class="col items-center">
+            {{ $t("CallAnAmbulanceDesc") }}
+        </q-card-section>
+
+        <q-card-actions class="justify-between">
+          <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
+          <q-btn flat :label="$t('Confirm')" color="secondary" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
 
   </div>
 </template>
@@ -71,6 +88,8 @@ export default {
 
     const open = ref(!isMobile.value);
 
+    const show = ref(false);
+
     watch(isMobile, () => {
       open.value = !isMobile.value;
     })
@@ -90,7 +109,8 @@ export default {
       toggleDrawer,
       pageStyling,
       isMobile,
-      hasReservation
+      hasReservation,
+      show
     }
   },
 }

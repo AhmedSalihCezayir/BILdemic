@@ -86,6 +86,8 @@ export default {
   ChestPain: 'Chest pain',
   SelectTheSymptoms: 'Please select the symptoms you have from the following list',
   PatientForm: 'Patient Form',
+  CallAnAmbulance: 'Call An Ambulance',
+  CallAnAmbulanceDesc: 'After you click confirm button to help you quickly, your communication information will be sent to Bilkent Health Center. Please do not leave your phone.',
   SportsCenterPageDesc: 'Sports Center',
   ReservationActivity: 'Activity',
   SportsCenterAppInfo: 'Sports Appointment Info',
