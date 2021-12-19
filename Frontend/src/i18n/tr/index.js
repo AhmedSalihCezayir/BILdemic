@@ -69,5 +69,21 @@ export default {
   DiagnovirPageDesc: 'Diagnovir Test Merkezi',
   DiagnovirAppInfo: 'Diagnovir Testi Randevu Bilgisi',
   MakeDiagnovirApp: 'Diagnovir Test Randevusu Al',
-  SeeTestResults: 'Diagnovir Test Sonuçlarını Gör'
+  SeeTestResults: 'Diagnovir Test Sonuçlarını Gör',
+  ContactHealthCenter: 'Sağlık Merkezi ile İletişime Geç',
+  HealthCenterPageDesc: 'Sağlık Merkezi',
+  HealthCenterAppInfo: 'Sağlık Merkezi Randevu Bilgisi',
+  MakeHealthCenterApp: 'Sağlık Merkezi Randevusu Al',
+  Fever: 'Ateş',
+  Cough: 'Öksürük',
+  Tiredness: 'Yorgunluk',
+  LossOfTaste: 'Tat ya da koku kaybı',
+  SoreThroat: 'Boğaz ağrısı',
+  Headache: 'Baş ağrısı',
+  Diarrhea: 'İshal',
+  DifficultyBreathing: 'Nefes almakta güçlük ya da nefes darlığı',
+  LossOfSpeech: 'Konuşma, hareketlilik kaybı veya kafa karışıklığı',
+  ChestPain: 'Göğüs ağrısı',
+  SelectTheSymptoms: 'Lütfen aşağıdaki listeden sizde görülen semptomları seçiniz',
+  PatientForm: 'Hasta formu'
 }
