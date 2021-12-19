@@ -91,5 +91,11 @@ export default {
   SportsCenterAppInfo: 'Spor Randevu Bilgisi',
   SeeSportsReservations: 'Spor Randevularını Gör',
   MakeSportsApp: 'Spor Randevusu Al',
-  SportsReservationsPageDesc: 'Spor Randevularınız '
+  SportsReservationsPageDesc: 'Spor Randevularınız ',
+  CafeteriaPageDesc: 'Yemekhane',
+  MealOrderInfo: 'Yemek Sipariş Bilgisi',
+  MakeMealOrder: 'Yemek Sipraişi Yap',
+  DailyMenu: 'Günün Yemeği',
+  Lunch: 'Öğle Yemeği',
+  Dinner: 'Akşam Yemeği'
 }
