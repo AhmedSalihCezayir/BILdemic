@@ -65,7 +65,7 @@ export default {
   TestResult: 'Diagnovir Test Sonucu',
   Positive: 'Pozitif',
   Negative: 'Negatif',
-  TestsPageDesc: 'Son Diagnovir test sonuçlarınız:',
+  TestsPageDesc: 'Son Diagnovir Test Sonuçlarınız',
   DiagnovirPageDesc: 'Diagnovir Test Merkezi',
   DiagnovirAppInfo: 'Diagnovir Testi Randevu Bilgisi',
   MakeDiagnovirApp: 'Diagnovir Test Randevusu Al',
@@ -85,5 +85,11 @@ export default {
   LossOfSpeech: 'Konuşma, hareketlilik kaybı veya kafa karışıklığı',
   ChestPain: 'Göğüs ağrısı',
   SelectTheSymptoms: 'Lütfen aşağıdaki listeden sizde görülen semptomları seçiniz',
-  PatientForm: 'Hasta formu'
+  PatientForm: 'Hasta formu',
+  SportsCenterPageDesc: 'Spor Merkezi',
+  ReservationActivity: 'Aktivite',
+  SportsCenterAppInfo: 'Spor Randevu Bilgisi',
+  SeeSportsReservations: 'Spor Randevularını Gör',
+  MakeSportsApp: 'Spor Randevusu Al',
+  SportsReservationsPageDesc: 'Spor Randevularınız '
 }

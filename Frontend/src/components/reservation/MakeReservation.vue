@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center">
     <div outlined color="secondary" class="bordered">
-      <q-form @submit="onSubmit" class="q-gutter-y-md q-px-md q-py-md full-width text-secondary" >
+      <q-form @submit="onSubmit" class="q-gutter-y-md q-px-lg q-py-md full-width text-secondary" >
         <div>
           <b>{{ title }}</b>
         </div>
