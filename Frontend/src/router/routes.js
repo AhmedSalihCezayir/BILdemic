@@ -16,6 +16,7 @@ import CafeteriaPage from "../pages/cafeteria/CafeteriaPage.vue"
 import CafeteriaStaffPage from "../pages/cafeteria/CafeteriaStaffPage.vue"
 import CoursesPageInstructor from "../pages/courses/CoursesPageInstructor.vue"
 import CoursesSpecificPageInstructor from "../pages/courses/CoursesSpecificPageInstructor.vue"
+import SportsStaffPage from "../pages/sports/SportsStaffPage"
 
 const routes = [
   {
@@ -130,16 +131,11 @@ const routes = [
       //   name: 'HealthFormPage',
       //   component: HealthFormPage
       // },
-      // {
-      //   path: 'sports',
-      //   name: 'SportsCenterPage',
-      //   component: SportsCenterPage
-      // },
-      // {
-      //   path: 'sports/reservations',
-      //   name: 'SportsReservationsPage',
-      //   component: SportsReservationsPage
-      // },
+      {
+        path: 'sports',
+        name: 'SportsStaffPage',
+        component: SportsStaffPage
+      },
       {
         path: 'cafeteria',
         name: 'CafeteriaStaffPage',

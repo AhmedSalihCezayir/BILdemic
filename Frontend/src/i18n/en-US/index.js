@@ -122,5 +122,10 @@ export default {
   GreyDesc: 'People who are still confirming their seating',
   BlackDesc: 'People who are missing',
   SeatingPlanLegend: 'Seating Plan Color Legend',
-  Search: 'Search'
+  Search: 'Search',
+  Place: 'Place',
+  Activity: 'Activity',
+  Date: 'Date',
+  Time: 'Time',
+  PersonIsHere: 'Person is here'
 }

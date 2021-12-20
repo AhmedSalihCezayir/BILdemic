@@ -122,5 +122,10 @@ export default {
   GreyDesc: 'Hala yer onaylama işlemi yapanlar',
   BlackDesc: 'Sınıfta bulunmayan kişiler',
   SeatingPlanLegend: 'Oturma Planı Renk Lejantı',
-  Search: 'Ara'
+  Search: 'Ara',
+  Place: 'Mekan',
+  Activity: 'Aktivite',
+  Date: 'Tarih',
+  Time: 'Saat',
+  PersonIsHere: 'Geldi'
 }
