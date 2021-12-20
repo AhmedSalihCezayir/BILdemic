@@ -7,7 +7,17 @@
         {{ i }}
       </div>
     </div>
-    <q-btn class="q-mr-md" color="secondary" :label="buttonText"/>
+    <q-btn 
+      :label="buttonText" 
+      class="q-mr-md" 
+      color="secondary" 
+      @click="button1Clicked" />
+    <q-btn 
+      v-if="hasSecondButton" 
+      :label="secondButtonText" 
+      class="q-mr-md" 
+      color="secondary" 
+      @click="button2Clicked"/>
   </div>
 </template>
 
@@ -16,10 +26,23 @@ export default {
   name: "GenericUserCard",
   props: {
     buttonText: String,
-    cardInfo: Array
+    cardInfo: Object,
+    hasSecondButton: Boolean,
+    secondButtonText: String
   },
-  setup() {
-    
+  setup(props, ctx) {
+    const button1Clicked = () => {
+      ctx.emit('button1Clicked')
+    }
+
+    const button2Clicked = () => {
+      ctx.emit('button2Clicked')
+    }
+
+    return {
+      button1Clicked,
+      button2Clicked
+    }
   },
 }
 </script>

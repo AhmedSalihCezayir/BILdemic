@@ -127,5 +127,12 @@ export default {
   Activity: 'Aktivite',
   Date: 'Tarih',
   Time: 'Saat',
-  PersonIsHere: 'Geldi'
+  PersonIsHere: 'Geldi',
+  NewHealthForms: 'Yeni Hasta Formları',
+  OngoingChats: 'Devam Eden Görüşmeler',
+  SeeHealthForm: 'Hasta Formunu Gör',
+  SeeChat: 'Konuşmaya Git',
+  Emergency: 'Acil',
+  Dismiss: 'Kaldır',
+  StartChat: 'Görüşmeyi Başlat'
 }
