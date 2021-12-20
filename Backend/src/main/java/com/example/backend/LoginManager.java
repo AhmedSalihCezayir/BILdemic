@@ -49,19 +49,22 @@ public class LoginManager {
     }
 
 
-    public static void createUser() throws InterruptedException, ExecutionException {
-        // [START create_user]
+    public static boolean createUser(String name, String mail, String password, String role, int ID, int phoneNumber, String hesCode, boolean resideInDorm, int dormNumber) throws InterruptedException, ExecutionException {
+        String sPhoneNumber = Integer.toString(phoneNumber);
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                 .setEmail("user@example.com")
                 .setEmailVerified(false)
-                .setPassword("secretPassword")
-                .setPhoneNumber("+11234567890")
-                .setDisplayName("John Doe")
+                .setPassword(password)
+                .setPhoneNumber(sPhoneNumber)
+                .setDisplayName(name)
                 .setPhotoUrl("http://www.example.com/12345678/photo.png")
                 .setDisabled(false);
 
         UserRecord userRecord = FirebaseAuth.getInstance().createUserAsync(request).get();
         System.out.println("Successfully created new user: " + userRecord.getUid());
-        // [END create_user]
+
+        if(role.equals("Student")){
+            Student student = new Student(name,mail,password,ID,phoneNumber,hesCode,resideInDorm,dormNumber);
+        }
     }
 }

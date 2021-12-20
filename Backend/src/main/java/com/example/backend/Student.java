@@ -11,5 +11,13 @@ public class Student extends User{
     private int ID;
     private boolean sportPunishStatus;
     private boolean resideInDorm;
+
     // LECTURES ARRAY EKLE
+
+    //Constructor
+    public Student(String name, String mail, String password, String role, String address, int ID, int phoneNumber, String hesCode, boolean resideInDorm, int dormNumber){
+        super(name,mail,password,role,address,phoneNumber);
+        this.ID = ID;
+
+    }
 }
