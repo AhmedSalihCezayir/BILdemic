@@ -134,5 +134,7 @@ export default {
   SeeChat: 'See Chat',
   Emergency: 'Emergency',
   Dismiss: 'Dismiss',
-  StartChat: 'Start Chat'
+  StartChat: 'Start Chat',
+  EnterTestResult: 'Enter Test Result',
+  TestResult: 'Test Result'
 }

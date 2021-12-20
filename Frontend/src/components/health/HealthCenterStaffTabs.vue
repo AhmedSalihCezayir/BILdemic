@@ -106,12 +106,12 @@
 
   <!-- Popup for the HealthFormStaffView -->
   <q-dialog v-model="showHealthForm">
-      <q-card>
-        <q-card-section class="col items-center">
-          <health-form-staff-view />
-        </q-card-section>
-      </q-card>
-    </q-dialog>
+    <q-card>
+      <q-card-section class="col items-center">
+        <health-form-staff-view />
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 
 </div>
 </template>
