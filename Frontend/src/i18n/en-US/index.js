@@ -107,5 +107,20 @@ export default {
   Vegeterian: 'Vegetarian',
   Vegan: 'Vegan',
   MenuBasedDesc: 'This is the food order distribution based on the menu type',
-  MealIsTaken: 'Meal is taken'
+  MealIsTaken: 'Meal is taken',
+  CoursesPageInstrDesc: 'The courses you are teaching this semester:',
+  CreateCourse: 'Create Course',
+  EnterCourseName: 'Enter the course name',
+  EnterSectionNo: 'Enter section no',
+  EnterCourseCode: 'Enter the course code',
+  EnterBuilding: 'Select course the building',
+  GenerateLectureCode: 'Generate lecture code',
+  LectureCodeIs: 'LECTURE CODE: ',
+  YellowDesc: 'People sitting at the wrong seat',
+  GreenDesc: 'People sitting at the correct seat',
+  RedDesc: 'People who are not allowed in the classroom',
+  GreyDesc: 'People who are still confirming their seating',
+  BlackDesc: 'People who are missing',
+  SeatingPlanLegend: 'Seating Plan Color Legend',
+  Search: 'Search'
 }
