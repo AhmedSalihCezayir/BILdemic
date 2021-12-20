@@ -102,7 +102,7 @@ export default {
   Dinner: 'Akşam Yemeği',
   MenuDist: 'Menü Bazında Yemek Dağılımı',
   RegionalDist: 'Bölge Bazında Yemek Dağılım',
-  IndividualDist: 'Kişilere Bazında Yemek Dağılımı',
+  IndividualDist: 'Birey Bazında Yemek Dağılımı',
   Normal: 'Normal',
   Vegeterian: 'Vejeteryan',
   Vegan: 'Vegan',
