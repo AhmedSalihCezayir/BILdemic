@@ -134,5 +134,7 @@ export default {
   SeeChat: 'Konuşmaya Git',
   Emergency: 'Acil',
   Dismiss: 'Kaldır',
-  StartChat: 'Görüşmeyi Başlat'
+  StartChat: 'Görüşmeyi Başlat',
+  EnterTestResult: 'Test Sonucunu Gir',
+  TestResult: 'Test Sonucu'
 }
