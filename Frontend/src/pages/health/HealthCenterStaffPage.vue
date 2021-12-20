@@ -1,16 +1,17 @@
 <template>
-  <div :style="pageStyling"> 
-    <sports-reservations-staff 
+  <div :style="pageStyling">
+    <health-center-staff-tabs 
       :cardInfos="cardInfos"
-      class="q-pt-md"
     />
-    <q-page-sticky position="bottom-left" :offset="fabPos" v-if="isMobile">
+
+    <q-page-sticky position="bottom-left" :offset="[18, 18]" v-if="isMobile">
       <q-fab
         icon="mdi-chevron-right"
         active-icon="mdi-chevron-left"
         color="secondary"
         padding="10px"
-        @click="toggleDrawer" />
+        @click="toggleDrawer"
+        />
     </q-page-sticky>
   </div>
 </template>
@@ -18,14 +19,13 @@
 <script>
 import { computed, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
-import SportsReservationsStaff from '../../components/sports/SportsReservationsStaff.vue'
+import HealthCenterStaffTabs from '../../components/health/HealthCenterStaffTabs.vue'
 
 export default {
-  name: "SportsStaffPage",
+  name: "HealthCenterPage",
   components: {
-    SportsReservationsStaff
+    HealthCenterStaffTabs
   },
-
   setup(props, ctx) {
     const $q = useQuasar();
 
@@ -38,8 +38,6 @@ export default {
     watch(isMobile, () => {
       open.value = !isMobile.value;
     })
-
-    const hasReservation = ref(false);
 
     const toggleDrawer = () => {
       open.value = !open.value
@@ -56,7 +54,6 @@ export default {
         data: [
           "Ahmed Salih Cezayir",
           21802918,
-          "Normal"
         ]
       },
       {
@@ -64,7 +61,6 @@ export default {
         data: [
           "Asude Cezayir",
           21802918,
-          "Vegan"
         ]
       },
       {
@@ -72,21 +68,45 @@ export default {
         data: [
           "İsmail Sergen Göçmen",
           21802918,
-          "Vegeterian"
+        ]
+      },
+      {
+        url: "https://placeimg.com/500/300/nature",
+        data: [
+          "Ahmed Salih Cezayir",
+          21802918,
+        ]
+      },
+      {
+        url: "https://placeimg.com/500/300/nature",
+        data: [
+          "Asude Cezayir",
+          21802918,
+        ]
+      },
+      {
+        url: "https://placeimg.com/500/300/nature",
+        data: [
+          "İsmail Sergen Göçmen",
+          21802918,
         ]
       }
     ];
 
-    const fabPos = ref([ 18, 18 ])
+    const fabPos = ref([ 18, 18 ]);
 
     return {
       toggleDrawer,
       pageStyling,
       isMobile,
-      hasReservation,
       cardInfos,
-      fabPos,
+      fabPos
     }
   },
 }
 </script>
+
+<style lang="sass" scoped>
+a
+  text-decoration: none
+</style>

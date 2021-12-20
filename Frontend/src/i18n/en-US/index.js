@@ -127,5 +127,12 @@ export default {
   Activity: 'Activity',
   Date: 'Date',
   Time: 'Time',
-  PersonIsHere: 'Person is here'
+  PersonIsHere: 'Person is here',
+  NewHealthForms: 'New Health Forms',
+  OngoingChats: 'Ongoing Chats',
+  SeeHealthForm: 'See Health Form',
+  SeeChat: 'See Chat',
+  Emergency: 'Emergency',
+  Dismiss: 'Dismiss',
+  StartChat: 'Start Chat'
 }
