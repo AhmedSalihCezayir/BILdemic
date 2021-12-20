@@ -76,7 +76,7 @@
                 v-model="search"
                 debounce="1000"
                 filled
-                placeholder="Search"
+                :placeholder="$t('Search')"
                 color="secondary"
                 class="full-width"
               >

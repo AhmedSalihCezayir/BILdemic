@@ -14,6 +14,8 @@ import SportsCenterPage from "../pages/sports/SportsCenterPage.vue"
 import SportsReservationsPage from "../pages/sports/SportsReservationsPage.vue"
 import CafeteriaPage from "../pages/cafeteria/CafeteriaPage.vue"
 import CafeteriaStaffPage from "../pages/cafeteria/CafeteriaStaffPage.vue"
+import CoursesPageInstructor from "../pages/courses/CoursesPageInstructor.vue"
+import CoursesSpecificPageInstructor from "../pages/courses/CoursesSpecificPageInstructor.vue"
 
 const routes = [
   {
@@ -98,16 +100,16 @@ const routes = [
     path: '/staff',
     component: BaseLayoutTab,
     children: [
-      // {
-      //   path: 'courses',
-      //   name: 'Courses',
-      //   component: CoursesPage,
-      // },
-      // {
-      //   path: 'courses/:course',
-      //   name: 'CourseSpecificPage',
-      //   component: CourseSpecificPage,
-      // },
+      {
+        path: 'courses',
+        name: 'CoursesPageInstructor',
+        component: CoursesPageInstructor,
+      },
+      {
+        path: 'courses/:course',
+        name: 'CourseSpecificPageInstructor',
+        component: CoursesSpecificPageInstructor,
+      },
       // {
       //   path: 'diagnovir',
       //   name: 'DiagnovirPage',
