@@ -154,7 +154,7 @@ export default {
       }
     ];
 
-    const fabPos = ref([ 18, 18 ])
+    const fabPos = ref([ 18, 18 ]);
 
     return {
       toggleDrawer,
