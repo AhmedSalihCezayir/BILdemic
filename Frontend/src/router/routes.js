@@ -13,6 +13,7 @@ import HealthFormPage from "../pages/health/HealthFormPage.vue"
 import SportsCenterPage from "../pages/sports/SportsCenterPage.vue"
 import SportsReservationsPage from "../pages/sports/SportsReservationsPage.vue"
 import CafeteriaPage from "../pages/cafeteria/CafeteriaPage.vue"
+import CafeteriaStaffPage from "../pages/cafeteria/CafeteriaStaffPage.vue"
 
 const routes = [
   {
@@ -90,6 +91,57 @@ const routes = [
         path: 'cafeteria',
         name: 'CafeteriaPage',
         component: CafeteriaPage
+      },
+    ]
+  },
+  {
+    path: '/staff',
+    component: BaseLayoutTab,
+    children: [
+      // {
+      //   path: 'courses',
+      //   name: 'Courses',
+      //   component: CoursesPage,
+      // },
+      // {
+      //   path: 'courses/:course',
+      //   name: 'CourseSpecificPage',
+      //   component: CourseSpecificPage,
+      // },
+      // {
+      //   path: 'diagnovir',
+      //   name: 'DiagnovirPage',
+      //   component: DiagnovirPage
+      // },
+      // {
+      //   path: 'diagnovir/tests',
+      //   name: 'TestResultsPage',
+      //   component: TestResultsPage
+      // },
+      // {
+      //   path: 'health',
+      //   name: 'HealthCenterPage',
+      //   component: HealthCenterPage
+      // },
+      // {
+      //   path: 'health/form',
+      //   name: 'HealthFormPage',
+      //   component: HealthFormPage
+      // },
+      // {
+      //   path: 'sports',
+      //   name: 'SportsCenterPage',
+      //   component: SportsCenterPage
+      // },
+      // {
+      //   path: 'sports/reservations',
+      //   name: 'SportsReservationsPage',
+      //   component: SportsReservationsPage
+      // },
+      {
+        path: 'cafeteria',
+        name: 'CafeteriaStaffPage',
+        component: CafeteriaStaffPage
       },
     ]
   },
