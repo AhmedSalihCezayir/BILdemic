@@ -18,6 +18,7 @@ import CoursesPageInstructor from "../pages/courses/CoursesPageInstructor.vue"
 import CoursesSpecificPageInstructor from "../pages/courses/CoursesSpecificPageInstructor.vue"
 import SportsStaffPage from "../pages/sports/SportsStaffPage"
 import HealthCenterStaffPage from "../pages/health/HealthCenterStaffPage.vue"
+import DiagnovirStaffPage from "../pages/diagnovir/DiagnovirStaffPage.vue"
 
 const routes = [
   {
@@ -112,16 +113,11 @@ const routes = [
         name: 'CourseSpecificPageInstructor',
         component: CoursesSpecificPageInstructor,
       },
-      // {
-      //   path: 'diagnovir',
-      //   name: 'DiagnovirPage',
-      //   component: DiagnovirPage
-      // },
-      // {
-      //   path: 'diagnovir/tests',
-      //   name: 'TestResultsPage',
-      //   component: TestResultsPage
-      // },
+      {
+        path: 'diagnovir',
+        name: 'DiagnovirStaffPage',
+        component: DiagnovirStaffPage
+      },
       {
         path: 'health',
         name: 'HealthCenterStaffPage',
