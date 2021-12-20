@@ -99,5 +99,12 @@ export default {
   MakeMealOrder: 'Yemek Sipraişi Yap',
   DailyMenu: 'Günün Yemeği',
   Lunch: 'Öğle Yemeği',
-  Dinner: 'Akşam Yemeği'
+  Dinner: 'Akşam Yemeği',
+  MenuDist: 'Menü Bazında Yemek Dağılımı',
+  RegionalDist: 'Bölge Bazında Yemek Dağılım',
+  IndividualDist: 'Birey Bazında Yemek Dağılımı',
+  Normal: 'Normal',
+  Vegeterian: 'Vejeteryan',
+  Vegan: 'Vegan',
+  MealIsTaken: 'Yemek alındı'
 }

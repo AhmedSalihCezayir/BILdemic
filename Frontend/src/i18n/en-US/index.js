@@ -99,5 +99,13 @@ export default {
   MakeMealOrder: 'Make Meal Order',
   DailyMenu: 'Daily Menu',
   Lunch: 'Lunch',
-  Dinner: 'Dinner'
+  Dinner: 'Dinner',
+  MenuDist: 'Menu Based Food Distribution',
+  RegionalDist: 'Regional Food Distribution',
+  IndividualDist: 'Individual Food Distribution',
+  Normal: 'Normal',
+  Vegeterian: 'Vegetarian',
+  Vegan: 'Vegan',
+  MenuBasedDesc: 'This is the food order distribution based on the menu type',
+  MealIsTaken: 'Meal is taken'
 }
