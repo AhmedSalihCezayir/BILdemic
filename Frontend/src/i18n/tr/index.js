@@ -136,5 +136,6 @@ export default {
   Dismiss: 'Kaldır',
   StartChat: 'Görüşmeyi Başlat',
   EnterTestResult: 'Test Sonucunu Gir',
-  TestResult: 'Test Sonucu'
+  TestResult: 'Test Sonucu',
+  IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.'
 }

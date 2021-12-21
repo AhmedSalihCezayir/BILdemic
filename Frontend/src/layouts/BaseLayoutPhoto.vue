@@ -36,7 +36,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple @click="logout">
               <q-item-section class="q-ml-sm">
                 {{ $t('LogOut') }}
               </q-item-section>
@@ -51,6 +51,8 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import useAuth from '../hooks/useAuth.js'
+
 export default {
   name: 'BaseLayoutPhoto',
 
@@ -69,10 +71,14 @@ export default {
     const toggleDrawer = () => {
       drawer.value = !drawer.value
     }
+    
+    const { logout, auth } = useAuth();
+    console.log(auth.currentUser);
 
     return {
       drawer,
-      toggleDrawer
+      toggleDrawer,
+      logout
     }
   },
 }

@@ -1,4 +1,27 @@
 <template>
+<div>
+  <q-dialog v-model="showErrorMessage" seamless position="top">
+    <q-card style="width: 300px" class="bg-secondary">
+      <q-card-section>
+        <q-banner dense inline-actions class="text-white bg-secondary" >
+          <div class="row justify-center">
+          {{ $t("IncorrectPassword") }}
+          </div>
+        </q-banner>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn 
+          color="secondary" 
+          text-color="white" 
+          icon="mdi-close" 
+          @click="showErrorMessage = false" 
+          flat
+          round 
+          size="md"
+        />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
   <q-form style="width: 410px" class="q-pa-md">
     <q-input 
       :label="$t('Email')" 
@@ -40,6 +63,7 @@
       no-caps
       align="center"
       style="width: 80%;"
+      @click.prevent="signIn(mail, password)"
     />
 
     <q-btn 
@@ -52,23 +76,44 @@
     />
 
   </q-form>
+</div>
 </template>
 
 <script>
 import { ref } from "vue"
+import { useRouter } from "vue-router"
+import useAuth from "../../hooks/useAuth.js"
 
 export default {
   name: "LoginForm",
 
   setup() {
-    let mail = ref('');
-    let password = ref('');
-    let show = ref(false);
+    const mail = ref('');
+    const password = ref('');
+    const show = ref(false);
+    const showErrorMessage = ref(false);
+
+    const { signInWithEmailAndPassword, auth } = useAuth();
+    const router = useRouter();
+    
+    const signIn = async (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        router.push('/home');
+      })
+      .catch((error) => {
+        // mail.value = '';
+        // password.value = '';
+        showErrorMessage.value = true
+      });
+  }
 
     return {
       mail,
       password,
-      show
+      show,
+      signIn,
+      showErrorMessage
     }
   },
 }

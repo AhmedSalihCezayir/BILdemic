@@ -59,7 +59,7 @@
                 </q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple style="min-height: 35px;">
+              <q-item clickable v-ripple style="min-height: 35px;" @click="logout">
                 <q-item-section class="q-ml-sm">
                   {{ $t('LogOut') }}
                 </q-item-section>
@@ -85,14 +85,12 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
-import { useRoute } from 'vue-router';
+import useAuth from '../hooks/useAuth.js'
 
 export default {
   name: 'BaseLayoutTab',
 
   setup() {
-    const route = useRoute();
-
     const $q = useQuasar();
     const isMobile = computed(() => {
       return $q.screen.width < 800;
@@ -108,9 +106,12 @@ export default {
       drawer.value = !drawer.value;
     }
 
+    const { logout } = useAuth();
+
     return {
       drawer,
-      toggleDrawer
+      toggleDrawer,
+      logout
     }
   },
 }

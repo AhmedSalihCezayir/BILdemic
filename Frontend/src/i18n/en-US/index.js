@@ -136,5 +136,6 @@ export default {
   Dismiss: 'Dismiss',
   StartChat: 'Start Chat',
   EnterTestResult: 'Enter Test Result',
-  TestResult: 'Test Result'
+  TestResult: 'Test Result',
+  IncorrectPassword: 'There was a problem logging in. Check your email and password or create an account.'
 }
