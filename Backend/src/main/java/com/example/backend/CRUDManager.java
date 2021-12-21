@@ -6,14 +6,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class CRUDOperations {
+public class CRUDManager {
 
     //Properties
+    private static CRUDManager instance = null;
     public CRUDService crudService;
 
+    //Constructor
+    private CRUDManager() {
+        this.crudService = new CRUDService();
+    }
+
+    //Methods
+    public static CRUDManager getInstance(){
+        if(instance == null) {
+            instance = new CRUDManager();
+        }
+        return instance;
+    }
+
     @PostMapping("/create")
-    public String createCRUD(@RequestBody Student student) throws InterruptedException, ExecutionException {
-        return crudService.createCRUD(student);
+    public String createCRUD(@RequestBody User user) throws InterruptedException, ExecutionException {
+        return crudService.createCRUD(user, user.getRole());
     }
 
     @GetMapping("/get")
@@ -22,8 +36,8 @@ public class CRUDOperations {
     }
 
     @PutMapping("/update")
-    public String updateCRUD(@RequestBody Student student) throws InterruptedException, ExecutionException {
-        return crudService.updateCRUD(student);
+    public String updateCRUD(@RequestBody User user) throws InterruptedException, ExecutionException {
+        return crudService.updateCRUD(user);
     }
 
     @PutMapping("/delete")

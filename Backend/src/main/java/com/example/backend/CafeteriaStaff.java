@@ -15,11 +15,9 @@ public class CafeteriaStaff extends User{
     public String showTotalInfo(){
         return null;
     }
-
     public String ShowRegInfo(String region){
         return null;
     }
-
     public Boolean searchIndividualInfo(int ID){
         return null;
     }

@@ -3,6 +3,8 @@ package com.example.backend;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 public class Student extends User{
@@ -12,10 +14,10 @@ public class Student extends User{
     private boolean sportPunishStatus;
     private boolean resideInDorm;
     private Lecture[] lectures;
-    private String[] roomMateNames;
+    private List roomMateNames;
 
     //Constructor
-    public Student(String name, String mail, String password, String role, String address, int ID, String phoneNumber, String hesCode, boolean resideInDorm, String[] roomMateNames){
+    public Student(String name, String mail, String password, String role, String address,  String phoneNumber, String hesCode, int ID, boolean resideInDorm, List roomMateNames){
         super(name,mail,password,role,address,phoneNumber,hesCode);
         this.ID = ID;
         this.resideInDorm = resideInDorm;

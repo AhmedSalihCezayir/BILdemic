@@ -12,7 +12,7 @@ public class HealthForm extends Order{
     private String[] symptomsList;
 
     public HealthForm(String place, String time, String date, User owner, boolean answerStatus, boolean oldStatus, String[] symptomsList){
-        super(place, time, date, owner);
+        super(place, time, date, owner,"HealthForm");
         this.answerStatus = answerStatus;
         this.oldStatus = oldStatus;
         this.symptomsList = symptomsList;
