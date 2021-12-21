@@ -3,7 +3,6 @@ package com.example.backend;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 
 @Setter
 @Getter
@@ -14,14 +13,19 @@ public class Student extends User{
     private boolean sportPunishStatus;
     private boolean resideInDorm;
     private Lecture[] lectures;
-    private List roomMateNames;
+    private String roomMateNames;
 
     //Constructor
-    public Student(String name, String mail, String password, String role, String address,  String phoneNumber, String hesCode, int ID, boolean resideInDorm, List roomMateNames){
+    public Student(){
+        super();
+    }
+
+    public Student(String name, String mail, String password, String role, String address,  String phoneNumber, String hesCode, int ID, boolean resideInDorm, String roomMateNames){
         super(name,mail,password,role,address,phoneNumber,hesCode);
         this.ID = ID;
         this.resideInDorm = resideInDorm;
-        this.roomMateNames = roomMateNames;
+        this.lectures = null;
+        this.roomMateNames = null;
     }
 
     //Methods

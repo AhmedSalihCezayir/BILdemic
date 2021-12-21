@@ -11,6 +11,10 @@ public class VaccineCard {
     private boolean fullyVaccined;
     private String secondVaccineDate;
 
+    public VaccineCard(){
+
+    }
+
     public VaccineCard(boolean fullyVaccined, String secondVaccineDate){
         // TO DO: Change mechanism to get vaccine card information from e-devlet
         this.fullyVaccined = fullyVaccined;
