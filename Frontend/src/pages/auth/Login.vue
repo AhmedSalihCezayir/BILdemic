@@ -6,6 +6,7 @@
         color="secondary"
         class = "q-mb-md"
         unelevated
+        to="/auth/register"
       />
       <language-switcher />
     </div>
