@@ -32,6 +32,19 @@ public class CRUDService {
         return null;
     }
 
+    public String getUserRole(String name) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = dbFirestore.collection("Users").document(name);
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+        DocumentSnapshot document = future.get();
+        User user;
+        if(document.exists()){
+            user = document.toObject(User.class);
+            return user.getRole();
+        }
+        return null;
+    }
+
     public String updateCRUD(User user) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("Users").document(user.getName()).set(user);
