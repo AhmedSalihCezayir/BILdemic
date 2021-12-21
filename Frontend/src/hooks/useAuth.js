@@ -3,18 +3,25 @@ import {
   createUserWithEmailAndPassword, 
   sendEmailVerification, 
   signInWithEmailAndPassword, 
-  signOut } from "firebase/auth";
-import { useRouter } from 'vue-router';
+  signOut } from "firebase/auth"
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 export default function useAuth() {
   const auth = getAuth();
   const router = useRouter();
 
-  const register = async (email, password) => {
+  const register = async (email, password, name, role, id, hes, resideInDorm, dorm, phone) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         if (userCredential) {
+          // Send email verification
           sendEmailVerification(userCredential.user);
+
+          // Add the user to firestore
+          axios.post('/create', {})
+
+
           router.push('/auth/login');
         }
       })

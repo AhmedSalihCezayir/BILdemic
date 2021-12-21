@@ -52,6 +52,15 @@
     />
 
     <q-input 
+      :label="$t('Phone')" 
+      filled
+      square
+      v-model="phone"
+      color="secondary"
+      type="tel"
+    />
+
+    <q-input 
       :label="$t('Email')" 
       filled
       square
@@ -148,6 +157,7 @@ export default {
     let dorm = ref(null);
     let password = ref('');
     let show = ref(false);
+    let phone = ref('');
 
     const { register } = useAuth();
     

@@ -137,5 +137,6 @@ export default {
   StartChat: 'Görüşmeyi Başlat',
   EnterTestResult: 'Test Sonucunu Gir',
   TestResult: 'Test Sonucu',
-  IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.'
+  IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.',
+  Phone: 'Telefon numarası'
 }
