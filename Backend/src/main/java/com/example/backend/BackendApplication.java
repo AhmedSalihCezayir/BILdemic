@@ -10,11 +10,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 public class BackendApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         ClassLoader classLoader = BackendApplication.class.getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccountKey.json")).getFile());
         FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
@@ -25,7 +26,9 @@ public class BackendApplication {
                 .build();
 
         FirebaseApp.initializeApp(options);
-
         SpringApplication.run(BackendApplication.class,args);
+
+        String roommates[] ={"Uğur"};
+        LoginManager.createUser("Sergen", "gocmen.i@hotmail.com","abcdef","student","dorm", 1, "+11234567890","b",true, roommates);
     }
 }
