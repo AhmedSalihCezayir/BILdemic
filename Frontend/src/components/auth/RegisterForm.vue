@@ -113,6 +113,7 @@
       unelevated 
       align="center"
       :style="isMobile ? 'width: 50%' : 'width: 30%'"
+      @click.prevent="registerUser(mail, password)"
       />
 
   </q-form>
@@ -120,6 +121,8 @@
 
 <script>
 import { ref } from "vue"
+import useAuth from "../../hooks/useAuth.js"
+import { useRouter } from 'vue-router';
 
 export default {
   name: "RegisterForm",
@@ -145,9 +148,16 @@ export default {
     let resideInDorm = ref(false);
     let dorm = ref(null);
     let password = ref('');
-
     let show = ref(false);
+
+    const router = useRouter();
+    const { register } = useAuth();
     
+    const registerUser = async (mail, password) => {
+      await register(mail, password);
+      router.push('/auth/login');
+    }
+
     return {
       name,
       role,
@@ -160,7 +170,8 @@ export default {
       dormOptions: [
         50, 51, 52, 54, 55, 60, 61, 62, 63, 64, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 81, 82, 90, 91, 92, 93
       ],
-      dorm
+      dorm,
+      registerUser
     }
   },
 }
