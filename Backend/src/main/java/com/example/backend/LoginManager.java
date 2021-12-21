@@ -21,7 +21,6 @@ public class LoginManager {
     //Constructor
     private LoginManager() {
         this.mAuth = FirebaseAuth.getInstance();
-        this.crudManager = CRUDManager.getInstance();
     }
 
     //Methods
@@ -32,20 +31,7 @@ public class LoginManager {
         return instance;
     }
 
-    public static boolean createUser(String name, String mail, String password, String role, String address, String phoneNumber, String hesCode, int ID, boolean resideInDorm, List roomMateNames) throws InterruptedException, ExecutionException {
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail(mail)
-                .setEmailVerified(false)
-                .setPassword(password)
-                .setPhoneNumber(phoneNumber)
-                .setDisplayName(name)
-                .setPhotoUrl("http://www.example.com/12345678/photo.png")
-                .setDisabled(false);
-
-        // UserRecord userRecord = FirebaseAuth.getInstance().createUserAsync(request).get();
-        System.out.println("Successfully created new user: " + name);
-
-        
+    public static boolean createUser(String name, String mail, String password, String role, String address, String phoneNumber, String hesCode, int ID, boolean resideInDorm, String roomMateNames) throws InterruptedException, ExecutionException {
         if (role.equals("Student")) {
             Student student = new Student(name, mail, password, role, address, phoneNumber, hesCode, ID, resideInDorm, roomMateNames);
             CRUDManager.getInstance().createCRUD(student);

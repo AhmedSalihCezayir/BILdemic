@@ -12,6 +12,10 @@ public class HesObject {
     private boolean hesStatus;
     private String lastHesCodeChangeDate;
 
+    public HesObject(){
+
+    }
+
     public HesObject(String hesCode, boolean hesStatus, String lastHesCodeChangeDate){
         this.hesCode = hesCode;
         this.hesStatus = hesStatus;

@@ -50,5 +50,9 @@ public abstract class User {
         else
             this.campusStatus = CAMPUS_NOT_ALLOWED;
     }
+
+    public User() {
+
+    }
 }
 

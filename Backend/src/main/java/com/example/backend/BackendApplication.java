@@ -32,8 +32,8 @@ public class BackendApplication {
         LoginManager loginManager = LoginManager.getInstance();
         SpringApplication.run(BackendApplication.class,args);
 
-        List<String> roommates = new ArrayList<String>();
-        roommates.add("Uğur");
+
+        String roommates = "Uğur";
         loginManager.createUser("Sergen", "gocmen.i@hotmail.com","abcdef","Student","dorm", "+11234567890","b", 1,true, roommates);
         //loginManager.createUser("Eray", "e@hotmail.com","abcdef","Instructor","ankara", "+11234567891","b", 2,false, null);
         //loginManager.createUser("Selim", "s@hotmail.com","abcdef","CafeteriaStaff","istanbul", "+11234567892","b", 3,false, null);
