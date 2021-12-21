@@ -1,7 +1,9 @@
 package com.example.backend;
 
 
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,18 +46,16 @@ public class LoginManager {
     }
 
     @GetMapping
-    public ResponseEntity<String> testGetEndpoint(){
+    public ResponseEntity<String> testGetEndpoint() {
         return ResponseEntity.ok("Test Get Endpoint is working");
     }
 
-
-    public static boolean createUser(String name, String mail, String password, String role, int ID, int phoneNumber, String hesCode, boolean resideInDorm, int dormNumber) throws InterruptedException, ExecutionException {
-        String sPhoneNumber = Integer.toString(phoneNumber);
+    public static boolean createUser(String name, String mail, String password, String role, String address, int ID, String phoneNumber, String hesCode, boolean resideInDorm, String[] roomMateNames) throws InterruptedException, ExecutionException {
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail("user@example.com")
+                .setEmail(mail)
                 .setEmailVerified(false)
                 .setPassword(password)
-                .setPhoneNumber(sPhoneNumber)
+                .setPhoneNumber(phoneNumber)
                 .setDisplayName(name)
                 .setPhotoUrl("http://www.example.com/12345678/photo.png")
                 .setDisabled(false);
@@ -63,8 +63,24 @@ public class LoginManager {
         UserRecord userRecord = FirebaseAuth.getInstance().createUserAsync(request).get();
         System.out.println("Successfully created new user: " + userRecord.getUid());
 
-        if(role.equals("Student")){
-            Student student = new Student(name,mail,password,ID,phoneNumber,hesCode,resideInDorm,dormNumber);
+      
+        try {
+            ActionCodeSettings actionCodeSettings;
+            String link = FirebaseAuth.getInstance().generateEmailVerificationLink(
+                    mail);
+            // Construct email verification template, embed the link and send
+            // using custom SMTP server.
+        } catch (FirebaseAuthException e) {
+            System.out.println("Error generating email link: " + e.getMessage());
         }
+        
+        if (role.equals("Student")) {
+            Student student = new Student(name, mail, password, role, address, ID, phoneNumber, hesCode, resideInDorm, roomMateNames);
+            return true;
+        }
+        return true;
     }
+
+    public static void sendCustomEmail(String email, String link) {}
+
 }

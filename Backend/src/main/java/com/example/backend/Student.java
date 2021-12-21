@@ -11,13 +11,35 @@ public class Student extends User{
     private int ID;
     private boolean sportPunishStatus;
     private boolean resideInDorm;
-
-    // LECTURES ARRAY EKLE
+    private Lecture[] lectures;
+    private String[] roomMateNames;
 
     //Constructor
-    public Student(String name, String mail, String password, String role, String address, int ID, int phoneNumber, String hesCode, boolean resideInDorm, int dormNumber){
-        super(name,mail,password,role,address,phoneNumber);
+    public Student(String name, String mail, String password, String role, String address, int ID, String phoneNumber, String hesCode, boolean resideInDorm, String[] roomMateNames){
+        super(name,mail,password,role,address,phoneNumber,hesCode);
         this.ID = ID;
-
+        this.resideInDorm = resideInDorm;
+        this.roomMateNames = roomMateNames;
     }
+
+    //Methods
+    public boolean enrollCourse(String courseCode){
+        //TO DO
+        return false;
+    }
+
+    public boolean selectSeatFirst(String courseCode, Seat seat){
+        //TO DO
+        return false;
+    }
+
+    public boolean confirmNeighbourSeat(String courseCode, Student leftNeighbour, Student rightNeighbour){
+        //TO DO
+        return false;
+    }
+
+    public boolean enterLectureCode(String lectureCode){
+        return false;
+    }
+
 }
