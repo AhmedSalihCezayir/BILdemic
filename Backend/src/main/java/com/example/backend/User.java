@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import static com.example.backend.CampusStatus.CAMPUS_ALLOWED;
+import static com.example.backend.CampusStatus.CAMPUS_NOT_ALLOWED;
 
 enum CampusStatus {
     CAMPUS_ALLOWED,
@@ -22,9 +23,11 @@ public abstract class User {
     private String address;
     private String profilePic;
     private String phoneNum;
-    private Enum campusStatus;
+    private CampusStatus campusStatus;
     private HesObject hesObject;
     private VaccineCard vaccineCard;
+    private String Uid;
+    private Order[] orders;
 
     //Constructor
     protected User(String name, String mail, String password, String role, String address, String phoneNum, String hesCode){
@@ -36,11 +39,16 @@ public abstract class User {
         this.phoneNum = phoneNum;
         this.profilePic = null;
         this.vaccineCard = null;
+        this.Uid = null;
+        this.orders = null;
 
         // Create hes object with given hes string and determine whether is campus allowed or not
         HesObject hesObject = new HesObject(hesCode,true,null);
         this.hesObject = hesObject;
-        this.campusStatus = CAMPUS_ALLOWED;
+        if(hesObject.isHesStatus() == true)
+            this.campusStatus = CAMPUS_ALLOWED;
+        else
+            this.campusStatus = CAMPUS_NOT_ALLOWED;
     }
 }
 

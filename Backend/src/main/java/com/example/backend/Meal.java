@@ -10,7 +10,7 @@ public class Meal extends Order{
     private String type;
 
     public Meal(String place,  String date, String time, User owner, String type){
-        super(place, date, time, owner);
+        super(place, date, time, owner,"Meal");
         this.type = type;
     }
 }
