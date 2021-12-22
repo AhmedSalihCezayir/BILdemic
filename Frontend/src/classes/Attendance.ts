@@ -1,17 +1,17 @@
 class Attendance {
-  private _time: string;
-  private _particularLectureSeatPlan: Seat[];
-  private _lecture: Lecture;
+  private _time: string = "";
+  private _particularLectureSeatPlan: Seat[] | null = null;
+  private _lecture: Lecture | null = null;
 
   public get time(): string {
     return this._time;
   }
 
-  public get particularLectureSeatPlan(): Seat[] {
+  public get particularLectureSeatPlan(): Seat[] | null {
     return this._particularLectureSeatPlan;
   }
 
-  public get lecture(): Lecture {
+  public get lecture(): Lecture | null{
     return this._lecture;
   }
 
@@ -19,11 +19,11 @@ class Attendance {
     this._time = time;
   }
 
-  public set particularLectureSeatPlan(particularLectureSeatPlan: Seat[]) {
-    this.particularLectureSeatPlan = particularLectureSeatPlan;
+  public set particularLectureSeatPlan(particularLectureSeatPlan: Seat[] | null) {
+    this._particularLectureSeatPlan = particularLectureSeatPlan;
   }
 
-  public set lecture(lecture: Lecture) {
-    this.lecture = lecture;
+  public set lecture(lecture: Lecture | null) {
+    this._lecture = lecture;
   }
 }

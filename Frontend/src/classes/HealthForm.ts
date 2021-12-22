@@ -5,9 +5,9 @@ class HealthForm extends Order {
 
   public constructor(place: string, time: string, date: string, owner: User, answerStatus: boolean, oldStatus: boolean, symptomsList: string[]) {
     super(place, time, date, owner,"HealthForm");
-        this._answerStatus = answerStatus;
-        this._oldStatus = oldStatus;
-        this._symptomsList = symptomsList;
+      this._answerStatus = answerStatus;
+      this._oldStatus = oldStatus;
+      this._symptomsList = symptomsList;
   }
 
   public get answerStatus(): boolean {

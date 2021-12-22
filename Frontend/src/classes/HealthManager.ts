@@ -1,18 +1,18 @@
 class HealthManager {
-  private static instance: HealthManager | null = null;
+    private static instance: HealthManager | null = null;
 
-  private constructor() {
+    private constructor() {
 
-  }
+    }
 
-  public static getInstance(): HealthManager {
-    if(this.instance == null) {
+    public static getInstance(): HealthManager {
+        if(this.instance == null) {
             this.instance = new HealthManager();
         }
         return this.instance;
-  }
+    }
 
-  public createForm(user: User, date: string, place: string, time: string): boolean {
+    public createForm(user: User, date: string, place: string, time: string): boolean {
         //TO DO
         return true;
     }
