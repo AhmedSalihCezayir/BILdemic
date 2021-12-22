@@ -2,7 +2,7 @@ class Student extends User{
 
     //Properties
     private _ID:number;
-    private _sportPunishStatus:boolean;
+    private _sportPunishStatus:boolean = false;
     private _resideInDorm:boolean;
     private _lectures:Lecture[] | null;
     private _roomMateNames:string;
