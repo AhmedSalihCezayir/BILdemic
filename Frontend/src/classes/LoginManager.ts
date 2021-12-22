@@ -1,7 +1,87 @@
-class LoginManager {
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    sendEmailVerification, 
+    signInWithEmailAndPassword, 
+    signOut, Auth } from "firebase/auth";
+import { getFirestore, collection, setDoc, addDoc, doc } from "firebase/firestore"; 
+import { useRouter } from 'vue-router';
+    
+export default class LoginManager {
 
     //Properties
     private static instance: LoginManager | null = null;
+    public mAuth: Auth;
+    //public CRUDManager crudManager;
+
+    //Constructor
+    private LoginManager() {
+        this.mAuth = getAuth();
+    }
+
+    //Methods
+    public static getInstance(): LoginManager{
+        if(this.instance == null) {
+            this.instance = new LoginManager();
+        }
+        return this.instance;
+    }
+
+    public createUser(name:string, mail:string, password:string, role:string, address:string, phoneNumber:string, hesCode:string, ID:number, resideInDorm:boolean, roomMateNames:string):boolean{
+        const router = useRouter();
+
+        createUserWithEmailAndPassword(this.mAuth, mail, password) .then(async (userCredential) => 
+        {
+            if (userCredential) {
+                sendEmailVerification(userCredential.user);
+                //console.log(userCredential.user.uid)
+                router.push('/auth/login');
+            }
+            const db = getFirestore();
+            const crole = role + "s";
+            const doc1 = doc(db, crole, userCredential.user.uid);
+
+            if (role === "Student") {
+                const student = new Student(name, mail, password, role, address, phoneNumber, hesCode, ID, resideInDorm, roomMateNames);
+                await setDoc(doc1, student);
+                return true;
+            }
+            else if (role === "Instructor") {
+                const instructor = new Instructor(name, mail, password, role, address, phoneNumber, hesCode, ID, false, null);
+                await setDoc(doc1, instructor);
+                return true;
+            }
+            else if (role === "CafeteriaStaff") {
+                const cafeteriaStaff = new CafeteriaStaff(name, mail, password, role, address, phoneNumber, hesCode);
+                await setDoc(doc1, cafeteriaStaff);
+                return true;
+            }
+            else if (role === "HealthCenterStaff") {
+                const healthCenterStaff = new HealthCenterStaff(name, mail, password, role, address, phoneNumber, hesCode);
+                await setDoc(doc1, healthCenterStaff);
+                return true;
+            }
+            else if (role === "DiagnovirTester") {
+                const diagnovirTester = new DiagnovirTester(name, mail, password, role, address, phoneNumber, hesCode);
+                await setDoc(doc1, diagnovirTester);
+                return true;
+            }
+            else if (role === "SportStaff") {
+                const sportStaff = new SportStaff(name, mail, password, role, address, phoneNumber, hesCode);
+                await setDoc(doc1, sportStaff);
+                return true;
+            }
+            else {
+                return false;
+            }
+    })
+    .catch((error) => {
+        console.log(error.message);
+        return false;
+    });
+    return false;
+    }
+
     /**public mAuth:FirebaseAuth;
     //public CRUDManager crudManager;
 

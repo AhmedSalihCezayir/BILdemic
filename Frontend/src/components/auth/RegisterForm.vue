@@ -1,5 +1,6 @@
 <template>
   <q-form :class="formStyling" :style="isMobile ? 'width: 90%' : 'width: 60%'">
+    <q-btn label="click me" color="red" @click="lm.createUser(name, mail, password, role, '', '', hes, id, resideInDorm, '')" />
     <div v-if="!isMobile" class="row">
       <q-input 
         :label="$t('FullName')" 
@@ -122,6 +123,7 @@
 <script>
 import { ref } from "vue"
 import useAuth from "../../hooks/useAuth.js"
+import LoginManager from "../../classes/LoginManager"
 
 export default {
   name: "RegisterForm",
@@ -150,6 +152,8 @@ export default {
     let show = ref(false);
 
     const { register } = useAuth();
+
+    const lm = new LoginManager();
     
     return {
       name,
@@ -164,7 +168,8 @@ export default {
         50, 51, 52, 54, 55, 60, 61, 62, 63, 64, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 81, 82, 90, 91, 92, 93
       ],
       dorm,
-      register
+      register,
+      lm
     }
   },
 }

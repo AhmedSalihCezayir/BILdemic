@@ -3,10 +3,10 @@ class Instructor extends User {
   //Properties
   private _ID: number;
   private _sportPunishStatus: boolean;
-  private _lectures: Lecture[];
+  private _lectures: Lecture[] | null;
 
   //Constructor
-  public constructor(name: string, mail: string, password: string, role: string, address: string, phoneNumber: string, hesCode: string, ID: number, sportPunishStatus: boolean, lectures: Lecture[]) {
+  public constructor(name: string, mail: string, password: string, role: string, address: string, phoneNumber: string, hesCode: string, ID: number, sportPunishStatus: boolean, lectures: Lecture[] | null) {
     super(name,mail,password,role,address,phoneNumber,hesCode);
         this._ID = ID;
         this._sportPunishStatus = sportPunishStatus;
@@ -55,11 +55,11 @@ class Instructor extends User {
     this._sportPunishStatus = value;
   }
 
-  public get lectures(): Lecture[] {
+  public get lectures(): Lecture[] | null{
     return this._lectures;
   }
 
-  public set lectures(value: Lecture[]) {
+  public set lectures(value: Lecture[] | null) {
     this._lectures = value;
   }
 }
