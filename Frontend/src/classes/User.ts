@@ -34,9 +34,9 @@ abstract class User {
         this._orders = null;
 
         // Create hes object with given hes string and determine whether is campus allowed or not
-        let hesObject = new HesObject(hesCode,true,null);
+        let hesObject = new HesObject(hesCode, true, "");
         this._hesObject = hesObject;
-        if(this._hesObject.isHesStatus() == true)
+        if(this._hesObject.hesStatus == true)
             this._campusStatus = CampusStatus.CAMPUS_ALLOWED;
         else
             this._campusStatus = CampusStatus.CAMPUS_NOT_ALLOWED;
