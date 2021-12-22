@@ -20,10 +20,10 @@ class Attendance {
   }
 
   public set particularLectureSeatPlan(particularLectureSeatPlan: Seat[]) {
-    this.particularLectureSeatPlan = particularLectureSeatPlan;
+    this._particularLectureSeatPlan = particularLectureSeatPlan;
   }
 
   public set lecture(lecture: Lecture) {
-    this.lecture = lecture;
+    this._lecture = lecture;
   }
 }

@@ -1,10 +1,10 @@
 class VaccineCard {
 
     //Properties
-    private _fullyVaccined: boolean;
-    private _secondVaccineDate: string; 
+    private _fullyVaccined: boolean = false;
+    private _secondVaccineDate: string = ""; 
 
-    public constructor VaccineCard(fullyVaccined: boolean , secondVaccineDate: string ){
+    public constructor (fullyVaccined: boolean , secondVaccineDate: string ){
         // TO DO: Change mechanism to get vaccine card information from e-devlet
         this._fullyVaccined = fullyVaccined;
         this._secondVaccineDate = secondVaccineDate;

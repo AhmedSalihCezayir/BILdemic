@@ -1,37 +1,41 @@
 class Seat implements StudentObserver{
 
     // Properties
-    private _studentOwner:Student;
-    private _studentLeft:Student;
-    private _studentRight:Student;
-    private _confirm:boolean;
-    private _ownerCovidStatus:CampusStatus;
-    private _lecture:Lecture;
+    private _studentOwner:Student | null = null;
+    private _studentLeft:Student | null = null;
+    private _studentRight:Student | null = null;
+    private _confirm:boolean = false;
+    private _ownerCovidStatus:CampusStatus | null = null;
+    private _lecture:Lecture | null = null;
 
     // Methods
-    public getOwnerCovStatus():CampusStatus{
+    public getOwnerCovStatus():CampusStatus | null{
         // This might create bugs. Check before using
-        return this._studentOwner.campusStatus;
+        if(this._studentOwner != null)
+        { 
+            return this._studentOwner.campusStatus;
+        }
+        return null;
     }
 
-    public get studentOwner(): Student {
+    public get studentOwner(): Student | null {
         return this._studentOwner;
     }
-    public set studentOwner(studentOwner: Student) {
+    public set studentOwner(studentOwner: Student | null) {
         this._studentOwner = studentOwner;
     }
     
-    public get studentLeft(): Student {
+    public get studentLeft(): Student | null{
         return this._studentLeft;
     }
-    public set studentLeft(studentLeft: Student) {
+    public set studentLeft(studentLeft: Student | null) {
         this._studentLeft = studentLeft;
     }
     
-    public get studentRight(): Student {
+    public get studentRight(): Student | null{
         return this._studentRight;
     }
-    public set studentRight(studentRight: Student) {
+    public set studentRight(studentRight: Student | null) {
         this._studentRight = studentRight;
     }
     
@@ -42,17 +46,17 @@ class Seat implements StudentObserver{
         this._confirm = confirm;
     }
     
-    public get ownerCovidStatus(): CampusStatus {
+    public get ownerCovidStatus(): CampusStatus | null {
         return this._ownerCovidStatus;
     }
-    public set ownerCovidStatus(ownerCovidStatus: CampusStatus) {
+    public set ownerCovidStatus(ownerCovidStatus: CampusStatus | null) {
         this._ownerCovidStatus = ownerCovidStatus;
     }
     
-    public get lecture(): Lecture {
+    public get lecture(): Lecture | null {
         return this._lecture;
     }
-    public set lecture(lecture: Lecture) {
+    public set lecture(lecture: Lecture | null) {
         this._lecture = lecture;
     }
 }
