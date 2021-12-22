@@ -1,9 +1,13 @@
-enum CampusStatus {
+import HesObject from './HesObject'
+import VaccineCard from './VaccineCard'
+import Order from './Order'
+
+export enum CampusStatus {
     CAMPUS_ALLOWED,
     CAMPUS_NOT_ALLOWED
 }
 
-abstract class User {
+export default abstract class User {
 
     //Properties
     private _name: string; 

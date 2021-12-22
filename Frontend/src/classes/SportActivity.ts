@@ -1,4 +1,7 @@
-class SportActivity extends Order{
+import Order from "./Order";
+import User from "./User";
+
+export default class SportActivity extends Order{
 
     private _activity:string = "";
     private _absenceStatus:boolean = false;

@@ -153,7 +153,7 @@ export default {
 
     const { register } = useAuth();
 
-    const lm = new LoginManager();
+    const lm = LoginManager.getInstance();
     
     return {
       name,

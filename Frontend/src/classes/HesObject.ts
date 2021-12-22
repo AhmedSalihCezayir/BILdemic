@@ -1,4 +1,4 @@
-class HesObject {
+export default class HesObject {
   private _hesCode: string;
   private _hesStatus: boolean;
   private _lastHesCodeChangeDate: string;

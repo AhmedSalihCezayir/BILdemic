@@ -1,4 +1,7 @@
-class DiagnovirManager {
+import User from './User'
+import Diagnovir from './Diagnovir'
+
+export default class DiagnovirManager {
   private static instance: DiagnovirManager | null = null;
 
   private constructor() {

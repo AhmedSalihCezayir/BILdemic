@@ -1,4 +1,7 @@
-class Diagnovir extends Order {
+import Order from './Order'
+import User from './User'
+
+export default class Diagnovir extends Order {
   private _result: string;
 
   public constructor(place: string, time: string, date: string, owner: User, result: string) {

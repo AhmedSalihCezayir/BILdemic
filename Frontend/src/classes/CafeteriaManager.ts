@@ -1,4 +1,7 @@
-class CafeteriaManager {
+import Meal from './Meal';
+import User from './User'
+
+export default class CafeteriaManager {
   private static instance: CafeteriaManager | null = null;
 
   private constructor() {

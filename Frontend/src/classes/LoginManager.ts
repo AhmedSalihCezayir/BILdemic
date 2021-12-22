@@ -4,8 +4,15 @@ import {
     sendEmailVerification, 
     signInWithEmailAndPassword, 
     signOut, Auth } from "firebase/auth";
+
 import { getFirestore, collection, setDoc, addDoc, doc } from "firebase/firestore"; 
 import { useRouter } from 'vue-router';
+import CafeteriaStaff from "./CafeteriaStaff";
+import DiagnovirTester from "./DiagnovirTester";
+import HealthCenterStaff from "./HealthCenterStaff";
+import Instructor from "./Instructor";
+import SportStaff from "./SportStaff";
+import Student from './Student'
     
 export default class LoginManager {
 
@@ -30,20 +37,21 @@ export default class LoginManager {
     public createUser(name:string, mail:string, password:string, role:string, address:string, phoneNumber:string, hesCode:string, ID:number, resideInDorm:boolean, roomMateNames:string):boolean{
         const router = useRouter();
 
-        createUserWithEmailAndPassword(this.mAuth, mail, password) .then(async (userCredential) => 
+        createUserWithEmailAndPassword(getAuth(), mail, password) .then(async (userCredential) => 
         {
             if (userCredential) {
-                sendEmailVerification(userCredential.user);
-                //console.log(userCredential.user.uid)
-                router.push('/auth/login');
+                await sendEmailVerification(userCredential.user);
             }
             const db = getFirestore();
             const crole = role + "s";
             const doc1 = doc(db, crole, userCredential.user.uid);
 
+            
+
             if (role === "Student") {
                 const student = new Student(name, mail, password, role, address, phoneNumber, hesCode, ID, resideInDorm, roomMateNames);
-                await setDoc(doc1, student);
+                
+                await setDoc(doc1, Object.assign({}, student));
                 return true;
             }
             else if (role === "Instructor") {

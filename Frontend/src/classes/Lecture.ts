@@ -1,4 +1,8 @@
-class Lecture {
+import Attendance from "./Attendance"
+import Instructor from "./Instructor"
+import Seat from "./Seat"
+
+export default class Lecture {
   private _instructor: Instructor;
   private _lectureName: string;
   private _section: number;

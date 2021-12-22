@@ -1,4 +1,6 @@
-class SettingsManager {
+import User from "./User";
+
+export default class SettingsManager {
 
     //Properties
     private static instance:SettingsManager | null = null;

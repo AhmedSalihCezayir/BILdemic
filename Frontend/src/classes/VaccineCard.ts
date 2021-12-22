@@ -1,4 +1,4 @@
-class VaccineCard {
+export default class VaccineCard {
 
     //Properties
     private _fullyVaccined: boolean = false;

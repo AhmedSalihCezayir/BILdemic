@@ -1,4 +1,7 @@
-class CafeteriaStaff extends User {
+import User from './User'
+import Meal from './Meal'
+
+export default class CafeteriaStaff extends User {
 
   public constructor(name: string, mail: string, password: string, role: string, address: string, phoneNumber: string, hesCode: string) {
     super(name,mail,password,role,address,phoneNumber,hesCode);

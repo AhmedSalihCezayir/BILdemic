@@ -1,4 +1,7 @@
-class SportStaff extends User{
+import SportActivity from "./SportActivity";
+import User from "./User";
+
+export default class SportStaff extends User{
 
     //Constructor
     public constructor(name:string, mail:string, password:string, role:string, address:string, phoneNum:string, hesCode:string){

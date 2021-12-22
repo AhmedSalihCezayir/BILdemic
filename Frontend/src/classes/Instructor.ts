@@ -1,4 +1,8 @@
-class Instructor extends User {
+import User from "./User"
+import Lecture from "./Lecture"
+import Seat from "./Seat"
+
+export default class Instructor extends User {
 
   //Properties
   private _ID: number;

@@ -1,4 +1,7 @@
-class HealthManager {
+import HealthForm from "./HealthForm";
+import User from "./User";
+
+export default class HealthManager {
     private static instance: HealthManager | null = null;
 
     private constructor() {

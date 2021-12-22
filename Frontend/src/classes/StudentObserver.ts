@@ -1,2 +1,2 @@
-interface StudentObserver {
+export default interface StudentObserver {
 }

@@ -1,4 +1,7 @@
-class HealthForm extends Order {
+import Order from './Order'
+import User from './User'
+
+export default class HealthForm extends Order {
   private _answerStatus: boolean;
   private _oldStatus: boolean;
   private _symptomsList: string[];

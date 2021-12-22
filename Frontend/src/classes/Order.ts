@@ -1,4 +1,6 @@
-enum OrderType{
+import User from "./User";
+
+export enum OrderType{
     AMBULANCE_FORM,
     HEALTH_FORM,
     MEAL,
@@ -6,7 +8,7 @@ enum OrderType{
     DIAGNOVIR
 }
 
-abstract class Order {
+export default abstract class Order {
 
     private _place:string;
     private _time:string;

@@ -1,4 +1,7 @@
-class SportManager {
+import SportActivity from "./SportActivity";
+import User from "./User";
+
+export default class SportManager {
 
     //Properties
     private static instance: SportManager | null = null;

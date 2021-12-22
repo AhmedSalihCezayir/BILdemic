@@ -1,4 +1,8 @@
-class LectureManager {
+import Student from "./Student"
+import User from "./User"
+import Seat from "./Seat"
+
+export default class LectureManager {
 
   // Properties
   private static instance: LectureManager | null = null;

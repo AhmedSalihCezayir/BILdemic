@@ -1,4 +1,7 @@
-class Attendance {
+import Lecture from './Lecture'
+import Seat from './Seat'
+
+export default class Attendance {
   private _time: string = "";
   private _particularLectureSeatPlan: Seat[] | null = null;
   private _lecture: Lecture | null = null;

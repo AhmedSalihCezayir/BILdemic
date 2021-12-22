@@ -1,4 +1,7 @@
-class Meal extends Order{
+import Order from "./Order";
+import User from "./User";
+
+export default class Meal extends Order{
 
     private _type: string;
 

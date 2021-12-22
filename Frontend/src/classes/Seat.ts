@@ -1,4 +1,9 @@
-class Seat implements StudentObserver{
+import Lecture from "./Lecture";
+import Student from "./Student";
+import StudentObserver from "./StudentObserver";
+import { CampusStatus } from "./User";
+
+export default class Seat implements StudentObserver{
 
     // Properties
     private _studentOwner:Student | null = null;
