@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon  v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <div class="column">
@@ -96,10 +96,6 @@ export default {
       open.value = !open.value
       ctx.emit('toggleDrawer');
     }
-
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
 
     const lectureCode = "4568798";
 
@@ -210,7 +206,6 @@ export default {
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       seatingPlan,
       lectureCode

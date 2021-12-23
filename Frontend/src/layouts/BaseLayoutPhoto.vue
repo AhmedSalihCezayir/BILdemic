@@ -36,7 +36,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple @click="logout">
+            <q-item clickable v-ripple @click="logoutUser">
               <q-item-section class="q-ml-sm">
                 {{ $t('LogOut') }}
               </q-item-section>
@@ -44,14 +44,18 @@
           </q-list>
         </div>
       </q-drawer>
-      <router-view @toggleDrawer="toggleDrawer"/>
+      
+      <q-page-container>
+        <router-view @toggleDrawer="toggleDrawer"/>
+      </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
-import useAuth from '../hooks/useAuth.js'
+import LoginManager from '../classes/LoginManager'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'BaseLayoutPhoto',
@@ -63,6 +67,8 @@ export default {
     });
 
     const drawer = ref(!isMobile.value);
+    const lm = LoginManager.getInstance();
+    const router = useRouter();
 
     watch(isMobile, () => {
       drawer.value = !isMobile.value;
@@ -72,13 +78,15 @@ export default {
       drawer.value = !drawer.value
     }
     
-    const { logout, auth } = useAuth();
-    console.log(auth.currentUser);
+    const logoutUser = () => {
+      lm.logout();
+      router.push('/auth/login');
+    }
 
     return {
       drawer,
       toggleDrawer,
-      logout
+      logoutUser
     }
   },
 }

@@ -16,12 +16,15 @@
       width="200px"
       class="q-mb-md"
     />
-    <login-form />
+    <login-form v-if="!showForgot" @forgot="showForgot = true"/>
+    <forgot-password v-else/>
   </div>
 </template>
 
 <script>
+import { ref } from "vue"
 import LoginForm from "../../components/auth/LoginForm.vue"
+import ForgotPassword from "../../components/auth/ForgotPassword.vue"
 import LanguageSwitcher from "../../components/LanguageSwitcher.vue"
 
 export default {
@@ -29,11 +32,15 @@ export default {
 
   components: {
     LoginForm,
-    LanguageSwitcher
+    LanguageSwitcher,
+    ForgotPassword
   },
 
   setup () {
+    const showForgot = ref(false);
+
     return {
+      showForgot
     }
   }
 }
