@@ -23,6 +23,7 @@
 <script>
 import LoginForm from "../../components/auth/LoginForm.vue"
 import LanguageSwitcher from "../../components/LanguageSwitcher.vue"
+import LectureManager from "../../classes/LectureManager"
 
 export default {
   name: 'Login',
@@ -33,6 +34,8 @@ export default {
   },
 
   setup () {
+    const lm = LectureManager.getInstance();
+    lm.createCourse("CS319", 2, "tomorrow", "B", "204", "10:00");
     return {
     }
   }

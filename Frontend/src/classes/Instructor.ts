@@ -19,7 +19,7 @@ export default class Instructor extends User {
 
   //Methods
   public registerLecture(lectureName: string, section: number, building: string, courseCode: string, time: string): boolean{
-    // TO DO: Call related method in lecture manager
+    // TO DO: Call related method in lecture manager,
     return true;
   }
 

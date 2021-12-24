@@ -3,36 +3,34 @@ import Instructor from "./Instructor"
 import Seat from "./Seat"
 
 export default class Lecture {
-  private _instructor: Instructor;
+  private _instructorName: string;
   private _lectureName: string;
   private _section: number;
-  private _building: string;
-  private _time: string;
+  private _place: string;
   private _courseCode: string;
   private _lectureCode: number;
-  private _lectureID: number;
-  private _seatPlan: Seat[];
-  private _attendanceRecord: Attendance[];
+  private _LID: number;
+  private _seatPlan: Seat[] | null;
+  private _attendanceRecord: Attendance[] | null;
 
-  public constructor(instructor: Instructor, lectureName: string, section: number, building: string, time: string, courseCode: string, lectureCode: number, lectureID: number, seatPlan: Seat[], attendanceRecord: Attendance[]){
-    this._instructor = instructor;
+  public constructor(instructorName: string, lectureName: string, section: number, place: string, courseCode: string, lectureCode: number, LID: number){
+    this._instructorName = instructorName;
     this._lectureName = lectureName;
     this._section = section;
-    this._building = building;
-    this._time = time;
+    this._place = place;
     this._courseCode = courseCode;
     this._lectureCode = lectureCode;
-    this._lectureID = lectureID;
-    this._seatPlan = seatPlan;
-    this._attendanceRecord = attendanceRecord;
+    this._LID = LID;
+    this._seatPlan = null;
+    this._attendanceRecord = null;
   }
 
-  public get instructor(): Instructor {
-    return this._instructor;
+  public get instructorName(): string{
+    return this._instructorName;
   }
 
-  public set instructor(value: Instructor) {
-    this._instructor = value;
+  public set instructorName(value: string) {
+    this._instructorName = value;
   }
   
   public get lectureName(): string {
@@ -51,20 +49,12 @@ export default class Lecture {
     this._section = value;
   }
 
-  public get building(): string {
-    return this._building;
+  public get place(): string {
+    return this._place;
   }
 
-  public set building(value: string) {
-    this._building = value;
-  }
-
-  public get time(): string {
-    return this._time;
-  }
-
-  public set time(value: string) {
-    this._time = value;
+  public set place(value: string) {
+    this._place = value;
   }
 
   public get courseCode(): string {
@@ -83,27 +73,27 @@ export default class Lecture {
     this._lectureCode = value;
   }
 
-  public get lectureID(): number {
-    return this._lectureID;
+  public get LID(): number {
+    return this._LID;
   }
 
-  public set lectureID(value: number) {
-    this._lectureID = value;
+  public set LID(value: number) {
+    this._LID = value;
   }
 
-  public get seatPlan(): Seat[] {
+  public get seatPlan(): Seat[] | null {
     return this._seatPlan;
   }
 
-  public set seatPlan(value: Seat[]) {
+  public set seatPlan(value: Seat[] | null) {
     this._seatPlan = value;
   }
 
-  public get attendanceRecord(): Attendance[] {
+  public get attendanceRecord(): Attendance[] | null{
     return this._attendanceRecord;
   }
 
-  public set attendanceRecord(value: Attendance[]) {
+  public set attendanceRecord(value: Attendance[] | null) {
     this._attendanceRecord = value;
   }
 }

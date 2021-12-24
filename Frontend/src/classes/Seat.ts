@@ -6,42 +6,55 @@ import { CampusStatus } from "./User";
 export default class Seat implements StudentObserver{
 
     // Properties
-    private _studentOwner:Student | null = null;
-    private _studentLeft:Student | null = null;
-    private _studentRight:Student | null = null;
+    private _SID: string;
+    private _studentOwnerUID:string;
+    private _studentLeftUID:string;
+    private _studentRightUID:string;
     private _confirm:boolean = false;
     private _ownerCovidStatus:CampusStatus | null = null;
     private _lecture:Lecture | null = null;
 
+    // Constructors
+    public constructor(){}
+
     // Methods
-    public getOwnerCovStatus():CampusStatus | null{
+    //public getOwnerCovStatus():CampusStatus | null{
         // This might create bugs. Check before using
-        if(this._studentOwner != null)
-        { 
-            return this._studentOwner.campusStatus;
-        }
-        return null;
+    //    if(this._studentOwnerUID != "")
+    //    { 
+    //        return this._studentOwnerUID.campusStatus;
+    //    }
+    //    return null;
+    //}
+
+    public get SID(): string {
+        return this._SID;
     }
 
-    public get studentOwner(): Student | null {
-        return this._studentOwner;
+    public set SID(SID:string){
+        this._SID = SID;
     }
-    public set studentOwner(studentOwner: Student | null) {
-        this._studentOwner = studentOwner;
+
+    public get studentOwnerUID(): string{
+        return this._studentOwnerUID;
     }
-    
-    public get studentLeft(): Student | null{
-        return this._studentLeft;
-    }
-    public set studentLeft(studentLeft: Student | null) {
-        this._studentLeft = studentLeft;
+
+    public set studentOwnerUID(studentOwnerUID: string) {
+        this._studentOwnerUID = studentOwnerUID;
     }
     
-    public get studentRight(): Student | null{
-        return this._studentRight;
+    public get studentLeftUID(): string{
+        return this._studentLeftUID;
     }
-    public set studentRight(studentRight: Student | null) {
-        this._studentRight = studentRight;
+    public set studentLeftUID(studentLeftUID: string) {
+        this._studentLeftUID = studentLeftUID;
+    }
+    
+    public get studentRightUID(): string{
+        return this._studentRightUID;
+    }
+    public set studentRight(studentRightUID: string) {
+        this._studentRightUID = studentRightUID;
     }
     
     public get confirm(): boolean {
@@ -54,6 +67,7 @@ export default class Seat implements StudentObserver{
     public get ownerCovidStatus(): CampusStatus | null {
         return this._ownerCovidStatus;
     }
+
     public set ownerCovidStatus(ownerCovidStatus: CampusStatus | null) {
         this._ownerCovidStatus = ownerCovidStatus;
     }
@@ -61,6 +75,7 @@ export default class Seat implements StudentObserver{
     public get lecture(): Lecture | null {
         return this._lecture;
     }
+
     public set lecture(lecture: Lecture | null) {
         this._lecture = lecture;
     }
