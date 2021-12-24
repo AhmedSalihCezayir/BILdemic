@@ -149,5 +149,6 @@ export default {
   PasswordResetSent: 'Şifre sıfırlama maili gönderildi. Lütfen gelen kutunuzu kontrol ediniz.',
   PasswordResetError: 'Bu mail adresine bağlı hesap bulunamamıştır. Lütfen girdiğiniz mail adresini kontrol edip yeniden deneyiniz.',
   Back: 'Geri',
-  NotVerifiedError: 'Giriş yapabilmek için mailinizi doğrulamanız gerekmektedir. Lütfen mailinizi gelen talimatları takip ederek hesabınızı doğrulayın.'
+  NotVerifiedError: 'Giriş yapabilmek için mailinizi doğrulamanız gerekmektedir. Lütfen mailinizi gelen talimatları takip ederek hesabınızı doğrulayın.',
+  HesCodeDigitError: 'HES Kodu 10 haneden oluşmalıdır'
 }

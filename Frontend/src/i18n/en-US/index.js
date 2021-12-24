@@ -149,5 +149,6 @@ export default {
   PasswordResetSent: 'Password reset mail has sent. Please check your inbox.',
   PasswordResetError: 'We could not find an account with the given mail address. Please check the enter mail.',
   Back: 'Back',
-  NotVerifiedError: 'You need to verify your e-mail to be able to sign in. Please check your email and follow the instructions to verify your account.'
+  NotVerifiedError: 'You need to verify your e-mail to be able to sign in. Please check your email and follow the instructions to verify your account.',
+  HesCodeDigitError: 'HES Code should be 10 digit long'
 }
