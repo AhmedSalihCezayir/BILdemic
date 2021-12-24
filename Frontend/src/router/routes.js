@@ -23,6 +23,7 @@ import DiagnovirStaffPage from "../pages/diagnovir/DiagnovirStaffPage.vue"
 const routes = [
   {
     path: '/',
+    redirect: '/auth/login',
     component: BaseLayoutPhoto,
     children: [
       {
