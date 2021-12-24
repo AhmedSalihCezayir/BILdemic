@@ -1,4 +1,7 @@
 import { initializeApp } from 'firebase/app';
+import { onAuthStateChanged, getAuth } from 'firebase/auth'
+import { ref, onValue, getDatabase } from "firebase/database"
+import { Store } from '../store/index.js'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAmq_iT6NKRO9P8IgtvB-rdiLyWHVPAie4",
@@ -12,3 +15,19 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
+
+
+onAuthStateChanged(getAuth(), (user) => {
+  if (user) {
+    const db = getDatabase();
+    const reference = ref(db, `Users/${user.uid}`);
+
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        Store.commit('settings/setCurrentUserUID', data._uid);
+        Store.commit('settings/setCurrentUserRole', data._role);
+        localStorage.setItem('currentUserUID', data._uid);
+        localStorage.setItem('currentUserRole', data._role);
+    });
+  }
+});

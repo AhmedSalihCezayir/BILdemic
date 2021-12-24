@@ -137,5 +137,16 @@ export default {
   StartChat: 'Görüşmeyi Başlat',
   EnterTestResult: 'Test Sonucunu Gir',
   TestResult: 'Test Sonucu',
-  IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.'
+  IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.',
+  RegisterDone: 'Hesap oluşturma işlemi başarılı. Hesabınızı aktif etmek için lütfen e-mailinizi doğrulayınız.',
+  ShortPasswordError: 'Şifreniz en az 8 haneden oluşmalıdır',
+  UseUniversityMailError1: 'Lütfen @ug.bilkent.edu.tr ile biten Bilkent mailinizi giriniz',
+  UseUniversityMailError2: 'Lütfen Bilkent mailinizi giriniz',
+  InvalidMail: 'Geçersiz mail addresi',
+  EmptySlotsError: 'Lütfen tüm zorunlu bilgileri doldurun',
+  ResertPassword: 'ŞİFREYİ SIFIRLA',
+  PasswordResetSent: 'Şifre sıfırlama maili gönderildi. Lütfen gelen kutunuzu kontrol ediniz.',
+  PasswordResetError: 'Bu mail adresine bağlı hesap bulunamamıştır. Lütfen girdiğiniz mail adresini kontrol edip yeniden deneyiniz.',
+  Back: 'Geri',
+  NotVerifiedError: 'Giriş yapabilmek için mailinizi doğrulamanız gerekmektedir. Lütfen mailinizi gelen talimatları takip ederek hesabınızı doğrulayın.'
 }

@@ -2,12 +2,12 @@ import {
     getAuth, 
     createUserWithEmailAndPassword, 
     sendEmailVerification, 
-    signInWithEmailAndPassword, 
-    signOut, Auth } from "firebase/auth";
+    signOut,
+    sendPasswordResetEmail, 
+    signInWithEmailAndPassword} from "firebase/auth";
 
-import { getFirestore, collection, setDoc, addDoc, doc } from "firebase/firestore"; 
-import { useRouter } from 'vue-router';
-import {getDatabase, ref, set} from "firebase/database";
+import { equalTo, get, getDatabase, orderByChild, onValue, query, ref, set } from "firebase/database";
+
 import CafeteriaStaff from "./CafeteriaStaff";
 import DiagnovirTester from "./DiagnovirTester";
 import HealthCenterStaff from "./HealthCenterStaff";
@@ -19,7 +19,6 @@ export default class LoginManager {
 
     //Properties
     private static instance: LoginManager | null = null;
-    //public CRUDManager crudManager;
 
     //Constructor
     private LoginManager() {
@@ -34,13 +33,13 @@ export default class LoginManager {
         return this.instance;
     }
 
-    public createUser(name:string, mail:string, password:string, role:string, address:string, phoneNumber:string, hesCode:string, ID:number, resideInDorm:boolean, roomMateNames:string):boolean{
-        const router = useRouter();
+    public async createUser(name:string, mail:string, password:string, role:string, address:string, phoneNumber:string, hesCode:string, ID:number, resideInDorm:boolean, roomMateNames:string) {
 
         createUserWithEmailAndPassword(getAuth(), mail, password) .then(async (userCredential) => 
         {
             if (userCredential) {
                 await sendEmailVerification(userCredential.user);
+                await signOut(getAuth());
             }
             const db = getDatabase();
             const crole = role.replace(/ /g, "") + "s";
@@ -48,43 +47,42 @@ export default class LoginManager {
             if (role === "Student") {
                 const student = new Student(name, mail, password, role, address, phoneNumber, hesCode, ID, resideInDorm, roomMateNames);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), student);
-                return true;
             }
             else if (role === "Instructor") {
                 const instructor = new Instructor(name, mail, password, role, address, phoneNumber, hesCode, ID, false, null);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), instructor);
-                return true;
             }
             else if (role === "Cafeteria Staff") {
                 const cafeteriaStaff = new CafeteriaStaff(name, mail, password, role, address, phoneNumber, hesCode);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), cafeteriaStaff);
-                return true;
             }
             else if (role === "Health Center Staff") {
                 const healthCenterStaff = new HealthCenterStaff(name, mail, password, role, address, phoneNumber, hesCode);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), healthCenterStaff);
-                return true;
             }
             else if (role === "Diagnovir Tester") {
                 const diagnovirTester = new DiagnovirTester(name, mail, password, role, address, phoneNumber, hesCode);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), diagnovirTester);
-                return true;
             }
             else if (role === "Sports Center Staff") {
                 const sportStaff = new SportStaff(name, mail, password, role, address, phoneNumber, hesCode);
                 set(ref(db, `Users/${crole}/${userCredential.user.uid}`), sportStaff);
-                return true;
-            }
-            else {
-                return false;
             }
     })
     .catch((error) => {
         console.log(error.message);
-        return false;
     });
-    return false;
     } 
-    
 
+    public async signIn(email: string, password: string) {
+        return signInWithEmailAndPassword(getAuth(), email, password);
+    }
+
+    public async logout() {  
+        return signOut(getAuth());
+    }
+
+    public async resetPassword(email: string) {
+        return sendPasswordResetEmail(getAuth(), email);
+    }
 }

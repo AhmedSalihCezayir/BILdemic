@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <div class="column">
     <q-banner inline-actions class="text-white bg-accent">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
@@ -66,10 +66,6 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
-
     const calculateRoute = (course) => {
       return "/~/courses/" + course.name.toLowerCase();
     }; 
@@ -109,7 +105,6 @@ export default {
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       courses,
       calculateRoute,

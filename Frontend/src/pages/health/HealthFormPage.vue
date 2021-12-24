@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <b> {{ $t('PatientForm') }} </b> 
@@ -69,13 +69,8 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
-
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       hasReservation
     }

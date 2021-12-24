@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div>
     <food-distribution 
       :cardInfos="cardInfos"
       :regionInfo="regionInfo"
@@ -123,10 +123,6 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
-
     const cardInfos = [
       {
         url: "https://placeimg.com/500/300/nature",
@@ -158,7 +154,6 @@ export default {
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       hasReservation,
       cardInfos,
