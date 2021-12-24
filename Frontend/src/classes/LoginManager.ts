@@ -41,32 +41,40 @@ export default class LoginManager {
                 await sendEmailVerification(userCredential.user);
                 await signOut(getAuth());
             }
+            const userUID = userCredential.user.uid;
+            
             const db = getDatabase();
-            const crole = role.replace(/ /g, "") + "s";
 
             if (role === "Student") {
                 const student = new Student(name, mail, password, role, address, phoneNumber, hesCode, ID, resideInDorm, roomMateNames);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), student);
+                student.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), student);
             }
             else if (role === "Instructor") {
-                const instructor = new Instructor(name, mail, password, role, address, phoneNumber, hesCode, ID, false, null);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), instructor);
+                console.log(userUID);
+                const instructor = new Instructor(name, mail, password, role, address, phoneNumber, hesCode, ID, false, []);
+                instructor.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), instructor);
             }
-            else if (role === "Cafeteria Staff") {
+            else if (role === "CafeteriaStaff") {
                 const cafeteriaStaff = new CafeteriaStaff(name, mail, password, role, address, phoneNumber, hesCode);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), cafeteriaStaff);
+                cafeteriaStaff.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), cafeteriaStaff);
             }
-            else if (role === "Health Center Staff") {
+            else if (role === "HealthCenter Staff") {
                 const healthCenterStaff = new HealthCenterStaff(name, mail, password, role, address, phoneNumber, hesCode);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), healthCenterStaff);
+                healthCenterStaff.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), healthCenterStaff);
             }
-            else if (role === "Diagnovir Tester") {
+            else if (role === "DiagnovirTester") {
                 const diagnovirTester = new DiagnovirTester(name, mail, password, role, address, phoneNumber, hesCode);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), diagnovirTester);
+                diagnovirTester.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), diagnovirTester);
             }
-            else if (role === "Sports Center Staff") {
+            else if (role === "SportsCenterStaff") {
                 const sportStaff = new SportStaff(name, mail, password, role, address, phoneNumber, hesCode);
-                set(ref(db, `Users/${crole}/${userCredential.user.uid}`), sportStaff);
+                sportStaff.Uid = userUID;
+                return set(ref(db, `Users/${userCredential.user.uid}`), sportStaff);
             }
     })
     .catch((error) => {

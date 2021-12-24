@@ -4,7 +4,7 @@
     <q-banner inline-actions class="text-white bg-accent">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <b> {{ $t('CoursesPageInstrDesc') }} </b> 
-      <q-btn :label="$t('CreateCourse')" unelevated class="bg-secondary fixed-top-right q-mt-sm q-mr-sm" @click="createCourse(courseName, sectionNo, building, place)"/>
+      <q-btn :label="$t('CreateCourse')" unelevated class="bg-secondary fixed-top-right q-mt-sm q-mr-sm" @click="create = true;"/>
     </q-banner>
     
     </div>
@@ -43,7 +43,7 @@
 
         <q-card-actions class="justify-between">
           <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
-          <q-btn flat :label="$t('CreateCourse')" color="secondary" />
+          <q-btn flat :label="$t('CreateCourse')" color="secondary" @click="createCourse(courseName, sectionNo, building, place)"/>
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -54,6 +54,7 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import LectureManager from '../../classes/LectureManager'
 
 export default {
   name: "CoursesPageInstructor",
@@ -73,6 +74,8 @@ export default {
     const building = ref(null);
     const place = ref(null);
 
+    const lm = LectureManager.getInstance();
+
     watch(isMobile, () => {
       open.value = !isMobile.value;
     })
@@ -86,8 +89,13 @@ export default {
       return "/staff/courses/" + course.name.toLowerCase();
     }; 
 
-    const createCourse = (courseName, sectionNo, building, place) => {
-      create.value = true;
+    const createCourse = async (courseName, sectionNo, building, place) => {
+      lm.createCourse(courseName, sectionNo, building, place).then(() => {
+        console.log("OLDU");
+      })
+      .catch((error) => {
+        console.log("ERROR: ", error);
+      })
     }
 
     const courses = [

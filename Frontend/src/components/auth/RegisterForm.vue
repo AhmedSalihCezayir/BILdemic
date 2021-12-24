@@ -225,19 +225,19 @@ export default {
     ];
 
     const emailRuleSchool = (val) => {
-      if (role.value == "Student") {
-        return val.includes('@ug.bilkent.edu.tr') || t('UseUniversityMailError1');
-      }
-      else if (role.value == "Instructor") {
-        return val.includes('@fen.bilkent.edu.tr') 
-              || val.includes('@cs.bilkent.edu.tr')
-              || val.includes('@bilkent.edu.tr') 
-              || val.includes('@ee.bilkent.edu.tr')
-              || t('UseUniversityMailError2');
-      }
-      else {
-        return val.includes('@bilkent.edu.tr') || t('UseUniversityMailError2');
-      } 
+      // if (role.value == "Student") {
+      //   return val.includes('@ug.bilkent.edu.tr') || t('UseUniversityMailError1');
+      // }
+      // else if (role.value == "Instructor") {
+      //   return val.includes('@fen.bilkent.edu.tr') 
+      //         || val.includes('@cs.bilkent.edu.tr')
+      //         || val.includes('@bilkent.edu.tr') 
+      //         || val.includes('@ee.bilkent.edu.tr')
+      //         || t('UseUniversityMailError2');
+      // }
+      // else {
+      //   return val.includes('@bilkent.edu.tr') || t('UseUniversityMailError2');
+      // } 
     }
 
     const emailRuleValidity = (val) => {
@@ -254,8 +254,8 @@ export default {
     })
 
     const register = async (name, mail, password, role, address, phone, hes, id, resideInDorm, roomMateNames) => {
-      if (inputValidity(name, mail, password, role, phone, hes, id)) {
-        lm.createUser(name, mail, password, role, address, phone, hes, id, resideInDorm, roomMateNames).then(() => {
+      if (inputValidity(name, mail, password, role.value, phone, hes, id)) {
+        lm.createUser(name, mail, password, role.value, address, phone, hes, id, resideInDorm, roomMateNames).then(() => {
         showRegisterOkMessage.value = true;
         loading.value = true;
         setTimeout(() => {

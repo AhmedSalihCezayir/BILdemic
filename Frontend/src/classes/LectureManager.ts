@@ -28,17 +28,18 @@ export default class LectureManager {
     const auth = getAuth();
     const Uid = auth.currentUser?.uid;
     const db = getDatabase();
-    
-    let instructor = (await get(ref(db, `UserGetByUID/${Uid}`))).val();
+
+    let instructor = (await get(ref(db, `Users/${Uid}`))).val();
 
     if(instructor){
       let ncourseCode = (Math.random() * 10000) + 1;
       let courseCode = ncourseCode.toString();
       let LID = (Math.random() * 10000) + 1;
+      
+      let lecture = new Lecture(instructor._name, lectureName, section, place, courseCode, -1, LID);
 
-      let lecture = new Lecture(instructor.name, lectureName, section, place, courseCode, -1, LID);
-      set(ref(db,`Instructors/${instructor.Uid}/Lectures/${lecture.LID}`),lecture); // Add lecture to instructor's lecture array
-      set(ref(db,`Lectures/${lecture.LID}`),lecture); // Add lecture to lecture storage
+      await set(ref(db,`Users/${instructor._Uid}/Lectures/${lecture.LID}`),lecture); // Add lecture to instructor's lecture array
+      await set(ref(db,`Lectures/${lecture.LID}`),lecture); // Add lecture to lecture storage
     }
   }
 
@@ -87,7 +88,7 @@ export default class LectureManager {
     let student = (await get(ref(db, `Users/${UID}`))).val(); //Get current student
     let lecture = (await get(ref(db, `Lectures/${LID}`))).val(); //Get current lecture
 
-    let query1 = query(ref(db, `Lectures/${LID}/SeatPlan/${lecture.}`)
+    // let query1 = query(ref(db, `Lectures/${LID}/SeatPlan/${lecture.}`)
 
   }
 }
