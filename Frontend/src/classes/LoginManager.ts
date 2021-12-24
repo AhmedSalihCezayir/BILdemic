@@ -2,11 +2,11 @@ import {
     getAuth, 
     createUserWithEmailAndPassword, 
     sendEmailVerification, 
-    signInWithEmailAndPassword, 
     signOut,
-    sendPasswordResetEmail } from "firebase/auth";
+    sendPasswordResetEmail, 
+    signInWithEmailAndPassword} from "firebase/auth";
 
-import { getDatabase, ref, set } from "firebase/database";
+import { equalTo, get, getDatabase, orderByChild, onValue, query, ref, set } from "firebase/database";
 
 import CafeteriaStaff from "./CafeteriaStaff";
 import DiagnovirTester from "./DiagnovirTester";
@@ -39,6 +39,7 @@ export default class LoginManager {
         {
             if (userCredential) {
                 await sendEmailVerification(userCredential.user);
+                await signOut(getAuth());
             }
             const db = getDatabase();
             const crole = role.replace(/ /g, "") + "s";
@@ -73,15 +74,15 @@ export default class LoginManager {
     });
     } 
 
-    public async logout() {  
-        await signOut(getAuth());
+    public async signIn(email: string, password: string) {
+        return signInWithEmailAndPassword(getAuth(), email, password);
     }
-    
-    public async signIn (email: string, password: string) {
-        await signInWithEmailAndPassword(getAuth(), email, password);
+
+    public async logout() {  
+        return signOut(getAuth());
     }
 
     public async resetPassword(email: string) {
-        await sendPasswordResetEmail(getAuth(), email);
+        return sendPasswordResetEmail(getAuth(), email);
     }
 }

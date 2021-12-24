@@ -22,6 +22,153 @@ import DiagnovirStaffPage from "../pages/diagnovir/DiagnovirStaffPage.vue"
 
 const routes = [
   {
+    path: '/',
+    component: BaseLayoutPhoto,
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: HomePage,
+        meta: {
+          haveAccess: ['Student'] // TODO BURAYA INSTR GIREBILECEK MI?
+        }
+      }
+    ]
+  },
+  {
+    path: '/~',
+    component: BaseLayoutTab,
+    children: [
+      {
+        path: 'courses',
+        name: 'Courses',
+        component: CoursesPage,
+        meta: {
+          haveAccess: ['Student']
+        }
+        
+      },
+      {
+        path: 'courses/:course',
+        name: 'CourseSpecificPage',
+        component: CourseSpecificPage,
+        meta: {
+          haveAccess: ['Student']
+        }
+      },
+      {
+        path: 'diagnovir',
+        name: 'DiagnovirPage',
+        component: DiagnovirPage,
+        meta: {
+          haveAccess: ['Student', 'Instructor', 'SportsCenterStaff', 'CafeteriaStaff']
+        }
+      },
+      {
+        path: 'diagnovir/tests',
+        name: 'TestResultsPage',
+        component: TestResultsPage,
+        meta: {
+          haveAccess: ['Student', 'Instructor', 'SportsCenterStaff', 'CafeteriaStaff']
+        }
+      },
+      {
+        path: 'health',
+        name: 'HealthCenterPage',
+        component: HealthCenterPage,
+        meta: {
+          haveAccess: ['Student', 'Instructor', 'SportsCenterStaff', 'CafeteriaStaff']
+        }
+      },
+      {
+        path: 'health/form',
+        name: 'HealthFormPage',
+        component: HealthFormPage,
+        meta: {
+          haveAccess: ['Student', 'Instructor', 'SportsCenterStaff', 'CafeteriaStaff']
+        }
+      },
+      {
+        path: 'sports',
+        name: 'SportsCenterPage',
+        component: SportsCenterPage,
+        meta: {
+          haveAccess: ['Student']
+        }
+      },
+      {
+        path: 'sports/reservations',
+        name: 'SportsReservationsPage',
+        component: SportsReservationsPage,
+        meta: {
+          haveAccess: ['Student']
+        }
+      },
+      {
+        path: 'cafeteria',
+        name: 'CafeteriaPage',
+        component: CafeteriaPage,
+        meta: {
+          haveAccess: ['Student', 'Instructor']
+        }
+      },
+    ]
+  },
+  {
+    path: '/staff',
+    component: BaseLayoutTab,
+    children: [
+      {
+        path: 'courses',
+        name: 'CoursesPageInstructor',
+        component: CoursesPageInstructor,
+        meta: {
+          haveAccess: ['Instructor']
+        }
+      },
+      {
+        path: 'courses/:course',
+        name: 'CourseSpecificPageInstructor',
+        component: CoursesSpecificPageInstructor,
+        meta: {
+          haveAccess: ['Instructor']
+        }
+      },
+      {
+        path: 'diagnovir',
+        name: 'DiagnovirStaffPage',
+        component: DiagnovirStaffPage,
+        meta: {
+          haveAccess: ['DiagnovirTester']
+        }
+      },
+      {
+        path: 'health',
+        name: 'HealthCenterStaffPage',
+        component: HealthCenterStaffPage,
+        meta: {
+          haveAccess: ['HealthCenterStaff']
+        }
+      },
+      {
+        path: 'sports',
+        name: 'SportsStaffPage',
+        component: SportsStaffPage,
+        meta: {
+          haveAccess: ['SportsCenterStaff']
+        }
+      },
+      {
+        path: 'cafeteria',
+        name: 'CafeteriaStaffPage',
+        component: CafeteriaStaffPage,
+        meta: {
+          haveAccess: ['CafeteriaStaff']
+        }
+      },
+    ]
+  },  
+  {
     path: '/auth',
     component: BaseIndex,
     children: [
@@ -38,107 +185,8 @@ const routes = [
     ]
   },
   {
-    path: '/',
-    component: BaseLayoutPhoto,
-    children: [
-      {
-        path: 'home',
-        name: 'Home',
-        component: HomePage
-      }
-    ]
-  },
-  {
-    path: '/~',
-    component: BaseLayoutTab,
-    children: [
-      {
-        path: 'courses',
-        name: 'Courses',
-        component: CoursesPage,
-      },
-      {
-        path: 'courses/:course',
-        name: 'CourseSpecificPage',
-        component: CourseSpecificPage,
-      },
-      {
-        path: 'diagnovir',
-        name: 'DiagnovirPage',
-        component: DiagnovirPage
-      },
-      {
-        path: 'diagnovir/tests',
-        name: 'TestResultsPage',
-        component: TestResultsPage
-      },
-      {
-        path: 'health',
-        name: 'HealthCenterPage',
-        component: HealthCenterPage
-      },
-      {
-        path: 'health/form',
-        name: 'HealthFormPage',
-        component: HealthFormPage
-      },
-      {
-        path: 'sports',
-        name: 'SportsCenterPage',
-        component: SportsCenterPage
-      },
-      {
-        path: 'sports/reservations',
-        name: 'SportsReservationsPage',
-        component: SportsReservationsPage
-      },
-      {
-        path: 'cafeteria',
-        name: 'CafeteriaPage',
-        component: CafeteriaPage
-      },
-    ]
-  },
-  {
-    path: '/staff',
-    component: BaseLayoutTab,
-    children: [
-      {
-        path: 'courses',
-        name: 'CoursesPageInstructor',
-        component: CoursesPageInstructor,
-      },
-      {
-        path: 'courses/:course',
-        name: 'CourseSpecificPageInstructor',
-        component: CoursesSpecificPageInstructor,
-      },
-      {
-        path: 'diagnovir',
-        name: 'DiagnovirStaffPage',
-        component: DiagnovirStaffPage
-      },
-      {
-        path: 'health',
-        name: 'HealthCenterStaffPage',
-        component: HealthCenterStaffPage
-      },
-      {
-        path: 'sports',
-        name: 'SportsStaffPage',
-        component: SportsStaffPage
-      },
-      {
-        path: 'cafeteria',
-        name: 'CafeteriaStaffPage',
-        component: CafeteriaStaffPage
-      },
-    ]
-  },
-  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }
 ]
-
 export default routes

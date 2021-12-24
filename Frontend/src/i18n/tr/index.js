@@ -144,8 +144,9 @@ export default {
   UseUniversityMailError2: 'Lütfen Bilkent mailinizi giriniz',
   InvalidMail: 'Geçersiz mail addresi',
   EmptySlotsError: 'Lütfen tüm zorunlu bilgileri doldurun',
-  ResertPassword: 'Şifreyi sıfırla',
+  ResertPassword: 'ŞİFREYİ SIFIRLA',
   PasswordResetSent: 'Şifre sıfırlama maili gönderildi. Lütfen gelen kutunuzu kontrol ediniz.',
-  PasswordResetError: 'Bu mail adresine bağlı hesap bulunamamıştır. Lütfen girdiğiniz mail adresini kontrol edip yeniden deneyiniz.'
-
+  PasswordResetError: 'Bu mail adresine bağlı hesap bulunamamıştır. Lütfen girdiğiniz mail adresini kontrol edip yeniden deneyiniz.',
+  Back: 'Geri',
+  NotVerifiedError: 'Giriş yapabilmek için mailinizi doğrulamanız gerekmektedir. Lütfen mailinizi gelen talimatları takip ederek hesabınızı doğrulayın.'
 }
