@@ -4,7 +4,7 @@
     <q-banner inline-actions class="text-white bg-accent">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <b> {{ $t('CoursesPageInstrDesc') }} </b> 
-      <q-btn :label="$t('CreateCourse')" unelevated class="bg-secondary fixed-top-right q-mt-sm q-mr-sm" @click="create = true"/>
+      <q-btn :label="$t('CreateCourse')" unelevated class="bg-secondary fixed-top-right q-mt-sm q-mr-sm" @click="createCourse(courseName, sectionNo, building, place)"/>
     </q-banner>
     
     </div>
@@ -34,7 +34,10 @@
             <q-input v-model="sectionNo" class="col" color="secondary" :label="$t('EnterSectionNo')" dense outlined />
           </div>
           <div class="row justify-center">
-            <q-select v-model="building" class="col" color="secondary" :label="$t('EnterBuilding')" dense outlined />
+            <q-input v-model="building" class="col" color="secondary" :label="$t('EnterBuilding')" dense outlined />
+          </div>
+          <div class="row justify-center">
+            <q-input v-model="place" class="col" color="secondary" :label="$t('EnterClassroom')" dense outlined />
           </div>
         </q-card-section>
 
@@ -68,6 +71,7 @@ export default {
     const courseCode = ref(null);
     const sectionNo = ref(null);
     const building = ref(null);
+    const place = ref(null);
 
     watch(isMobile, () => {
       open.value = !isMobile.value;
@@ -81,6 +85,10 @@ export default {
     const calculateRoute = (course) => {
       return "/staff/courses/" + course.name.toLowerCase();
     }; 
+
+    const createCourse = (courseName, sectionNo, building, place) => {
+      create.value = true;
+    }
 
     const courses = [
       {
@@ -119,12 +127,14 @@ export default {
       toggleDrawer,
       isMobile,
       courses,
+      createCourse,
       calculateRoute,
       create,
       courseName,
       courseCode,
       sectionNo,
-      building 
+      building,
+      place
     }
   },
 }
