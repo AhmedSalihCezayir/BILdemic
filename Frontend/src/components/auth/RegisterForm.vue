@@ -26,7 +26,7 @@
 
   <q-form :class="`${formStyling} greedy`" :style="isMobile ? 'width: 90%' : 'width: 60%'">
     <div class="column q-gutter-y-sm">
-    <div v-if="!isMobile" class="row">
+    <div class="row">
       <q-input 
         :label="$t('FullName')" 
         filled
@@ -47,12 +47,10 @@
         color="secondary"
         :options="roleOptions"
         :disable="loading"
-        emit-value
-        map-options
       />
     </div>
 
-    <!--- These two is rendered only in small screens TODO --->
+    <!-- - These two is rendered only in small screens TODO -
     <q-input 
       v-if="isMobile"
       :label="$t('FullName')" 
@@ -75,7 +73,7 @@
       color="secondary"
       :options="roleOptions"
       :disable="loading"
-    />
+    /> -->
 
     <q-input 
       :label="$t('ID')" 
@@ -107,7 +105,8 @@
       color="secondary"
       :disable="loading"
       mask="####-####-##"
-      :rules="[ val => val]"
+      lazy-rules
+      :rules="[ val => val && val.length == 12 || $t('HesCodeDigitError')]"
     />
 
     <div class="row" v-if="role == 'Student'">
@@ -140,6 +139,7 @@
       color="secondary"
       v-model="password"
       :disable="loading"
+      lazy-rules
       :rules="[ val => val && val.length >= 8 || $t('ShortPasswordError')]"
     >
       <template v-slot:append>
@@ -198,46 +198,23 @@ export default {
     const lm = LoginManager.getInstance();
     
     const roleOptions = [
-      {
-        label: t('Student'),
-        value: 'Student'
-      },
-      {
-        label: t('Instructor'),
-        value: 'Instructor'
-      },
-      {
-        label: t('DiagnovirTester'),
-        value: 'DiagnovirTester'
-      },
-      {
-        label: t('CafeteriaStaff'),
-        value: 'CafeteriaStaff'
-      },
-      {
-        label: t('SportsCenterStaff'),
-        value: 'SportsCenterStaff'
-      },
-      {
-        label: t('HealthCenterStaff'),
-        value: 'HealthCenterStaff'
-      }
+        'Student', 'Instructor', 'DiagnovirTester', 'CafeteriaStaff', 'SportsCenterStaff', 'HealthCenterStaff'
     ];
 
     const emailRuleSchool = (val) => {
-      // if (role.value == "Student") {
-      //   return val.includes('@ug.bilkent.edu.tr') || t('UseUniversityMailError1');
-      // }
-      // else if (role.value == "Instructor") {
-      //   return val.includes('@fen.bilkent.edu.tr') 
-      //         || val.includes('@cs.bilkent.edu.tr')
-      //         || val.includes('@bilkent.edu.tr') 
-      //         || val.includes('@ee.bilkent.edu.tr')
-      //         || t('UseUniversityMailError2');
-      // }
-      // else {
-      //   return val.includes('@bilkent.edu.tr') || t('UseUniversityMailError2');
-      // } 
+      if (role.value == "Student") {
+        return val.includes('\@ug.bilkent.edu.tr') || t('UseUniversityMailError1');
+      }
+      else if (role.value == "Instructor") {
+        return val.includes('\@fen.bilkent.edu.tr') 
+              || val.includes('\@cs.bilkent.edu.tr')
+              || val.includes('\@bilkent.edu.tr') 
+              || val.includes('\@ee.bilkent.edu.tr')
+              || t('UseUniversityMailError2');
+      }
+      else {
+        return val.includes('\@bilkent.edu.tr') || t('UseUniversityMailError2');
+      } 
     }
 
     const emailRuleValidity = (val) => {
@@ -254,15 +231,18 @@ export default {
     })
 
     const register = async (name, mail, password, role, address, phone, hes, id, resideInDorm, roomMateNames) => {
-      if (inputValidity(name, mail, password, role.value, phone, hes, id)) {
-        lm.createUser(name, mail, password, role.value, address, phone, hes, id, resideInDorm, roomMateNames).then(() => {
+      if (inputValidity(name, mail, password, role, phone, hes, id)) {
+        lm.createUser(name, mail, password, role, address, phone, hes, id, resideInDorm, roomMateNames).then(() => {
         showRegisterOkMessage.value = true;
         loading.value = true;
         setTimeout(() => {
           showRegisterOkMessage.value = false;
           router.push('/auth/login');
           }, 4000)
-        });
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       }
       else {
         showEmptySlotsError.value = true;
