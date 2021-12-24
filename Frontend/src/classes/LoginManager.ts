@@ -51,7 +51,6 @@ export default class LoginManager {
                 return set(ref(db, `Users/${userCredential.user.uid}`), student);
             }
             else if (role === "Instructor") {
-                console.log(userUID);
                 const instructor = new Instructor(name, mail, password, role, address, phoneNumber, hesCode, ID, false, []);
                 instructor.Uid = userUID;
                 return set(ref(db, `Users/${userCredential.user.uid}`), instructor);
