@@ -94,45 +94,51 @@ export default class LectureManager {
     const auth = getAuth();
     const Uid = auth.currentUser?.uid;
     const db = getDatabase();
+    let LID;
 
     let query1 = query(ref(db, `Lectures`),orderByChild('_courseCode'),equalTo(courseCode));
     onValue(query1, async (snapshot) => {
         const snapshotval = snapshot.val();
+        LID = snapshotval._LID;
         await set(ref(db, `Users/${Uid}/Lectures`), snapshotval);
     })
+    await set(ref(db,`Users/${Uid}/Lectures/${LID}/Selected`), false);
   }
   
   // This function is used to set seat's first owner
   public async setSeatOwner(UID: number, LID: number, row: number, col:number){
     const db = getDatabase();
 
-    const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
+    let condition = await get(ref(db,`Users/${UID}/Lectures/${LID}/_selected`));
+    if(!condition){
+      const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
 
-    let seatPlan: any[] = [];
+      let seatPlan: any[] = [];
 
-    onValue(reference, (snapshot) => {
-        const temp = snapshot.val();
-        seatPlan = temp; 
-    })
+      onValue(reference, (snapshot) => {
+          const temp = snapshot.val();
+          seatPlan = temp; 
+      })
 
-    let seat = seatPlan[row][col];
-    seat.studentOwnerUID = UID;
+      let seat = seatPlan[row][col];
+      seat.studentOwnerUID = UID;
 
-    // Seat owner's right and left owner assigned
-    if(col = 0){
-      seatPlan[row][col+1].studentLeftUID = UID;
-    }
-    else if(col = 4){
+      // Seat owner's right and left owner assigned
+      if(col = 0){
+       seatPlan[row][col+1].studentLeftUID = UID;
+      }
+      else if(col = 4){
       seatPlan[row][col-1].studentRightUID = UID;
+      }
+      else {
+        seatPlan[row][col+1].studentLeftUID = UID;
+        seatPlan[row][col-1].studentRightUID = UID;
+      }
+      //Seat updated
+      seatPlan[row][col] = seat
+      await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
+      await set(ref(db,`Users/${UID}/Lectures/${LID}/Selected`), true);
     }
-    else {
-      seatPlan[row][col+1].studentLeftUID = UID;
-      seatPlan[row][col-1].studentRightUID = UID;
-    }
-    
-    //Seat updated
-    seatPlan[row][col] = seat
-    await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
   }
 
   // This function get instructor's lectures and returns it in lecture array.
