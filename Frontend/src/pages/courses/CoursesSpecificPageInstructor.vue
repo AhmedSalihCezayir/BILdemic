@@ -2,13 +2,12 @@
   <div> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon  v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
+      
       <div class="column">
-        <span class="text-h5"> CS201 </span>
-        <span class="text-subtitle1"> Section-01 </span> 
-        <span class="text-subtitle1"> B-202 </span>
+        <span class="text-h5"> {{ lectureInfo['_lectureCode'] }} </span>
+        <span class="text-subtitle1"> Section-{{ lectureInfo['_section'] }} </span> 
       </div>
     </q-banner>
-
     <div class="row items-center">
       <q-btn outline unelevated :label="$t('GenerateLectureCode')" class="text-secondary q-mx-md q-mt-md col" />
       <div class="col-9 q-mt-md q-pa-sm q-mr-md bordered" dense>
@@ -22,7 +21,7 @@
     <div class="row q-ma-md">
       <seating-plan 
         :studentView="false"
-        :active="true"
+        :active="true" 
         :row="5"
         :col="5"
         :seatingPlan="seatingPlan"
@@ -64,8 +63,6 @@
         </div>  
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -73,20 +70,32 @@
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import SeatingPlan from '../../components/courses/SeatingPlan.vue'
+import LectureManager from '../../classes/LectureManager'
 
 export default {
   name: "CourseSpecificPageInstructor",
   components: {
     SeatingPlan
   },
+  props: ['id'],
   setup(props, ctx) {
     const $q = useQuasar();
 
     const isMobile = computed(() => {
       return $q.screen.width < 800;
-    });
+    }); 
 
     const open = ref(!isMobile.value);
+    const lectureCode = "4568798";
+
+    const lm = LectureManager.getInstance();
+
+    const lectureInfo = computed(() => {
+      return lm.getLecture(props.id) || {
+        "_lectureCode": "",
+        "_section": "",
+      }
+    }) 
 
     watch(isMobile, () => {
       open.value = !isMobile.value;
@@ -96,8 +105,6 @@ export default {
       open.value = !open.value
       ctx.emit('toggleDrawer');
     }
-
-    const lectureCode = "4568798";
 
     const seatingPlan = [
       [
@@ -208,7 +215,8 @@ export default {
       toggleDrawer,
       isMobile,
       seatingPlan,
-      lectureCode
+      lectureCode,
+      lectureInfo,
     }
   },
 }

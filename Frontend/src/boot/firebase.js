@@ -24,10 +24,10 @@ onAuthStateChanged(getAuth(), (user) => {
 
     onValue(reference, (snapshot) => {
         const data = snapshot.val();
-        // Store.commit('settings/setCurrentUserUID', data._Uid);
-        // Store.commit('settings/setCurrentUserRole', data._role);
-        // localStorage.setItem('currentUserUID', data._Uid);
-        // localStorage.setItem('currentUserRole', data._role);
+        Store.commit('settings/setCurrentUserUID', user.uid);
+        Store.commit('settings/setCurrentUserRole', data._role);
+        localStorage.setItem('currentUserUID', data._Uid);
+        localStorage.setItem('currentUserRole', data._role);
     });
   }
 });

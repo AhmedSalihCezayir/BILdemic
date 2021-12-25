@@ -141,7 +141,7 @@ export default {
   IncorrectPassword: 'There was a problem logging in. Check your email and password or create an account.',
   RegisterDone: 'Account creation successful. Please verify your e-mail to activate your account.',
   ShortPasswordError: 'Password should be at least 8 characters long',
-  UseUniversityMailError1: 'Please use your Bilkent mail which ends with @ug.bilkent.edu.tr',
+  UseUniversityMailError1: 'Please use your Bilkent mail which ends with ug.bilkent.edu.tr',
   UseUniversityMailError2: 'Please use your Bilkent mail',
   InvalidMail: 'Invalid e-mail address',
   EmptySlotsError: 'Please fill all the required sections',

@@ -3,10 +3,8 @@ import User from "./User"
 import Seat from "./Seat"
 import Instructor from "./Instructor";
 import Lecture from "./Lecture";
-import {getDatabase, ref, push, set, get, query, orderByChild, equalTo} from "firebase/database";
-import {getAuth} from "firebase/auth";
-import { Loading } from "quasar";
-
+import { getDatabase, ref, push, set, get, query, orderByChild, equalTo, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 export default class LectureManager {
 
@@ -40,6 +38,7 @@ export default class LectureManager {
 
       await set(ref(db,`Users/${instructor._Uid}/Lectures/${lecture.LID}`),lecture); // Add lecture to instructor's lecture array
       await set(ref(db,`Lectures/${lecture.LID}`),lecture); // Add lecture to lecture storage
+
     }
   }
 
@@ -87,13 +86,31 @@ export default class LectureManager {
   }
 
   // This function get instructor's lectures and returns it in lecture array.
-  public async getInstructorlectures(UID:number,lecture: Lecture[]){
+  public getInstructorlectures(UID:number){
     const db = getDatabase();
+    const reference = ref(db, `Users/${UID}/Lectures/`);
+ 
+    let lectures: any[] = [];
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        for (const [key, value] of Object.entries(data)) {
+          lectures.push(value)
+        }   
+    })
+    return lectures;
+  }
 
-    let instructor = (await get(ref(db, `Users/${UID}`))).val();
-    let query1 = query(ref(db,`Users/${UID}/Lectures`), orderByChild('UID'));
-    lecture = (await get(query1.ref)).val();
+  public getLecture(LID:number) {
+    const db = getDatabase();
+    const reference = ref(db, `Lectures/${LID}`); 
 
+    let lecture;
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        lecture = data; 
+    }) 
+    console.log('here: ', lecture);
+    return lecture;
   }
 }
 

@@ -127,9 +127,10 @@ const routes = [
         }
       },
       {
-        path: 'courses/:course',
+        path: 'courses/:id',
         name: 'CourseSpecificPageInstructor',
         component: CoursesSpecificPageInstructor,
+        props: true,
         meta: {
           haveAccess: ['Instructor']
         }

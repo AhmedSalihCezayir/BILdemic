@@ -141,7 +141,7 @@ export default {
   IncorrectPassword: 'Oturum açılırken bir sorun oluştu. E-posta adresinizi ve şifrenizi kontrol edin veya bir hesap oluşturun.',
   RegisterDone: 'Hesap oluşturma işlemi başarılı. Hesabınızı aktif etmek için lütfen e-mailinizi doğrulayınız.',
   ShortPasswordError: 'Şifreniz en az 8 haneden oluşmalıdır',
-  UseUniversityMailError1: 'Lütfen @ug.bilkent.edu.tr ile biten Bilkent mailinizi giriniz',
+  UseUniversityMailError1: 'Lütfen ug.bilkent.edu.tr ile biten Bilkent mailinizi giriniz',
   UseUniversityMailError2: 'Lütfen Bilkent mailinizi giriniz',
   InvalidMail: 'Geçersiz mail addresi',
   EmptySlotsError: 'Lütfen tüm zorunlu bilgileri doldurun',
