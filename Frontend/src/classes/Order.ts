@@ -9,18 +9,23 @@ export enum OrderType{
 }
 
 export default abstract class Order {
-
+    
+    //Properties
+    public _OID: string;
     private _place:string;
     private _time:string;
     private _date:string;
-    private _owner:User;
+    private _ownerUID:string;
     private _orderType:OrderType;
-
-    protected constructor(place:string, date:string, time:string, owner:User, orderType:string){
+    
+    //Constructor
+    protected constructor(place:string, date:string, time:string, ownerUID:string, orderType:string){
+        let nOID = Date.now();
+        this._OID = nOID.toString();
         this._place = place;
         this._time = time;
         this._date = date;
-        this._owner = owner;
+        this._ownerUID = this._ownerUID;
 
         if(orderType === "AmbulanceForm"){
             this._orderType = OrderType.AMBULANCE_FORM;
@@ -37,6 +42,15 @@ export default abstract class Order {
         else{
             this._orderType = OrderType.DIAGNOVIR;
         }
+    }
+
+    // Methods
+    public get OID(): string {
+        return this._OID;
+    }
+
+    public set OID(OID: string) {
+        this._OID = OID;
     }
 
     public get place(): string {
@@ -60,16 +74,17 @@ export default abstract class Order {
         this._date = date;
     }
     
-    public get owner(): User {
-        return this._owner;
+    public get ownerUID(): string {
+        return this._ownerUID;
     }
-    public set owner(owner: User) {
-        this._owner = owner;
+    public set ownerUID(ownerUID: string) {
+        this._ownerUID = ownerUID;
     }
     
     public get orderType(): OrderType {
         return this._orderType;
     }
+
     public set orderType(orderType: OrderType) {
         this._orderType = orderType;
     }
