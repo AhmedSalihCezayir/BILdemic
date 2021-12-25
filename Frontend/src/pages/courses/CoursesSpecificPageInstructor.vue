@@ -9,7 +9,7 @@
       </div>
     </q-banner>
     <div class="row items-center">
-      <q-btn outline unelevated :label="$t('GenerateLectureCode')" class="text-secondary q-mx-md q-mt-md col" />
+      <q-btn outline unelevated :label="$t('GenerateLectureCode')" class="text-secondary q-mx-md q-mt-md col" @click="generate"/>
       <div class="col-9 q-mt-md q-pa-sm q-mr-md bordered" dense>
         <span class="text-weight-bold">
           {{ $t('LectureCodeIs') }} 
@@ -86,7 +86,6 @@ export default {
     }); 
 
     const open = ref(!isMobile.value);
-    const lectureCode = "4568798";
 
     const lm = LectureManager.getInstance();
 
@@ -105,6 +104,14 @@ export default {
       open.value = !open.value
       ctx.emit('toggleDrawer');
     }
+
+    const generate = async () => { 
+      await lm.generateLectureCode(props.id)
+    }
+
+    const lectureCode = computed(() => {
+      return lm.getLectureCode(props.id); 
+    })
 
     const seatingPlan = [
       [
@@ -217,6 +224,7 @@ export default {
       seatingPlan,
       lectureCode,
       lectureInfo,
+      generate
     }
   },
 }

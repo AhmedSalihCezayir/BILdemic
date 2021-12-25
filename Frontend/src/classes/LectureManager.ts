@@ -34,7 +34,6 @@ export default class LectureManager {
       let courseCode = (instructor._name.replace(/ /g, "").substring(0,5) + building + section).toLowerCase();
       let LID = Date.now();
       
-      
       let row, col, nSID, SID
       let seatColArray = []
       let seatPlan = []
@@ -48,17 +47,15 @@ export default class LectureManager {
           nSID = Date.now()
           nSID = nSID + counter
           SID = nSID.toString()
-
-          seatColArray.push(new Seat(SID, "", "", "", false, 0, lectureName)) // Seat added to row
+          const seat = new Seat(SID, "", "", "", false, 0, lectureName)
+          seatColArray.push(seat) // Seat added to row
         }
         seatPlan.push(seatColArray) // New row added to seatplan
-        seatColArray.length = 0 // Array reseted
+        seatColArray = [] // Array reseted
       } // SeatPlan is now a 5x5 array
-
       let lecture = new Lecture(instructor._name, lectureName, section, place, courseCode, -1, LID, seatPlan);
       await set(ref(db,`Users/${instructor._Uid}/Lectures/${lecture.LID}`),lecture); // Add lecture to instructor's lecture array
       await set(ref(db,`Lectures/${lecture.LID}`),lecture); // Add lecture to lecture storage
-
     }
   }
 
@@ -66,11 +63,21 @@ export default class LectureManager {
   public async generateLectureCode(LID:number){ 
     const db = getDatabase();
 
-    let query1 = query(ref(db, `Lectures`),orderByChild('_LID'),equalTo(LID)); // Create query with lectures that has same LID value with given one
-    let lecture = (await get(query1.ref)).val(); // Create lecture object with given reference
+    let lectureCode = Date.now();
+    set(ref(db, `Lectures/${LID}/_lectureCode`), lectureCode);
+  }
 
-    let lectureCode = (Math.random() * 10000) + 1;
-    set(ref(db, `/Lectures/_${lecture.LID}/_${lecture.lectureCode}`),lectureCode);
+  //Gets lecture code of a lecture
+  public getLectureCode(LID:number){ 
+    const db = getDatabase();
+    const reference = ref(db, `Lectures/${LID}/_lectureCode`);
+
+    let lectureCode: string = "";
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        lectureCode = data;
+    })
+    return lectureCode;
   }
 
   //This function is used to change status of a particular seat from teacher
@@ -88,12 +95,11 @@ export default class LectureManager {
     const Uid = auth.currentUser?.uid;
     const db = getDatabase();
 
-    let student = (await get(ref(db, `UserGetByUID/${Uid}`))).val();
     let query1 = query(ref(db, `Lectures`),orderByChild('courseCode'),equalTo(courseCode));
     let lecture = (await get(query1.ref)).val();
 
-    await set(ref(db, `Users/${student.Uid}/Lectures/${lecture.LID}/${lecture.lectureCode}`),lecture.lectureCode); 
-    await set(ref(db, `Lectures/${lecture.LID}/${lecture.lectureCode}`),lecture.lectureCode);
+    await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}/${lecture._lectureCode}`),lecture._lectureCode); 
+    await set(ref(db, `Lectures/${lecture._LID}/${lecture._lectureCode}`),lecture._lectureCode);
   }
 
 
