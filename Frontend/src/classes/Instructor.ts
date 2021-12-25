@@ -1,6 +1,8 @@
 import User from "./User"
 import Lecture from "./Lecture"
+import LectureManager from './LectureManager';
 import Seat from "./Seat"
+import { number } from "@intlify/core-base";
 
 export default class Instructor extends User {
 
@@ -18,29 +20,24 @@ export default class Instructor extends User {
   }
 
   //Methods
-  public registerLecture(lectureName: string, section: number, building: string, courseCode: string, time: string): boolean{
-    // TO DO: Call related method in lecture manager,
-    return true;
+  public registerLecture(lectureName: string, section: number, building: string, courseCode: string, time: string){
+    let lm = LectureManager.getInstance();
+    lm.enrollStudentToCourse(courseCode);
   }
 
-  public generateLectureCode(): boolean{
-    // TO DO: Call related method in lecture manager
-    return false;
+  public generateLectureCode(LID: number){
+    let lm = LectureManager.getInstance();
+    lm.generateLectureCode(LID);
   }
 
-  public confirmParticularSeat(seat: Seat): boolean {
-    // TO DO: Call related method in lecture manager
-    return false;
+  public confirmParticularSeat(LID: number, AID: number, SID: number){
+    let lm = LectureManager.getInstance();
+    lm.changeSeatStatus(LID, AID, SID, true);
   }
 
-  public declineParticularSeat(seat: Seat): boolean {
-    // TO DO: Call related method in lecture manager
-    return false;
-  }
-
-  public getClassCovidStatus(lecture: Lecture): boolean{
-    // TO DO: Call related method in lecture manager
-    return false;
+  public declineParticularSeat(LID: number, AID: number, SID: number){
+    let lm = LectureManager.getInstance();
+    lm.changeSeatStatus(LID, AID, SID, false);
   }
 
   public get ID(): number {

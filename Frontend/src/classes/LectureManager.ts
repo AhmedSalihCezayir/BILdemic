@@ -34,8 +34,28 @@ export default class LectureManager {
       let courseCode = (instructor._name.replace(/ /g, "").substring(0,5) + building + section).toLowerCase();
       let LID = Date.now();
       
-      let lecture = new Lecture(instructor._name, lectureName, section, place, courseCode, -1, LID);
+      
+      let row, col, nSID, SID
+      let seatColArray = []
+      let seatPlan = []
+      let counter = 1
+      
+      //SeatPlan Creation
+      for(row = 0; row < 5; row = row + 1){
+        for(col = 0; col < 5; col = col + 1){
+          // Creating unique LID
+          counter = counter + 1
+          nSID = Date.now()
+          nSID = nSID + counter
+          SID = nSID.toString()
 
+          seatColArray.push(new Seat(SID, "", "", "", false, 0, lectureName)) // Seat added to row
+        }
+        seatPlan.push(seatColArray) // New row added to seatplan
+        seatColArray.length = 0 // Array reseted
+      } // SeatPlan is now a 5x5 array
+
+      let lecture = new Lecture(instructor._name, lectureName, section, place, courseCode, -1, LID, seatPlan);
       await set(ref(db,`Users/${instructor._Uid}/Lectures/${lecture.LID}`),lecture); // Add lecture to instructor's lecture array
       await set(ref(db,`Lectures/${lecture.LID}`),lecture); // Add lecture to lecture storage
 
@@ -78,18 +98,43 @@ export default class LectureManager {
 
 
   // This function is used to set seat's first owner
-  public async setSeatOwner(UID: number, LID: number, SID: number){
+  public async setSeatOwner(UID: number, LID: number, row: number, col:number){
     const db = getDatabase();
 
-    let seat = (await get(ref(db,`Lectures/${LID}/SeatPlan/${SID}`))).val(); 
-    await set(ref(db,`Lectures/${LID}/SeatPlan/${SID}/${seat._studentOwnerUID}`),UID); 
+    const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
+
+    let seatPlan: any[] = [];
+
+    onValue(reference, (snapshot) => {
+        const temp = snapshot.val();
+        seatPlan = temp; 
+    })
+
+    let seat = seatPlan[row][col];
+    seat.studentOwnerUID = UID;
+
+    // Seat owner's right and left owner assigned
+    if(col = 0){
+      seatPlan[row][col+1].studentLeftUID = UID;
+    }
+    else if(col = 4){
+      seatPlan[row][col-1].studentRightUID = UID;
+    }
+    else {
+      seatPlan[row][col+1].studentLeftUID = UID;
+      seatPlan[row][col-1].studentRightUID = UID;
+    }
+    
+    //Seat updated
+    seatPlan[row][col] = seat
+    await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
   }
 
   // This function get instructor's lectures and returns it in lecture array.
   public getInstructorlectures(UID:number){
     const db = getDatabase();
     const reference = ref(db, `Users/${UID}/Lectures/`);
- 
+
     let lectures: any[] = [];
     onValue(reference, (snapshot) => {
         const data = snapshot.val();
@@ -112,5 +157,21 @@ export default class LectureManager {
     console.log('here: ', lecture);
     return lecture;
   }
+
+  //Checks lecture code and compares with real lecture code
+  public controlLectureCode(LID:string, lectureCode: string){
+    const db = getDatabase();
+    let reference = ref(db, `Lectures/${LID}/_lectureCode`)
+    let result = false;
+    onValue(reference, (snapshot) => {
+      const realLectureCode = snapshot.val();
+      if(lectureCode = realLectureCode){
+        result = true;
+      }
+    })
+    return result;
+  }
+
+  
 }
 
