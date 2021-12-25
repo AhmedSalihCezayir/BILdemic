@@ -31,7 +31,7 @@
 
         <q-card-actions class="justify-between">
           <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
-          <q-btn flat :label="$t('Enroll')" color="secondary" />
+          <q-btn flat :label="$t('Enroll')" color="secondary" v-close-popup @click="enrollToCourse" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -42,6 +42,7 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import LectureManager from '../../classes/LectureManager'
 
 export default {
   name: "CoursesPage",
@@ -57,6 +58,8 @@ export default {
     const register = ref(false);
     const enrollCode = ref(null);
 
+    const lm = LectureManager.getInstance()
+
     watch(isMobile, () => {
       open.value = !isMobile.value;
     })
@@ -69,6 +72,16 @@ export default {
     const calculateRoute = (course) => {
       return "/~/courses/" + course.name.toLowerCase();
     }; 
+
+    const enrollToCourse = () => {
+      console.log('enrollCode: ', enrollCode.value);
+      lm.enrollStudentToCourse(enrollCode.value).then(() => {
+        console.log('OK');
+      })
+      .catch(() => {
+        console.log('Not ok');
+      })
+    }
 
     const courses = [
       {
@@ -109,7 +122,8 @@ export default {
       courses,
       calculateRoute,
       register,
-      enrollCode
+      enrollCode,
+      enrollToCourse
     }
   },
 }
