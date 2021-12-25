@@ -15,8 +15,8 @@ export default class CafeteriaManager {
     return this.instance;
   }
 
-  public createMealOrder(place: string, date: string, time: string, type: string, owner: User): boolean {
-        let meal = new Meal(place, time, date, owner, type);
+  public createMealOrder(place: string, date: string, time: string, type: string, owner: string, OID:string): boolean {
+        let meal = new Meal(place, time, date, owner, type, OID);
         //TO DO: Add CRUD
         return true;
     }

@@ -5,8 +5,8 @@ export default class Meal extends Order{
 
     private _type: string;
 
-    public constructor(place:string,  date:string, time:string, owner:User, type:string){
-        super(place, date, time, owner,"Meal");
+    public constructor(place:string,  date:string, time:string, owner:string, type:string, OID:string){
+        super(place, date, time, owner,"Meal", OID);
         this._type = type;
     }
 
