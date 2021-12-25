@@ -99,10 +99,17 @@ export default class LectureManager {
     let lecture = (await get(query1.ref)).val();
     console.log(lecture);
 
-    await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}`),lecture); 
+    onValue(query1, async (snapshot) => {
+      if(snapshot.val() != null)
+      {  
+          console.log(snapshot);
+          const snapshotval = snapshot.val();
+          console.log(snapshotval);
+          await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}`),lecture); 
+      }
+    })
   }
-
-
+  
   // This function is used to set seat's first owner
   public async setSeatOwner(UID: number, LID: number, row: number, col:number){
     const db = getDatabase();
