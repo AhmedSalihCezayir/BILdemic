@@ -1,4 +1,6 @@
 import User from "./User";
+import {getAuth} from "firebase/auth";
+import {getDatabase, ref, push, set, get, query, orderByChild, equalTo} from "firebase/database";
 
 export default class SettingsManager {
 
@@ -13,35 +15,63 @@ export default class SettingsManager {
         return this.instance;
     }
 
-    public changeMail(user:User, mail:string):boolean {
-        //TO DO
+    public async changeMail(mail:string){
+        const auth = getAuth();
+        const Uid = auth.currentUser?.uid;
+        const db = getDatabase();
+
+        let user = (await get(ref(db, `Users/${Uid}`))).val();
+        if(user){
+            await set(ref(db, `Users/${Uid}/Mail`),mail); 
+        }
+    }
+
+    public async changePassword(password:string){
+        const auth = getAuth();
+        const Uid = auth.currentUser?.uid;
+        const db = getDatabase();
+
+        let user = (await get(ref(db, `Users/${Uid}`))).val();
+        if(user){
+            await set(ref(db, `Users/${Uid}/Password`),password); 
+        }
         return true;
     }
 
-    public changePassword(user:User, password:string):boolean {
-        //TO DO
+    public async changePhone(phoneNum:string){
+        const auth = getAuth();
+        const Uid = auth.currentUser?.uid;
+        const db = getDatabase();
+
+        let user = (await get(ref(db, `Users/${Uid}`))).val();
+        if(user){
+            await set(ref(db, `Users/${Uid}/PhoneNum`),phoneNum); 
+        }
         return true;
     }
 
-    public changePhone(user:User, phoneNum:string):boolean {
-        //TO DO
+    public async changeAddress(address:string){
+        const auth = getAuth();
+        const Uid = auth.currentUser?.uid;
+        const db = getDatabase();
+
+        let user = (await get(ref(db, `Users/${Uid}`))).val();
+        let currentAddress = (await get(ref(db, `Users/${Uid}`))).val();
+        if(user){
+            await set(ref(db, `Users/${Uid}/Address`),address); 
+        }
         return true;
     }
 
-    public changeAddress(user:User, address:string):boolean {
-        //TO DO
+    public async changeHES(hesCode:string){
+        const auth = getAuth();
+        const Uid = auth.currentUser?.uid;
+        const db = getDatabase();
+
+        let user = (await get(ref(db, `Users/${Uid}`))).val();
+        if(user){
+            await set(ref(db, `Users/${Uid}/HesCode`),hesCode); 
         return true;
+        }
     }
-
-    public changeHES(user:User, hesCode:string):boolean {
-        //TO DO
-        return true;
-    }
-
-    public changeProfilePic(user:User, picURL:string):boolean {
-        //TO DO
-        return true;
-    }
-
-
 }

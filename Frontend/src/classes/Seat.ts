@@ -12,10 +12,20 @@ export default class Seat implements StudentObserver{
     private _studentRightUID:string;
     private _confirm:boolean = false;
     private _ownerCovidStatus:CampusStatus | null = null;
-    private _lecture:Lecture | null = null;
+    private _lectureName:string;
+    private _row: number;
+    private _col: number;
 
     // Constructors
-    public constructor(){}
+    public constructor(SID:string, studentOwnerUID:string, studentLeftUID: string, studentRightUID: string, confirm: boolean, ownerCovidStatus: CampusStatus, lectureName: string){
+        this._SID = SID;
+        this._studentOwnerUID = studentOwnerUID;
+        this._studentLeftUID = studentLeftUID;
+        this._studentRightUID = studentRightUID;
+        this._confirm = confirm;
+        this._ownerCovidStatus = ownerCovidStatus;
+        this._lectureName = lectureName;
+    }
 
     // Methods
     //public getOwnerCovStatus():CampusStatus | null{
@@ -72,11 +82,27 @@ export default class Seat implements StudentObserver{
         this._ownerCovidStatus = ownerCovidStatus;
     }
     
-    public get lecture(): Lecture | null {
-        return this._lecture;
+    public get lectureName(): string {
+        return this._lectureName;
     }
 
-    public set lecture(lecture: Lecture | null) {
-        this._lecture = lecture;
+    public set lectureName(lecture: string) {
+        this._lectureName = lecture;
+    }
+
+    public get row(): number {
+        return this._row;
+    }
+
+    public set row(row:number) {
+        this.row = row;
+    }
+
+    public get col(): number {
+        return this._col;
+    }
+
+    public set col(col: number) {
+        this._col = col;
     }
 }

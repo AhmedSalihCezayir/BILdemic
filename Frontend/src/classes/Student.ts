@@ -1,4 +1,6 @@
 import Lecture from './Lecture';
+import LoginManager from './LoginManager';
+import LectureManager from './LectureManager';
 import Seat from './Seat';
 import User from './User'
 
@@ -22,21 +24,19 @@ export default class Student extends User{
 
     //Methods
     public enrollCourse(courseCode:string):boolean{
-        //TO DO
+        let lm = LectureManager.getInstance();
+        lm.enrollStudentToCourse(courseCode);
         return false;
     }
 
-    public selectSeatFirst(courseCode:string, seat:Seat):boolean{
-        //TO DO
+    public selectSeatFirst(UID: number, LID: number, row:number, col: number):boolean{
+        let lm = LectureManager.getInstance();
+        lm.setSeatOwner(UID, LID, row, col);
         return false;
     }
 
     public confirmNeighbourSeat(courseCode:string, leftNeighbour:Student, rightNeighbour:Student):boolean{
         //TO DO
-        return false;
-    }
-
-    public enterLectureCode(lectureCode:string):boolean{
         return false;
     }
 
