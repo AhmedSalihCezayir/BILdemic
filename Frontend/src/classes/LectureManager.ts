@@ -95,18 +95,16 @@ export default class LectureManager {
     const Uid = auth.currentUser?.uid;
     const db = getDatabase();
 
-    let query1 = query(ref(db, `Lectures`),orderByChild('courseCode'),equalTo(courseCode));
+    let query1 = query(ref(db, `Lectures`),orderByChild('_courseCode'),equalTo(courseCode));
     let lecture = (await get(query1.ref)).val();
-    console.log(lecture);
-
+    console.log("lc = ", lecture);
+    console.log("query1 = ", query1)
     onValue(query1, async (snapshot) => {
-      if(snapshot.val() != null)
-      {  
-          console.log(snapshot);
-          const snapshotval = snapshot.val();
-          console.log(snapshotval);
-          await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}`),lecture); 
-      }
+        console.log("query1 = ", query1)
+        console.log("snapshot = ", snapshot);
+        const snapshotval = snapshot.val();
+        console.log("snapshotval = " ,snapshotval);
+        await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}`),snapshotval); 
     })
   }
   
