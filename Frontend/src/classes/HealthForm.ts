@@ -6,8 +6,8 @@ export default class HealthForm extends Order {
   private _oldStatus: boolean;
   private _symptomsList: string[];
 
-  public constructor(place: string, time: string, date: string, owner: User, answerStatus: boolean, oldStatus: boolean, symptomsList: string[]) {
-    super(place, time, date, owner,"HealthForm");
+  public constructor(place: string, time: string, date: string, owner: string, answerStatus: boolean, oldStatus: boolean, symptomsList: string[], OID:string) {
+    super(place, time, date, owner,"HealthForm", OID);
       this._answerStatus = answerStatus;
       this._oldStatus = oldStatus;
       this._symptomsList = symptomsList;

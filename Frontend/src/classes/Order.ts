@@ -13,14 +13,16 @@ export default abstract class Order {
     private _place:string;
     private _time:string;
     private _date:string;
-    private _owner:User;
+    private _owner:string;
     private _orderType:OrderType;
+    private _OID:string;
 
-    protected constructor(place:string, date:string, time:string, owner:User, orderType:string){
+    protected constructor(place:string, date:string, time:string, owner:string, orderType:string, OID:string){
         this._place = place;
-        this._time = time;
+        this._time = time; 
         this._date = date;
         this._owner = owner;
+        this._OID = OID;
 
         if(orderType === "AmbulanceForm"){
             this._orderType = OrderType.AMBULANCE_FORM;
@@ -60,10 +62,10 @@ export default abstract class Order {
         this._date = date;
     }
     
-    public get owner(): User {
+    public get owner(): string {
         return this._owner;
     }
-    public set owner(owner: User) {
+    public set owner(owner: string) {
         this._owner = owner;
     }
     
@@ -72,5 +74,12 @@ export default abstract class Order {
     }
     public set orderType(orderType: OrderType) {
         this._orderType = orderType;
+    }
+
+    public get OID(): string {
+        return this._OID;
+    }
+    public set OID(OID: string) {
+        this._OID = OID;
     }
 }

@@ -35,7 +35,7 @@ export default abstract class User {
         this._profilePic = "";
         this._vaccineCard = null;
         this._Uid = "";
-        this._orders = null;
+        this._orders = [];
 
         // Create hes object with given hes string and determine whether is campus allowed or not
         let hesObject = new HesObject(hesCode, true, "");
