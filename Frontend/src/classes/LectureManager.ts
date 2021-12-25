@@ -98,8 +98,7 @@ export default class LectureManager {
     let query1 = query(ref(db, `Lectures`),orderByChild('courseCode'),equalTo(courseCode));
     let lecture = (await get(query1.ref)).val();
 
-    await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}/${lecture._lectureCode}`),lecture._lectureCode); 
-    await set(ref(db, `Lectures/${lecture._LID}/${lecture._lectureCode}`),lecture._lectureCode);
+    await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}/`),lecture); 
   }
 
 
