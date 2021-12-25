@@ -21,8 +21,8 @@
       :firstTime="firstTime"
       :row="5"
       :col="5"
-      :personalRow="4"
-      :personalCol="4"
+      :personalRow="personalRow"
+      :personalCol="personalCol"
       :hasLeft="true"
       :hasRight="false"
       @selected="selectSeat"
@@ -76,16 +76,29 @@ export default {
     }
 
     const selectSeat = (val) => {
-      console.log(val.row - 1, " ", val.col - 1);
       lm.setSeatOwner(props.id, val.row - 1, val.col - 1);
     }
+
+    const personalCol = computed(() => {
+      if (!lm.getMySeat(props.id)) {
+        return 5;
+      } 
+      return lm.getMySeat(props.id).col;
+    }); 
+
+    const personalRow = computed(() => {
+      if (!lm.getMySeat(props.id)) {
+        return 5;
+      }
+      return lm.getMySeat(props.id).row;
+    }); 
 
     const seatingPlan = [
       [
         {
           status: "bg-green"
         },
-        {
+        { 
           status: "bg-yellow"
         },
         {
@@ -193,7 +206,9 @@ export default {
       checkLectureCode,
       lectureCodeIsCorrect,
       firstTime,
-      selectSeat
+      selectSeat,
+      personalCol,
+      personalRow
     }
   },
 }

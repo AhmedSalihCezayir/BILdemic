@@ -111,8 +111,8 @@ export default class LectureManager {
     const UID = getAuth().currentUser?.uid;
 
     let lecture = (await get(ref(db, `Users/${UID}/Lectures/${LID}`))).val();
-    let condition = (await get(ref(db,`Users/${UID}/Lectures/${LID}/${lecture._selected}`))).val();
-    console.log('condition: ', condition);
+    let condition = (await get(ref(db,`Users/${UID}/Lectures/${LID}/_selected`))).val();
+    console.log(condition)
     if(!condition){
       const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
 
@@ -121,27 +121,26 @@ export default class LectureManager {
       onValue(reference, (snapshot) => {
           const temp = snapshot.val();
           seatPlan = temp; 
+          
       })
-
       let seat = seatPlan[row][col];
-      console.log('seat1: ', seat);
-      seat.studentOwnerUID = UID;
-      console.log('seat2: ', seat);
+      seat._studentOwnerUID = UID; 
       // Seat owner's right and left owner assigned
       if(col == 0){
-        seatPlan[row][col+1].studentLeftUID = UID;
+        seatPlan[row][col+1]._studentLeftUID = UID;
       }
       else if(col == 4){
-        seatPlan[row][col-1].studentRightUID = UID;
+        seatPlan[row][col-1]._studentRightUID = UID;
       }
       else {
-        seatPlan[row][col+1].studentLeftUID = UID;
-        seatPlan[row][col-1].studentRightUID = UID;
+        seatPlan[row][col+1]._studentLeftUID = UID;
+        seatPlan[row][col-1]._studentRightUID = UID;
       }
       //Seat updated
       seatPlan[row][col] = seat
-      await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
-      await set(ref(db,`Users/${UID}/Lectures/${LID}/Selected/`), true);
+      await set(ref(db, `Lectures/${LID}/_seatPlan`), seatPlan);
+      await set(ref(db,`Users/${UID}/Lectures/${LID}/_selected`), true);
+      await set(ref(db, `Users/${UID}/Lectures/${LID}/_mySeat`), {row: row, col: col});
     }
   }
 
@@ -170,6 +169,20 @@ export default class LectureManager {
         lecture = data; 
     }) 
     return lecture;
+  }
+
+  public getMySeat(LID:number) {
+    const db = getDatabase();
+    const UID = getAuth().currentUser?.uid;
+
+    const reference = ref(db, `Users/${UID}/Lectures/${LID}/_mySeat`); 
+
+    let seatData;
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        seatData = data; 
+    }) 
+    return seatData;
   }
 
   public getSelectedStatus(LID: string) {
