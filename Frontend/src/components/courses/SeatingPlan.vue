@@ -2,7 +2,7 @@
   <div class="q-pa-md">
 
     <!-- Seat selection Student view-->
-    <div v-if="studentView && active && firstTime">
+    <div v-if="studentView && firstTime">
       <div class="row" v-for="a in row" :key="a">
         <div class="seat" v-for="b in col" :key="b">
           <q-btn-dropdown class="seat without-icon">
@@ -17,7 +17,7 @@
 
               <q-card-actions class="justify-between">
                 <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
-                <q-btn flat :label="$t('Accept')" color="secondary" />
+                <q-btn flat :label="$t('Accept')" color="secondary" @click="select(a, b)"/>
               </q-card-actions>
             </q-card>
           </q-btn-dropdown>
@@ -133,7 +133,7 @@ export default {
     hasRight: Boolean
   },
 
-  setup(props) {
+  setup(props, ctx) {
     const neighbourColors = (row, col) => {
       return ((row == (props.personalRow - 1)) && (col == props.personalCol)) || ((row == (props.personalRow + 1)) && (col == props.personalCol)) ? "seat bg-grey" : "seat";
     };
@@ -147,12 +147,17 @@ export default {
       showNeighPopup.value = true; 
     }
 
+    const select = (row, col) => {
+      ctx.emit('selected', { row, col })
+    }
+
     return {
       neighbourColors,
       left,
       right,
       showPopupForNeigh,
       showNeighPopup,
+      select
     }
   },
 }

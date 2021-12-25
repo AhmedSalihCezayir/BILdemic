@@ -18,20 +18,20 @@
       class="q-mt-lg"
       :studentView="true"
       :active="lectureCodeIsCorrect"
-      :firstTime="false"
+      :firstTime="firstTime"
       :row="5"
       :col="5"
       :personalRow="4"
       :personalCol="4"
-      :seatingPlan="seatingPlan"
       :hasLeft="true"
       :hasRight="false"
+      @selected="selectSeat"
     />
 
-  </div>
+  </div> 
 </template>
 
-<script>
+<script> 
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import SeatingPlan from '../../components/courses/SeatingPlan.vue'
@@ -66,9 +66,18 @@ export default {
 
     const lm  = LectureManager.getInstance()
 
+    const firstTime = computed(() => {
+      return !lm.getSelectedStatus(props.id);
+    })
+
     const checkLectureCode = () => {
       console.log(lm.controlLectureCode(props.id, lectureCode.value));
       lectureCodeIsCorrect.value = lm.controlLectureCode(props.id, lectureCode.value)
+    }
+
+    const selectSeat = (val) => {
+      console.log(val.row - 1, " ", val.col - 1);
+      lm.setSeatOwner(props.id, val.row - 1, val.col - 1);
     }
 
     const seatingPlan = [
@@ -182,7 +191,9 @@ export default {
       seatingPlan,
       lectureCode,
       checkLectureCode,
-      lectureCodeIsCorrect
+      lectureCodeIsCorrect,
+      firstTime,
+      selectSeat
     }
   },
 }
