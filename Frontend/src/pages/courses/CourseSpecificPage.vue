@@ -10,14 +10,14 @@
     </q-banner>
 
     <div class="row items-center">
-      <q-input v-model="lectureCode" outlined class="col-9 q-mt-md q-ml-md" dense :label="$t('EnterLectureCode')" color="secondary" mask="####-####"/>
-      <q-btn outline unelevated :label="$t('Send')" class="text-secondary q-mx-md q-mt-md col" />
+      <q-input v-model="lectureCode" outlined class="col-9 q-mt-md q-ml-md" dense :label="$t('EnterLectureCode')" color="secondary" />
+      <q-btn outline unelevated :label="$t('Send')" class="text-secondary q-mx-md q-mt-md col" @click="checkLectureCode" />
     </div>
 
     <seating-plan 
       class="q-mt-lg"
       :studentView="true"
-      :active="true"
+      :active="lectureCodeIsCorrect"
       :firstTime="false"
       :row="5"
       :col="5"
@@ -35,12 +35,14 @@
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import SeatingPlan from '../../components/courses/SeatingPlan.vue'
+import LectureManager from '../../classes/LectureManager'
 
 export default {
   name: "CourseSpecificPage",
   components: {
     SeatingPlan
   },
+  props: ['id'],
   setup(props, ctx) {
     const $q = useQuasar();
 
@@ -60,6 +62,14 @@ export default {
     }
 
     const lectureCode = ref(null);
+    const lectureCodeIsCorrect = ref(false);
+
+    const lm  = LectureManager.getInstance()
+
+    const checkLectureCode = () => {
+      console.log(lm.controlLectureCode(props.id, lectureCode.value));
+      lectureCodeIsCorrect.value = lm.controlLectureCode(props.id, lectureCode.value)
+    }
 
     const seatingPlan = [
       [
@@ -170,7 +180,9 @@ export default {
       toggleDrawer,
       isMobile,
       seatingPlan,
-      lectureCode
+      lectureCode,
+      checkLectureCode,
+      lectureCodeIsCorrect
     }
   },
 }

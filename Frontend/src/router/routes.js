@@ -49,9 +49,10 @@ const routes = [
         
       },
       {
-        path: 'courses/:course',
+        path: 'courses/:id',
         name: 'CourseSpecificPage',
         component: CourseSpecificPage,
+        props: true,
         meta: {
           haveAccess: ['Student']
         }

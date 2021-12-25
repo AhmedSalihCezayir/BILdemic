@@ -9,14 +9,14 @@
     
     </div>
     <div class="q-pa-md q-mx-xs row q-gutter-lg">
-      <router-link :to="calculateRoute(course)" v-for="course in courses" :key="course.name" class="my-card">
+      <router-link :to="`courses/${JSON.stringify(lecture['_LID'])}`" v-for="lecture in lectures" :key="lecture['_LID']" class="my-card">
         <q-card class="bg-secondary text-white">
           <q-card-section align="center" style="height:120px">
-            <div class="text-h6">{{ $t(course.name) }}</div>
-            <div class="text-h6">{{ $t(course.section) }}</div>
-            <div class="text-h6">{{ $t(course.building) }}</div>
+            <div class="text-h6">{{ lecture["_lectureName"] }}</div>
+            <div class="text-h6">Section-{{ lecture["_section"] }}</div>
+            <div class="text-h6">{{ lecture["_place"] }}</div>
           </q-card-section>
-        </q-card>
+        </q-card> 
       </router-link>
     </div>
 
@@ -43,9 +43,16 @@
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import LectureManager from '../../classes/LectureManager'
+import { useStore } from 'vuex'
 
 export default {
-  name: "CoursesPage",
+  name: "CoursesPage", 
+  computed: {
+    lectures() {
+      const lm = LectureManager.getInstance(); 
+      return lm.getLectures(useStore().state.settings.currentUserUID);
+    }
+  },
   setup(props, ctx) {
     const $q = useQuasar();
 
@@ -83,43 +90,10 @@ export default {
       })
     }
 
-    const courses = [
-      {
-        name: "CS201",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "CS315",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "CS319",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "MATH225",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "MATH230",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "GE301",
-        section: "Section-01",
-        building: "B-202"
-      },
-    ]
 
     return {
       toggleDrawer,
       isMobile,
-      courses,
       calculateRoute,
       register,
       enrollCode,

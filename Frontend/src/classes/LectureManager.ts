@@ -96,15 +96,9 @@ export default class LectureManager {
     const db = getDatabase();
 
     let query1 = query(ref(db, `Lectures`),orderByChild('_courseCode'),equalTo(courseCode));
-    let lecture = (await get(query1.ref)).val();
-    console.log("lc = ", lecture);
-    console.log("query1 = ", query1)
     onValue(query1, async (snapshot) => {
-        console.log("query1 = ", query1)
-        console.log("snapshot = ", snapshot);
         const snapshotval = snapshot.val();
-        console.log("snapshotval = " ,snapshotval);
-        await set(ref(db, `Users/${Uid}/Lectures/${lecture._LID}`),snapshotval); 
+        await set(ref(db, `Users/${Uid}/Lectures`), snapshotval);
     })
   }
   
@@ -142,7 +136,7 @@ export default class LectureManager {
   }
 
   // This function get instructor's lectures and returns it in lecture array.
-  public getInstructorlectures(UID:number){
+  public getLectures(UID:number){
     const db = getDatabase();
     const reference = ref(db, `Users/${UID}/Lectures/`);
 
@@ -174,9 +168,10 @@ export default class LectureManager {
     const db = getDatabase();
     let reference = ref(db, `Lectures/${LID}/_lectureCode`)
     let result = false;
+
     onValue(reference, (snapshot) => {
       const realLectureCode = snapshot.val();
-      if(lectureCode = realLectureCode){
+      if(lectureCode == realLectureCode){
         result = true;
       }
     })

@@ -64,7 +64,7 @@ export default {
   computed: {
     lectures() {
       const lm = LectureManager.getInstance(); 
-      return lm.getInstructorlectures(useStore().state.settings.currentUserUID);
+      return lm.getLectures(useStore().state.settings.currentUserUID);
     }
   },
   setup(props, ctx) {
