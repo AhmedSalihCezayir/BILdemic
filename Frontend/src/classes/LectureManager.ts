@@ -102,14 +102,14 @@ export default class LectureManager {
         LID = snapshotval._LID;
         await set(ref(db, `Users/${Uid}/Lectures`), snapshotval);
     })
-    await set(ref(db,`Users/${Uid}/Lectures/${LID}/Selected`), false);
+    await set(ref(db,`Users/${Uid}/Lectures/${LID}/Selected/`), false);
   }
   
   // This function is used to set seat's first owner
   public async setSeatOwner(UID: number, LID: number, row: number, col:number){
     const db = getDatabase();
 
-    let condition = await get(ref(db,`Users/${UID}/Lectures/${LID}/_selected`));
+    let condition = await get(ref(db,`Users/${UID}/Lectures/${LID}/Selected/`));
     if(!condition){
       const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
 
@@ -137,7 +137,7 @@ export default class LectureManager {
       //Seat updated
       seatPlan[row][col] = seat
       await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
-      await set(ref(db,`Users/${UID}/Lectures/${LID}/Selected`), true);
+      await set(ref(db,`Users/${UID}/Lectures/${LID}/Selected/`), true);
     }
   }
 

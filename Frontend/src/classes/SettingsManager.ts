@@ -7,6 +7,9 @@ export default class SettingsManager {
     //Properties
     private static instance:SettingsManager | null = null;
 
+    //Constructor
+    private SettingsManager(){}
+    
     //Methods
     public static getInstance():SettingsManager{
         if(this.instance == null) {
@@ -22,7 +25,7 @@ export default class SettingsManager {
 
         let user = (await get(ref(db, `Users/${Uid}`))).val();
         if(user){
-            await set(ref(db, `Users/${Uid}/Mail`),mail); 
+            await set(ref(db, `Users/${Uid}/Mail`), mail); 
         }
     }
 
@@ -33,7 +36,7 @@ export default class SettingsManager {
 
         let user = (await get(ref(db, `Users/${Uid}`))).val();
         if(user){
-            await set(ref(db, `Users/${Uid}/Password`),password); 
+            await set(ref(db, `Users/${Uid}/Password`), password); 
         }
         return true;
     }
@@ -45,7 +48,7 @@ export default class SettingsManager {
 
         let user = (await get(ref(db, `Users/${Uid}`))).val();
         if(user){
-            await set(ref(db, `Users/${Uid}/PhoneNum`),phoneNum); 
+            await set(ref(db, `Users/${Uid}/PhoneNum`), phoneNum); 
         }
         return true;
     }
@@ -58,7 +61,7 @@ export default class SettingsManager {
         let user = (await get(ref(db, `Users/${Uid}`))).val();
         let currentAddress = (await get(ref(db, `Users/${Uid}`))).val();
         if(user){
-            await set(ref(db, `Users/${Uid}/Address`),address); 
+            await set(ref(db, `Users/${Uid}/Address`), address); 
         }
         return true;
     }
@@ -70,7 +73,7 @@ export default class SettingsManager {
 
         let user = (await get(ref(db, `Users/${Uid}`))).val();
         if(user){
-            await set(ref(db, `Users/${Uid}/HesCode`),hesCode); 
+            await set(ref(db, `Users/${Uid}/HesCode`), hesCode); 
         return true;
         }
     }
