@@ -39,7 +39,7 @@
     <!-- Student view and seating plan is active -->
     <div v-if="studentView && active && !firstTime">
       <div class="row" v-for="a in row" :key="a">
-        <div :class="neighbourColors(b - 1, a - 1)" v-for="b in col" :key="b">
+        <div :class="neighbourColors(a - 1, b - 1)" v-for="b in col" :key="b">
           <q-btn v-if="a == personalRow + 1 && b == personalCol + 1" class="seat" @click="showPopupForNeigh">
             <template v-slot>
               <q-icon v-if="a == (personalRow + 1) && b == (personalCol + 1)" size="sm" name="mdi-close-outline">
@@ -135,7 +135,7 @@ export default {
 
   setup(props, ctx) {
     const neighbourColors = (row, col) => {
-      return ((row == (props.personalRow - 1)) && (col == props.personalCol)) || ((row == (props.personalRow + 1)) && (col == props.personalCol)) ? "seat bg-grey" : "seat";
+      return ((row == (props.personalRow)) && (col == props.personalCol - 1)) || ((row == (props.personalRow)) && (col == props.personalCol + 1)) ? "seat bg-grey" : "seat";
     };
 
     const left = ref(null)

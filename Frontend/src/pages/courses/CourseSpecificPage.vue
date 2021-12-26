@@ -23,8 +23,8 @@
       :col="5"
       :personalRow="personalRow"
       :personalCol="personalCol"
-      :hasLeft="true"
-      :hasRight="false"
+      :hasLeft="personalCol != 0"
+      :hasRight="personalCol != 4"
       @selected="selectSeat"
     />
 

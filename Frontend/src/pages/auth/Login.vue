@@ -2,8 +2,9 @@
   <div class="q-pa-xl column items-center">
     <q-card class="column items-center q-pa-xl">
       <q-img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png"
-        width="200px"
+        src="../../assets/logo_bildemic.png"
+        fit="fill"
+        width="320px"
         class="q-mb-md"
       />
       <login-form v-if="!showForgot" @forgot="showForgot = true"/>

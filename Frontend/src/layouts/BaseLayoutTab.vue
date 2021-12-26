@@ -71,11 +71,11 @@
         <div class="absolute-top column items-center" active-class="bg-teal-2">
           <router-link to="/home">
             <q-img 
-              width="110px"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
-              class="q-mt-md"
-            />
-          </router-link>
+              width="170px"
+              src="../assets/logo_bildemic.png" 
+              class="q-mt-md" 
+            /> 
+          </router-link> 
         </div>
       </q-drawer>
 
