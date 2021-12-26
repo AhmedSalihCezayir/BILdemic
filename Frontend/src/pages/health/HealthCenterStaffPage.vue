@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling">
+  <div>
     <health-center-staff-tabs 
       :cardInfos="cardInfos"
     />
@@ -43,10 +43,6 @@ export default {
       open.value = !open.value
       ctx.emit('toggleDrawer');
     }
-
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
 
     const cardInfos = [
       {
@@ -97,7 +93,6 @@ export default {
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       cardInfos,
       fabPos

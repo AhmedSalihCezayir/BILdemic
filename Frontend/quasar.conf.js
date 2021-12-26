@@ -13,7 +13,7 @@ const { configure } = require('quasar/wrappers');
 module.exports = configure(function (ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
-    supportTS: false,
+    supportTS: true,
 
     // https://quasar.dev/quasar-cli/prefetch-feature
     // preFetch: true,
@@ -24,6 +24,7 @@ module.exports = configure(function (ctx) {
     boot: [
       'i18n',
       'axios',
+      'firebase'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -79,8 +80,15 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http'
       },
-      port: 8080,
-      open: true // opens browser window automatically
+      port: 3000,
+      open: true, // opens browser window automatically
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+          ws: true
+        }
+  }
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

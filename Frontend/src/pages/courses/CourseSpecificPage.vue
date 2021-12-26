@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon  v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <div class="column">
@@ -10,37 +10,39 @@
     </q-banner>
 
     <div class="row items-center">
-      <q-input v-model="lectureCode" outlined class="col-9 q-mt-md q-ml-md" dense :label="$t('EnterLectureCode')" color="secondary" mask="####-####"/>
-      <q-btn outline unelevated :label="$t('Send')" class="text-secondary q-mx-md q-mt-md col" />
+      <q-input v-model="lectureCode" outlined class="col-9 q-mt-md q-ml-md" dense :label="$t('EnterLectureCode')" color="secondary" />
+      <q-btn outline unelevated :label="$t('Send')" class="text-secondary q-mx-md q-mt-md col" @click="checkLectureCode" />
     </div>
 
     <seating-plan 
       class="q-mt-lg"
       :studentView="true"
-      :active="true"
-      :firstTime="false"
+      :active="lectureCodeIsCorrect"
+      :firstTime="firstTime"
       :row="5"
       :col="5"
-      :personalRow="4"
-      :personalCol="4"
-      :seatingPlan="seatingPlan"
+      :personalRow="personalRow"
+      :personalCol="personalCol"
       :hasLeft="true"
       :hasRight="false"
+      @selected="selectSeat"
     />
 
-  </div>
+  </div> 
 </template>
 
-<script>
+<script> 
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import SeatingPlan from '../../components/courses/SeatingPlan.vue'
+import LectureManager from '../../classes/LectureManager'
 
 export default {
   name: "CourseSpecificPage",
   components: {
     SeatingPlan
   },
+  props: ['id'],
   setup(props, ctx) {
     const $q = useQuasar();
 
@@ -59,18 +61,44 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
+    const lectureCode = ref(null);
+    const lectureCodeIsCorrect = ref(false);
+
+    const lm  = LectureManager.getInstance()
+
+    const firstTime = computed(() => {
+      return !lm.getSelectedStatus(props.id);
     })
 
-    const lectureCode = ref(null);
+    const checkLectureCode = () => {
+      console.log(lm.controlLectureCode(props.id, lectureCode.value));
+      lectureCodeIsCorrect.value = lm.controlLectureCode(props.id, lectureCode.value)
+    }
+
+    const selectSeat = (val) => {
+      lm.setSeatOwner(props.id, val.row - 1, val.col - 1);
+    }
+
+    const personalCol = computed(() => {
+      if (!lm.getMySeat(props.id)) {
+        return 5;
+      } 
+      return lm.getMySeat(props.id).col;
+    }); 
+
+    const personalRow = computed(() => {
+      if (!lm.getMySeat(props.id)) {
+        return 5;
+      }
+      return lm.getMySeat(props.id).row;
+    }); 
 
     const seatingPlan = [
       [
         {
           status: "bg-green"
         },
-        {
+        { 
           status: "bg-yellow"
         },
         {
@@ -172,10 +200,15 @@ export default {
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
       seatingPlan,
-      lectureCode
+      lectureCode,
+      checkLectureCode,
+      lectureCodeIsCorrect,
+      firstTime,
+      selectSeat,
+      personalCol,
+      personalRow
     }
   },
 }
