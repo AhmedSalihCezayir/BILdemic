@@ -68,17 +68,15 @@ export default class CafeteriaManager {
 
     await set(ref(db, `Users/${ownerUID}/Orders/${meal._OID}`), meal);
     await set(ref(db, `PendingMealOrders/${meal._OID}`), meal);
-    return true;
   }
 
   // To change taken status of meal order 
   public async changeTakenStatus(UID:string, OID: string){
     const db = getDatabase();
 
-    let order = (await get(ref(db, `Users/${UID}/Orders/ `))).val();
+    let order = (await get(ref(db, `Users/${UID}/Orders/${OID} `))).val();
     await set(ref(db, `Users/${UID}/Orders/${OID}/${order._taken}`), true);
     await set(ref(db, `PendingMealOrders/${OID}/${order._taken}`), true);
-    return true;
   }
 
   // To get regional order count

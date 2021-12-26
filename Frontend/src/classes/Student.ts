@@ -34,16 +34,11 @@ export default class Student extends User{
         lm.setSeatOwner(UID, LID, row, col);
         return false;
     }
-
-    public confirmNeighbourSeat(courseCode:string, leftNeighbour:Student, rightNeighbour:Student):boolean{
-        //TO DO
-        return false;
-    }
-
     
     public get ID(): number {
         return this._ID;
     }
+
     public set ID(ID: number) {
         this._ID = ID;
     }
@@ -51,6 +46,7 @@ export default class Student extends User{
     public get sportPunishStatus(): boolean {
         return this._sportPunishStatus;
     }
+
     public set sportPunishStatus(sportPunishStatus: boolean) {
         this._sportPunishStatus = sportPunishStatus;
     }
@@ -58,6 +54,7 @@ export default class Student extends User{
     public get resideInDorm(): boolean {
         return this._resideInDorm;
     }
+
     public set resideInDorm(resideInDorm: boolean) {
         this._resideInDorm = resideInDorm;
     }
@@ -65,6 +62,7 @@ export default class Student extends User{
     public get lectures(): Lecture[] | null {
         return this._lectures;
     }
+
     public set lectures(lectures: Lecture[] | null) {
         this._lectures = lectures;
     }
@@ -72,6 +70,7 @@ export default class Student extends User{
     public get roomMateNames(): string {
         return this._roomMateNames;
     }
+    
     public set roomMateNames(roomMateNames: string) {
         this._roomMateNames = roomMateNames;
     }

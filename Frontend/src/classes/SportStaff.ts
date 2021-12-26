@@ -1,5 +1,7 @@
 import SportActivity from "./SportActivity";
 import User from "./User";
+import SportManager from './SportManager'
+
 
 export default class SportStaff extends User{
 
@@ -13,8 +15,8 @@ export default class SportStaff extends User{
         // TO DO
         return null;
     }
-    public enterAbsenceStatus(sportActivity:SportActivity):boolean{
-        // TO DO
-        return false;
+    public enterAbsenceStatus(ownerUID: string, OID:string){
+        let sportManager = SportManager.getInstance();
+        sportManager.changeAbsenceStatus(ownerUID, OID);
     }
 }
