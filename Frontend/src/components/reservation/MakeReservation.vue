@@ -19,7 +19,7 @@
         <q-select
           v-if="hasPlace"
           v-model="place"
-          :options="datesArr"
+          :options="placeArr"
           color="secondary"
           outlined
           clearable
@@ -96,6 +96,10 @@ export default {
       "08.30", "09.00", "09.30", "10.00", "10.30", "11.00"
     ]
 
+    const placeArr = [
+      "78", "50", "90"
+    ]
+
     const makeReservation = () => {
       let data;
 
@@ -106,7 +110,7 @@ export default {
         data = { place: place.value, date: date.value, time: time.value, activity: activity.value };
       }
       else if (props.type == 'meal') {
-        data = { place: place.value, meal: meal.value };
+        data = { place: place.value, date: date.value, time: time.value, meal: meal.value };
       }
 
       ctx.emit('makeReservation', data);
@@ -121,7 +125,8 @@ export default {
       mealArr,
       datesArr,
       timesArr,
-      makeReservation
+      makeReservation,
+      placeArr
     } 
   },
 }

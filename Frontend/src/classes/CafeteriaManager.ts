@@ -2,6 +2,7 @@ import Meal from './Meal';
 import User from './User';
 import { getDatabase, ref, push, set, get, query, orderByChild, equalTo, onValue } from "firebase/database";
 import { number } from '@intlify/core-base';
+import { getAuth } from 'firebase/auth';
 
 export default class CafeteriaManager {
   
@@ -19,18 +20,19 @@ export default class CafeteriaManager {
     return this.instance;
   }
 
-  public async createMealOrder(place: string, date: string, time: string, type: string, ownerUID: string){
+  public async createMealOrder(place: string, date: string, time: string, type: string){
+    const ownerUID = getAuth().currentUser?.uid || ' ';
     const db = getDatabase();
     let meal = new Meal(place, time, date, ownerUID, type);
-    let counter78; // Counter for 78th dorm region
-    let counter51; // Counter for 51th dorm region
-    let counter90; // Counter for 90th dorm region
+    let counter78 = 0; // Counter for 78th dorm region
+    let counter51 = 0; // Counter for 51th dorm region
+    let counter90 = 0; // Counter for 90th dorm region
     let totalCounter: number = 0; // Total counter
 
     // Hold regional meal counter for regional meal distributiın information
     if(place == "78" && counter78 != null){
-      await (await get(ref(db, `PendingMealOrders/Counter78/${counter78}`))).val();
-      await (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
+      counter78 = (await get(ref(db, `PendingMealOrders/Counter78/${counter78}`))).val();
+      (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
       counter78 = counter78 + 1;
       totalCounter = totalCounter + 1;
       await set(ref(db, `PendingMealOrders/Counter78/${counter78}`), counter78);
@@ -38,8 +40,8 @@ export default class CafeteriaManager {
     }
 
     else if(place == "51" && counter51 != null){
-      await (await get(ref(db, `PendingMealOrders/Counter51/${counter51}`))).val();
-      await (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
+      (await get(ref(db, `PendingMealOrders/Counter51/${counter51}`))).val();
+      (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
       counter51 = counter51 + 1;
       totalCounter = totalCounter + 1;
       await set(ref(db, `PendingMealOrders/Counter51/${counter51}`), counter51);
@@ -47,8 +49,8 @@ export default class CafeteriaManager {
     }
 
     else if(place == "90" && counter90 != null){
-      await (await get(ref(db, `PendingMealOrders/Counter90/${counter90}`))).val();
-      await (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
+      (await get(ref(db, `PendingMealOrders/Counter90/${counter90}`))).val();
+      (await get(ref(db, `PendingMealOrders/TotalCounter/${totalCounter}`))).val();
       counter90 = counter90 + 1; 
       totalCounter = totalCounter + 1;
       await set(ref(db, `PendingMealOrders/Counter90/${counter90}`), counter90);

@@ -7,7 +7,7 @@ export default class SportActivity extends Order{
     private _absenceStatus:boolean = false;
 
     public constructor(place:string, time:string, date:string, owner:string, activity:string, absenceStatus:boolean, OID:string){
-        super(place, date, time, owner, "SportActivity", OID);
+        super(place, date, time, owner, "SportActivity");
         this._activity = activity;
         this._absenceStatus = absenceStatus;
     }

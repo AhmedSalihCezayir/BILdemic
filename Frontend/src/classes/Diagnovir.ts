@@ -4,8 +4,8 @@ import User from './User'
 export default class Diagnovir extends Order {
   private _result: string;
 
-  public constructor(place: string, time: string, date: string, owner: string, result: string, OID:string) {
-    super(place, date, time, owner, "Diagnovir", OID);
+  public constructor(place: string, time: string, date: string, owner: string, result: string) {
+    super(place, date, time, owner, "Diagnovir");
     this._result = result;
   }
 

@@ -17,7 +17,7 @@ export default class DiagnovirManager {
 
   public async takeReservation(date: string, place: string, time: string, OID:string) {
     const UID = getAuth().currentUser?.uid;
-    const diagnovir = new Diagnovir(place, time, date, "", "", OID);
+    const diagnovir = new Diagnovir(place, time, date, "", "");
 
     const db = getDatabase();
 
@@ -82,7 +82,7 @@ export default class DiagnovirManager {
 
   public cancelOrder(date: string, place: string, time: string): boolean {
     const db = getDatabase();
-    const diagnovir = new Diagnovir(place, time, date, "", "", "");
+    const diagnovir = new Diagnovir(place, time, date, "", "");
 
     //Delete from the user's order list 
     let gettingOrdersArray = ref(db, `Users/${getAuth().currentUser?.uid}/_orders`);

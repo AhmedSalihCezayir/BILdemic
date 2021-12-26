@@ -25,7 +25,7 @@ export default abstract class Order {
         this._place = place;
         this._time = time; 
         this._date = date;
-        this._ownerUID = this._ownerUID;
+        this._ownerUID = ownerUID;
 
         if(orderType === "AmbulanceForm"){
             this._orderType = OrderType.AMBULANCE_FORM;

@@ -17,9 +17,11 @@
       v-if="!hasReservation" 
       :hasMeal="true"
       :hasPlace="true" 
+      :hasTime="true"
+      :hasDate="true"
       :title="$t('MakeMealOrder')" 
       type="meal"
-      class="q-mt-md" />
+      class="q-mt-md" @makeReservation="makeRes"/>
 
   </div>
 </template>
@@ -30,6 +32,7 @@ import { useQuasar } from 'quasar'
 import MakeReservation from '../../components/reservation/MakeReservation.vue'
 import MyReservations from '../../components/reservation/MyReservations.vue'
 import DailyMenu from '../../components/cafeteria/DailyMenu.vue'
+import CafeteriaManager from '../../classes/CafeteriaManager'
 
 export default {
   name: "CafeteriaPage",
@@ -71,16 +74,22 @@ export default {
     })
 
     const hasReservation = ref(false);
+    const cm = CafeteriaManager.getInstance();
 
     const toggleDrawer = () => {
       open.value = !open.value
       ctx.emit('toggleDrawer');
     }
 
+    const makeRes = async (val) => {
+      await cm.createMealOrder(val.place, val.date, val.time, val.meal);
+    }
+
     return {
       toggleDrawer,
       isMobile,
-      hasReservation
+      hasReservation,
+      makeRes
     }
   },
 }
