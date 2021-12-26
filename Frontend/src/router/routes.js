@@ -24,6 +24,7 @@ const routes = [
   {
     path: '/',
     component: BaseLayoutPhoto,
+    redirect: '/auth/login',
     children: [
       {
         path: 'home',
