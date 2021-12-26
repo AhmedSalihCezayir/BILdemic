@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center">
     <div outlined color="secondary" class="bordered">
-      <q-form @submit="onSubmit" class="q-gutter-y-md q-px-lg q-py-md full-width text-secondary" >
+      <q-form class="q-gutter-y-md q-px-lg q-py-md full-width text-secondary" >
         <div>
           <b>{{ title }}</b>
         </div>
@@ -19,7 +19,7 @@
         <q-select
           v-if="hasPlace"
           v-model="place"
-          :options="datesArr"
+          :options="placeArr"
           color="secondary"
           outlined
           clearable
@@ -56,7 +56,7 @@
           :label="$t('SelectReservationTime')"
         />
 
-        <q-btn :label="$t('MakeReservation')" type="submit" color="secondary"/>
+        <q-btn :label="$t('MakeReservation')" type="submit" color="secondary" @click.prevent="makeReservation"/>
       </q-form>
     </div>
   </div>
@@ -76,7 +76,7 @@ export default {
     type: String,
     title: String
   },
-  setup(props) {
+  setup(props, ctx) {
     const meal = ref(null);
     const place = ref(null);
     const activity = ref(null);
@@ -89,12 +89,32 @@ export default {
 
     // Get available slot info from db using type prop
     const datesArr = [
-      "11/12/2021", "12/12/2021", "13/12/2021", "14/12/2021", "15/12/2021", "16/12/2021"
+      "11.12.2021", "12.12.2021", "13.12.2021", "14.12.2021", "15.12.2021", "16.12.2021"
     ]
 
     const timesArr = [
       "08.30", "09.00", "09.30", "10.00", "10.30", "11.00"
     ]
+
+    const placeArr = [
+      "78", "50", "90"
+    ]
+
+    const makeReservation = () => {
+      let data;
+
+      if (props.type == 'diagnovir') {
+        data = { date: date.value, time: time.value };
+      }
+      else if (props.type == 'sports') {
+        data = { place: place.value, date: date.value, time: time.value, activity: activity.value };
+      }
+      else if (props.type == 'meal') {
+        data = { place: place.value, date: date.value, time: time.value, meal: meal.value };
+      }
+
+      ctx.emit('makeReservation', data);
+    }
 
     return {
       meal,
@@ -104,7 +124,9 @@ export default {
       time,
       mealArr,
       datesArr,
-      timesArr
+      timesArr,
+      makeReservation,
+      placeArr
     } 
   },
 }

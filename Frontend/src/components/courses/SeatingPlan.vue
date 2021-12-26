@@ -2,7 +2,7 @@
   <div class="q-pa-md">
 
     <!-- Seat selection Student view-->
-    <div v-if="studentView && active && firstTime">
+    <div v-if="studentView && firstTime">
       <div class="row" v-for="a in row" :key="a">
         <div class="seat" v-for="b in col" :key="b">
           <q-btn-dropdown class="seat without-icon">
@@ -17,7 +17,7 @@
 
               <q-card-actions class="justify-between">
                 <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
-                <q-btn flat :label="$t('Accept')" color="secondary" />
+                <q-btn flat :label="$t('Accept')" color="secondary" @click="select(a, b)"/>
               </q-card-actions>
             </q-card>
           </q-btn-dropdown>
@@ -39,7 +39,7 @@
     <!-- Student view and seating plan is active -->
     <div v-if="studentView && active && !firstTime">
       <div class="row" v-for="a in row" :key="a">
-        <div :class="neighbourColors(b - 1, a - 1)" v-for="b in col" :key="b">
+        <div :class="neighbourColors(a - 1, b - 1)" v-for="b in col" :key="b">
           <q-btn v-if="a == personalRow + 1 && b == personalCol + 1" class="seat" @click="showPopupForNeigh">
             <template v-slot>
               <q-icon v-if="a == (personalRow + 1) && b == (personalCol + 1)" size="sm" name="mdi-close-outline">
@@ -133,9 +133,9 @@ export default {
     hasRight: Boolean
   },
 
-  setup(props) {
+  setup(props, ctx) {
     const neighbourColors = (row, col) => {
-      return ((row == (props.personalRow - 1)) && (col == props.personalCol)) || ((row == (props.personalRow + 1)) && (col == props.personalCol)) ? "seat bg-grey" : "seat";
+      return ((row == (props.personalRow)) && (col == props.personalCol - 1)) || ((row == (props.personalRow)) && (col == props.personalCol + 1)) ? "seat bg-grey" : "seat";
     };
 
     const left = ref(null)
@@ -147,12 +147,17 @@ export default {
       showNeighPopup.value = true; 
     }
 
+    const select = (row, col) => {
+      ctx.emit('selected', { row, col })
+    }
+
     return {
       neighbourColors,
       left,
       right,
       showPopupForNeigh,
       showNeighPopup,
+      select
     }
   },
 }

@@ -6,20 +6,21 @@
         bordered
         behavior="desktop"
       >
-        <div class="absolute-top bg-teal-3 column justify-center items-center" style="height: 240px">
+        <div class="absolute-top column justify-center items-center" style="height: 240px">
           <router-link to="/home">
             <q-img 
-              width="110px"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
-              class="q-mb-md"
+              width="170px"
+              src="../assets/logo_bildemic.png" 
+              class="q-mt-md"
             />
           </router-link>
-          <q-avatar size="70px" class="q-mb-sm bg-white">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/800px-SpongeBob_SquarePants_character.svg.png">
+
+          <q-avatar size="90px" class="q-mb-sm bg-white" style="border: 1px solid #000">
+            <img src="../assets/default-profile-icon-24.jpg" size="100px">
           </q-avatar>
-          <div class="text-weight-bold text-white">Sponge Bob</div>
-          <div class="text-weight-bold text-white">21802918</div>
-          <div class="text-weight-bold text-white">HES: DF72-ACA3-43</div>
+          <div class="text-weight-bold text-black">Ezgi Lena Sönmez</div>
+          <div class="text-weight-bold text-black">21802918</div>
+          <div class="text-weight-bold text-black">HES: DF72-ACA3-43</div>
         </div>
 
         <div style="height: calc(100% - 240px); margin-top: 240px;">
@@ -36,7 +37,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple @click="logoutUser">
               <q-item-section class="q-ml-sm">
                 {{ $t('LogOut') }}
               </q-item-section>
@@ -44,13 +45,19 @@
           </q-list>
         </div>
       </q-drawer>
-      <router-view @toggleDrawer="toggleDrawer"/>
+      
+      <q-page-container>
+        <router-view @toggleDrawer="toggleDrawer"/>
+      </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import LoginManager from '../classes/LoginManager'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'BaseLayoutPhoto',
 
@@ -61,6 +68,8 @@ export default {
     });
 
     const drawer = ref(!isMobile.value);
+    const lm = LoginManager.getInstance();
+    const router = useRouter();
 
     watch(isMobile, () => {
       drawer.value = !isMobile.value;
@@ -69,10 +78,16 @@ export default {
     const toggleDrawer = () => {
       drawer.value = !drawer.value
     }
+    
+    const logoutUser = () => {
+      lm.logout();
+      router.push('/auth/login');
+    }
 
     return {
       drawer,
-      toggleDrawer
+      toggleDrawer,
+      logoutUser
     }
   },
 }

@@ -1,20 +1,22 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <div class="column">
     <q-banner inline-actions class="text-white bg-accent">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <b> {{ $t('CoursesPageInstrDesc') }} </b> 
       <q-btn :label="$t('CreateCourse')" unelevated class="bg-secondary fixed-top-right q-mt-sm q-mr-sm" @click="create = true"/>
     </q-banner>
-    
+
     </div>
+
+    
     <div class="q-pa-md q-mx-xs row q-gutter-lg">
-      <router-link :to="calculateRoute(course)" v-for="course in courses" :key="course.name" class="my-card">
+      <router-link :to="`courses/${JSON.stringify(lecture['_LID'])}`" v-for="lecture in lectures" :key="lecture['_LID']" class="my-card">
         <q-card class="bg-secondary text-white">
           <q-card-section align="center" style="height:120px">
-            <div class="text-h6">{{ $t(course.name) }}</div>
-            <div class="text-h6">{{ $t(course.section) }}</div>
-            <div class="text-h6">{{ $t(course.building) }}</div>
+            <div class="text-h6">{{ lecture["_lectureName"] }}</div>
+            <div class="text-h6">Section-{{ lecture["_section"] }}</div>
+            <div class="text-h6">{{ lecture["_place"] }}</div>
           </q-card-section>
         </q-card>
       </router-link>
@@ -34,13 +36,16 @@
             <q-input v-model="sectionNo" class="col" color="secondary" :label="$t('EnterSectionNo')" dense outlined />
           </div>
           <div class="row justify-center">
-            <q-select v-model="building" class="col" color="secondary" :label="$t('EnterBuilding')" dense outlined />
+            <q-input v-model="building" class="col" color="secondary" :label="$t('EnterBuilding')" dense outlined />
+          </div>
+          <div class="row justify-center">
+            <q-input v-model="place" class="col" color="secondary" :label="$t('EnterClassroom')" dense outlined />
           </div>
         </q-card-section>
 
         <q-card-actions class="justify-between">
           <q-btn flat :label="$t('Cancel')" color="secondary" v-close-popup />
-          <q-btn flat :label="$t('CreateCourse')" color="secondary" />
+          <q-btn flat :label="$t('CreateCourse')" color="secondary" @click="createCourse(courseName, sectionNo, building, place)" v-close-popup/>
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -51,9 +56,17 @@
 <script>
 import { ref, computed, watch } from 'vue'
 import { useQuasar } from 'quasar'
+import LectureManager from '../../classes/LectureManager'
+import { useStore } from 'vuex'
 
 export default {
   name: "CoursesPageInstructor",
+  computed: {
+    lectures() {
+      const lm = LectureManager.getInstance(); 
+      return lm.getLectures(useStore().state.settings.currentUserUID);
+    }
+  },
   setup(props, ctx) {
     const $q = useQuasar();
 
@@ -68,6 +81,9 @@ export default {
     const courseCode = ref(null);
     const sectionNo = ref(null);
     const building = ref(null);
+    const place = ref(null);
+
+    const lm = LectureManager.getInstance();
 
     watch(isMobile, () => {
       open.value = !isMobile.value;
@@ -78,58 +94,25 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
-
     const calculateRoute = (course) => {
       return "/staff/courses/" + course.name.toLowerCase();
     }; 
 
-    const courses = [
-      {
-        name: "CS201",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "CS315",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "CS319",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "MATH225",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "MATH230",
-        section: "Section-01",
-        building: "B-202"
-      },
-      {
-        name: "GE301",
-        section: "Section-01",
-        building: "B-202"
-      },
-    ]
+    const createCourse = async (courseName, sectionNo, building, place) => {
+      await lm.createCourse(courseName, sectionNo, building, place);
+    }
 
     return {
       toggleDrawer,
-      pageStyling,
       isMobile,
-      courses,
+      createCourse,
       calculateRoute,
       create,
       courseName,
       courseCode,
       sectionNo,
-      building 
+      building,
+      place
     }
   },
 }
@@ -138,7 +121,7 @@ export default {
 <style lang="sass" scoped>
 .my-card
   width: 100%
-  max-width: 200px
+  max-width: 300px
 
 a
   text-decoration: none

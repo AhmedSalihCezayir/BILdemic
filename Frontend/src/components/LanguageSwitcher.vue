@@ -36,7 +36,6 @@ export default {
     const $store = useStore();
 
     watch(locale, (newLang) => {
-      console.log('here: ', $store.state.settings.language);
       $store.commit('settings/setLanguage',newLang);
       localStorage.setItem('language', newLang);
     })

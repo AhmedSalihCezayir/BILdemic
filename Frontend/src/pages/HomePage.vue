@@ -1,5 +1,5 @@
 <template>
-  <div :style="pageStyling"> 
+  <div> 
     <div class="column">
     <q-banner v-if="riskless" inline-actions class="text-white bg-green">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
@@ -53,10 +53,6 @@ export default {
       ctx.emit('toggleDrawer');
     }
 
-    const pageStyling = computed(() => {
-      return open.value ? "width: calc(100% - 200px); margin-left: 200px;" : "";
-    })
-
     const filteredSections = computed(() => {
       return sections.filter(item => {
         if (!item.disable) {
@@ -104,7 +100,6 @@ export default {
       riskless,
       filteredSections,
       toggleDrawer,
-      pageStyling,
       isMobile
     }
   },
