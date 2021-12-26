@@ -106,11 +106,13 @@ export default class LectureManager {
   }
   
   // This function is used to set seat's first owner
-  public async setSeatOwner(UID: number, LID: number, row: number, col:number){
+  public async setSeatOwner(LID: number, row: number, col:number){
     const db = getDatabase();
+    const UID = getAuth().currentUser?.uid;
 
     let lecture = (await get(ref(db, `Users/${UID}/Lectures/${LID}`))).val();
-    let condition = await get(ref(db,`Users/${UID}/Lectures/${lecture._selected}/`));
+    let condition = (await get(ref(db,`Users/${UID}/Lectures/${LID}/_selected`))).val();
+    console.log(condition)
     if(!condition){
       const reference = ref(db, `Lectures/${LID}/_seatPlan`); 
 
@@ -119,26 +121,26 @@ export default class LectureManager {
       onValue(reference, (snapshot) => {
           const temp = snapshot.val();
           seatPlan = temp; 
+          
       })
-
       let seat = seatPlan[row][col];
-      seat.studentOwnerUID = UID;
-
+      seat._studentOwnerUID = UID; 
       // Seat owner's right and left owner assigned
-      if(col = 0){
-       seatPlan[row][col+1].studentLeftUID = UID;
+      if(col == 0){
+        seatPlan[row][col+1]._studentLeftUID = UID;
       }
-      else if(col = 4){
-      seatPlan[row][col-1].studentRightUID = UID;
+      else if(col == 4){
+        seatPlan[row][col-1]._studentRightUID = UID;
       }
       else {
-        seatPlan[row][col+1].studentLeftUID = UID;
-        seatPlan[row][col-1].studentRightUID = UID;
+        seatPlan[row][col+1]._studentLeftUID = UID;
+        seatPlan[row][col-1]._studentRightUID = UID;
       }
       //Seat updated
       seatPlan[row][col] = seat
-      await set(ref(db, `Lectures/${LID}/_seatPlan`),seatPlan);
-      await set(ref(db,`Users/${UID}/Lectures/${LID}/Selected/`), true);
+      await set(ref(db, `Lectures/${LID}/_seatPlan`), seatPlan);
+      await set(ref(db,`Users/${UID}/Lectures/${LID}/_selected`), true);
+      await set(ref(db, `Users/${UID}/Lectures/${LID}/_mySeat`), {row: row, col: col});
     }
   }
 
@@ -166,8 +168,33 @@ export default class LectureManager {
         const data = snapshot.val();
         lecture = data; 
     }) 
-    console.log('here: ', lecture);
     return lecture;
+  }
+
+  public getMySeat(LID:number) {
+    const db = getDatabase();
+    const UID = getAuth().currentUser?.uid;
+
+    const reference = ref(db, `Users/${UID}/Lectures/${LID}/_mySeat`); 
+
+    let seatData;
+    onValue(reference, (snapshot) => {
+        const data = snapshot.val();
+        seatData = data; 
+    }) 
+    return seatData;
+  }
+
+  public getSelectedStatus(LID: string) {
+    const db = getDatabase();
+    let reference = ref(db, `Users/${getAuth().currentUser?.uid}/Lectures/${LID}/_selected`)
+    let result;
+
+    onValue(reference, (snapshot) => {
+      const data = snapshot.val();
+      result = data;
+    })
+    return result;
   }
 
   //Checks lecture code and compares with real lecture code

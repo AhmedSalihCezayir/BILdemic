@@ -31,7 +31,7 @@ export default class Student extends User{
 
     public selectSeatFirst(UID: number, LID: number, row:number, col: number):boolean{
         let lm = LectureManager.getInstance();
-        lm.setSeatOwner(UID, LID, row, col);
+        lm.setSeatOwner(LID, row, col);
         return false;
     }
 

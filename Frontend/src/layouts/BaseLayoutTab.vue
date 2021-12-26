@@ -111,6 +111,7 @@ export default {
     }
 
     const lm = LoginManager.getInstance();
+    const router = useRouter();
 
     const logoutUser = () => {
       lm.logout();

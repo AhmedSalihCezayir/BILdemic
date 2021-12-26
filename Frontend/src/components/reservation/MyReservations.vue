@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center">
     <q-field outlined style="width: 50%;" color="secondary">
-      <q-form @submit="onSubmit" class="q-gutter-y-md q-px-md q-py-md full-width" >
+      <q-form class="q-gutter-y-md q-px-md q-py-md full-width" >
         <div>
           <b>{{ title }}</b>
         </div>
@@ -33,7 +33,10 @@ export default {
     slots: Array,
     title: String
   },
-  setup() {
+  setup(props, ctx) {
+    const cancelReservations = () => {
+      ctx.emit('cancelReservations')
+    }
 
     return {
 

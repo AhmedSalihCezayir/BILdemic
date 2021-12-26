@@ -23,7 +23,7 @@ export default abstract class Order {
         let nOID = Date.now();
         this._OID = nOID.toString();
         this._place = place;
-        this._time = time;
+        this._time = time; 
         this._date = date;
         this._ownerUID = this._ownerUID;
 
@@ -88,4 +88,5 @@ export default abstract class Order {
     public set orderType(orderType: OrderType) {
         this._orderType = orderType;
     }
+
 }
