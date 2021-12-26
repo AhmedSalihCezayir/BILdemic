@@ -1,6 +1,6 @@
 import User from './User'
 import Diagnovir from './Diagnovir'
-import {getDatabase, ref, set, push, onChildAdded, onChildChanged, onChildRemoved, query, orderByValue, equalTo, orderByChild, onValue, update} from "firebase/database";
+import {getDatabase, ref, set, push, onChildAdded, onChildChanged, onChildRemoved, query, orderByValue, equalTo, orderByChild, onValue, update, get} from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 export default class DiagnovirManager {
@@ -15,90 +15,59 @@ export default class DiagnovirManager {
     return this.instance;
   }
 
-  public takeReservation(date: string, place: string, time: string, OID:string): boolean {
-
+  public async takeReservation(date: string, place: string, time: string, OID:string) {
+    const UID = getAuth().currentUser?.uid;
     const diagnovir = new Diagnovir(place, time, date, "", "", OID);
 
     const db = getDatabase();
 
-    //const ordersForUser = user.orders;
-    //ordersForUser?.push(diagnovir);
-    //user.orders = ordersForUser;//diagnovir added to order list of the wanted user
-
-    //const crole = user.role.replace(/ /g, "") + "s";
-    //order list added to database for the wanted user
     let postListRef = ref(db, `Users/${getAuth().currentUser?.uid}/_orders`);
-    //let newPostRef = push(postListRef);
-    //set(newPostRef, user.orders);
-    onValue(postListRef, (snapshot) =>
+    let snapshotval = [{}];
+    onValue(postListRef, async (snapshot) =>
     {
-      const snapshotval = snapshot.val();
-      console.log(snapshotval);
-      if(snapshotval != null)
-      {
-        let updatedID = "";
-        for(let key of Object.keys(snapshotval))
-        {
-          let takeUserArray = snapshotval[key];
-          takeUserArray.push(diagnovir);
-          snapshotval[key] = takeUserArray;
-          updatedID = key;
-
-          set(ref(db, `weeklyOrderSlut/Diagnovirs/${key}`),snapshotval).then((response) => {
-              console.log(response);
-            }).catch((error) => {
-              console.log(error);
-            });
-            set(ref(db, `Users/${getAuth().currentUser?.uid}/_orders`), snapshotval[key]);
-          }
-      }
-      else
-      {
-        let emptyArray = [];
-        emptyArray.push(diagnovir);
-        set(postListRef, emptyArray);
-      }
+      snapshotval = snapshot.val();
     });
 
+    if(snapshotval != null)
+    {
+      snapshotval.push(diagnovir)
+      await set(ref(db, `Users/${getAuth().currentUser?.uid}/_orders`), snapshotval)
+    }
+    else
+    {
+      let emptyArray = [];
+      emptyArray.push(diagnovir);
+      await set(postListRef, emptyArray);
+    }
 
     //created diagnovir added to Pending Diagnovir Tests database
     postListRef = ref(db, `PendingDiagnovirTests`);
     let newPostRef = push(postListRef);
-    set(newPostRef, diagnovir);
+    await set(newPostRef, diagnovir);
 
     //updated the weekly order available slOt for the diagnovir reservation
-    // const db = getDatabase();
-    //const diagnovir3 = new Diagnovir("B Building", "12.00", "25.12.2021", student.role, "", "sergen");
-    //const uniqueidfinding = diagnovir3.date + diagnovir3.place + diagnovir3.time;
-    const uniqueidfinding = diagnovir.date + diagnovir.place + diagnovir.time;
-    //console.log("uniqueidfinding: ", uniqueidfinding);
-    const getMyQuery = query(ref(db, `weeklyOrderSlot/Diagnovirs`), orderByChild('uniqueid'), equalTo(uniqueidfinding));              
-    //console.log("getmyquesry: ", getMyQuery);
+    const uniqueidfinding = diagnovir.date + diagnovir.time;
+    console.log(uniqueidfinding);
+    const getMyQuery = query(ref(db, `weeklyOrderSlut/Diagnovirs`), orderByChild('uniqueid'), equalTo(uniqueidfinding));              
 
-    onValue(getMyQuery, (snapshot) => 
+    onValue(getMyQuery, async (snapshot) => 
     {
+      console.log('snapshot1: ', snapshot.val());
       if(snapshot.val() != null)
       {  
-        //debugger;
-        //console.log("snapshot: ", snapshot);
         const snapshotval = snapshot.val();
-        //console.log("snapshotval: ", snapshotval);
 
-        let updatedID = "";
+        let wanted = "";
         for(let key of Object.keys(snapshotval))
         {
           if(snapshotval[key].uniqueid == uniqueidfinding)
           {
             snapshotval[key].Taken = "not available";
-            updatedID = key;
-            break;
+            wanted = key;
           }
         }
-        //snapshotval.Diagnovir2 = {Taken:"bisey"};
-        //console.log(snapshotval);
-        update(ref(db), {'weeklyOrderSlut/Diagnovirs': snapshotval[updatedID]}).then((response) => {
-        //console.log(response);
-      }).catch((error) => {console.log(error);});
+
+        set(ref(db, `weeklyOrderSlut/Diagnovirs/${wanted}`), snapshotval[wanted])
 
       /*set(ref(db, `weeklyOrderSlut/Diagnovirs/${key}`),{
         Taken: 'true'
@@ -109,11 +78,12 @@ export default class DiagnovirManager {
         }); */
     }              
   });
-  return true;
   }
 
-  public cancelOrder(diagnovir: Diagnovir): boolean {
+  public cancelOrder(date: string, place: string, time: string): boolean {
     const db = getDatabase();
+    const diagnovir = new Diagnovir(place, time, date, "", "", "");
+
     //Delete from the user's order list 
     let gettingOrdersArray = ref(db, `Users/${getAuth().currentUser?.uid}/_orders`);
     onValue( gettingOrdersArray, (snapshot) =>
@@ -127,6 +97,7 @@ export default class DiagnovirManager {
           let takeUserArray = snapshotval[key];
 
           var index = takeUserArray.indexOf(diagnovir);
+
           if (index > -1) {
             takeUserArray.splice(index, 1);
           }
@@ -181,6 +152,30 @@ export default class DiagnovirManager {
     });
 
     return true;
+  }
+
+  public getDiagnovirReservation() {
+    const db = getDatabase();
+
+    const reference = ref(db, `Users/${getAuth().currentUser?.uid}/_orders`);
+    let result:any = {};
+    onValue(reference, (snapshot) => 
+    {
+      if(snapshot.val() != null)
+      {  
+        const snapshotval = snapshot.val();
+
+        for(let key of Object.keys(snapshotval))
+        {
+          if(snapshotval[key]._orderType == 4)
+          {
+            result = snapshotval[key];
+            break;
+          }
+        } 
+    }    
+  }); 
+  return result; 
   }
 }
 
