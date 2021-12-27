@@ -76,7 +76,9 @@ export default {
 
     const dm = DiagnovirManager.getInstance();
 
-    const hasReservation = ref(true);
+    const hasReservation = computed(() => {
+      return Object.keys(dm.getDiagnovirReservation()).length !== 0;
+    });
 
     const toggleDrawer = () => {
       open.value = !open.value
