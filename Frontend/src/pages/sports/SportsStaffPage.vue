@@ -52,7 +52,8 @@ export default {
         data: [
           "Ahmed Salih Cezayir",
           21802918,
-          "Normal"
+          "Tenis",
+          "Merkez Kampüs Spor Salonu"
         ]
       },
       {
@@ -60,7 +61,8 @@ export default {
         data: [
           "Asude Cezayir",
           21802918,
-          "Vegan"
+          "Tenis",
+          "Merkez Kampüs Spor Salonu"
         ]
       },
       {
@@ -68,7 +70,8 @@ export default {
         data: [
           "İsmail Sergen Göçmen",
           21802918,
-          "Vegeterian"
+          "Tenis",
+          "Yurtlar Spor Salonu"
         ]
       }
     ];
