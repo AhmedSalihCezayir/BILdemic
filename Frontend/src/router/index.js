@@ -31,39 +31,39 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE)
   })
 
-  // Router.beforeEach((to, from, next) => {
-  //   onAuthStateChanged(getAuth(), (user) => {
-  //     if (to.name === "Login" || to.name === "Register") {
-  //       next();
-  //     }
-  //     else if (user && (to.meta.haveAccess.includes(Store.state.settings.currentUserRole))) {
-  //       next();
-  //     }
-  //     else if (user && !(to.meta.haveAccess.includes(Store.state.settings.currentUserRole))) {
-  //       if (Store.state.settings.currentUserRole == "Student") {
-  //         next('/home');
-  //       }
-  //       else if (Store.state.settings.currentUserRole == "Instructor") {
-  //         next('/staff/courses');
-  //       }
-  //       else if (Store.state.settings.currentUserRole == "DiagnovirTester") {
-  //         next('/staff/diagnovir');
-  //       }
-  //       else if (Store.state.settings.currentUserRole == "HealthCenterStaff") {
-  //         next('/staff/health');
-  //       }
-  //       else if (Store.state.settings.currentUserRole == "SportsCenterStaff") {
-  //         next('/staff/sports');
-  //       }
-  //       else if (Store.state.settings.currentUserRole == "CafeteriaStaff") {
-  //         next('/staff/cafeteria');
-  //       }
-  //     }
-  //     else {
-  //       next('/auth/login');
-  //     }
-  //   })
-  // });
+  Router.beforeEach((to, from, next) => {
+    onAuthStateChanged(getAuth(), (user) => {
+      if (to.name === "Login" || to.name === "Register") {
+        next();
+      }
+      else if (user && (to.meta.haveAccess.includes(Store.state.settings.currentUserRole))) {
+        next();
+      }
+      else if (user && !(to.meta.haveAccess.includes(Store.state.settings.currentUserRole))) {
+        if (Store.state.settings.currentUserRole == "Student") {
+          next('/home');
+        }
+        else if (Store.state.settings.currentUserRole == "Instructor") {
+          next('/staff/courses');
+        }
+        else if (Store.state.settings.currentUserRole == "DiagnovirTester") {
+          next('/staff/diagnovir');
+        }
+        else if (Store.state.settings.currentUserRole == "HealthCenterStaff") {
+          next('/staff/health');
+        }
+        else if (Store.state.settings.currentUserRole == "SportsCenterStaff") {
+          next('/staff/sports');
+        }
+        else if (Store.state.settings.currentUserRole == "CafeteriaStaff") {
+          next('/staff/cafeteria');
+        }
+      }
+      else {
+        next('/auth/login');
+      }
+    })
+  });
 
   return Router
 })

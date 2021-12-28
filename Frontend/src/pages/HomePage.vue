@@ -5,11 +5,13 @@
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       {{ $t('AllowedInCampus') }} 
       {{ $t('FullyVaccinated') }}
+      <q-btn label="Change" @click="riskless = false"/>
     </q-banner>
     <q-banner v-else inline-actions class="text-white bg-red">
       <q-icon v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       {{ $t('NotAllowedInCampus') }} 
       {{ $t('YouAreRisky') }}
+      <q-btn label="Change" @click="riskless = true"/>
     </q-banner>
     </div>
     <div class="q-pa-md q-mx-xs row q-gutter-lg">
@@ -34,9 +36,7 @@ export default {
 
   setup(props, ctx) {
     const $q = useQuasar();
-    const riskless = computed(() => {
-      return true;
-    })
+    const riskless = ref(true);
 
     const isMobile = computed(() => {
       return $q.screen.width < 800;
@@ -54,14 +54,15 @@ export default {
     }
 
     const filteredSections = computed(() => {
-      return sections.filter(item => {
+      return sections.value.filter(item => {
         if (!item.disable) {
           return item
         }
       });
     })
 
-    const sections = [
+    const sections = computed(() => {
+      return [
       {
         name: "Courses",
         icon: "mdi-book-open-variant",
@@ -95,6 +96,7 @@ export default {
         route: "/~/weekly"
       },
     ]
+    })
 
     return {
       riskless,

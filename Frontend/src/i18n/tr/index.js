@@ -111,7 +111,7 @@ export default {
   CoursesPageInstrDesc: 'Bu dönem verdiğiniz dersler:',
   CreateCourse: 'Ders oluştur',
   EnterCourseName: 'Ders adını giriniz',
-  EnterSectionNo: 'Sınıf numarasını giriniz',
+  EnterSectionNo: 'Şube numarasını giriniz',
   EnterCourseCode: 'Ders kodunu giriniz',
   EnterBuilding: 'Dersin olduğu binayı giriniz',
   EnterClassroom: 'Dersin olduğu sınıfı giriniz',
@@ -150,5 +150,7 @@ export default {
   PasswordResetError: 'Bu mail adresine bağlı hesap bulunamamıştır. Lütfen girdiğiniz mail adresini kontrol edip yeniden deneyiniz.',
   Back: 'Geri',
   NotVerifiedError: 'Giriş yapabilmek için mailinizi doğrulamanız gerekmektedir. Lütfen mailinizi gelen talimatları takip ederek hesabınızı doğrulayın.',
-  HesCodeDigitError: 'HES Kodu 10 haneden oluşmalıdır'
+  HesCodeDigitError: 'HES Kodu 10 haneden oluşmalıdır',
+  Section: 'Şube',
+  CourseCode: 'Ders kodu'
 }

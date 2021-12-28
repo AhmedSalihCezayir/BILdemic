@@ -15,8 +15,8 @@
         <q-card class="bg-secondary text-white">
           <q-card-section align="center" style="height:120px">
             <div class="text-h6">{{ lecture["_lectureName"] }}</div>
-            <div class="text-h6">Section-{{ lecture["_section"] }}</div>
-            <div class="text-h6">{{ lecture["_place"] }}</div>
+            <div class="text-h6">{{ $t('Section') }} - {{ lecture["_section"] }}</div>
+            <div class="text-h6">{{ $t('CourseCode') }}:  {{ lecture["_courseCode"] }}</div>
           </q-card-section>
         </q-card>
       </router-link>

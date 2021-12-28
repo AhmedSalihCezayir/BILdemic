@@ -3,9 +3,9 @@
     <q-banner inline-actions class="text-white bg-secondary">
       <q-icon  v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       <div class="column">
-        <span class="text-h5"> CS201 </span>
-        <span class="text-subtitle1"> Section-01 </span> 
-        <span class="text-subtitle1"> B-202 </span>
+        <span class="text-h5"> {{ lectureInfo._lectureName }} </span>
+        <span class="text-subtitle1"> {{ $t('Section') }} - {{ lectureInfo._section }} </span> 
+        <span class="text-subtitle1">  </span>
       </div>
     </q-banner>
 
@@ -52,6 +52,15 @@ export default {
 
     const open = ref(!isMobile.value);
 
+    const lm = LectureManager.getInstance();
+
+    const lectureInfo = computed(() => {
+      return lm.getLecture(props.id) || {
+        "_lectureCode": "",
+        "_section": "",
+      }
+    })
+
     watch(isMobile, () => {
       open.value = !isMobile.value;
     })
@@ -63,8 +72,6 @@ export default {
 
     const lectureCode = ref(null);
     const lectureCodeIsCorrect = ref(false);
-
-    const lm  = LectureManager.getInstance()
 
     const firstTime = computed(() => {
       return !lm.getSelectedStatus(props.id);
@@ -208,7 +215,8 @@ export default {
       firstTime,
       selectSeat,
       personalCol,
-      personalRow
+      personalRow,
+      lectureInfo
     }
   },
 }

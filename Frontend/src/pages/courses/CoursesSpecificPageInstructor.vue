@@ -4,8 +4,8 @@
       <q-icon  v-if="isMobile" size="sm" name="menu" @click="toggleDrawer"/>
       
       <div class="column">
-        <span class="text-h5"> {{ lectureInfo['_lectureCode'] }} </span>
-        <span class="text-subtitle1"> Section-{{ lectureInfo['_section'] }} </span> 
+        <span class="text-h5"> {{ lectureInfo['_lectureName'] }} </span>
+        <span class="text-subtitle1"> {{ $t('Section') }} - {{ lectureInfo['_section'] }} </span> 
       </div>
     </q-banner>
     <div class="row items-center">
