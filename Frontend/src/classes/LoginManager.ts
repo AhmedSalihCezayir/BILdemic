@@ -92,4 +92,15 @@ export default class LoginManager {
     public async resetPassword(email: string) {
         return sendPasswordResetEmail(getAuth(), email);
     }
+
+    public getCurrentUserRole() {
+        const db = getDatabase();
+        const reference = ref(db, `Users/${getAuth().currentUser?.uid}/_role`);
+
+        let role;
+        onValue(reference, (snapshot) => {
+            role = snapshot.val();   
+        })
+        return role;
+    }
 }

@@ -31,7 +31,7 @@ const routes = [
         name: 'Home',
         component: HomePage,
         meta: {
-          haveAccess: ['Student'] // TODO BURAYA INSTR GIREBILECEK MI?
+          haveAccess: ['Student', 'Instructor'] // TODO BURAYA INSTR GIREBILECEK MI?
         }
       }
     ]

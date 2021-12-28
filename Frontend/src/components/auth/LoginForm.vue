@@ -123,6 +123,7 @@ export default {
             }, 4000);
           }
           else {
+            $store.commit('settings/setCurrentUserRole', lm.getCurrentUserRole());
             $store.commit('settings/setCurrentUserUID', userCredential.user.uid);
             router.push('/home');
           }  
