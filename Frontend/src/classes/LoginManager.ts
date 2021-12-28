@@ -60,7 +60,7 @@ export default class LoginManager {
                 cafeteriaStaff.Uid = userUID;
                 return set(ref(db, `Users/${userCredential.user.uid}`), cafeteriaStaff);
             }
-            else if (role === "HealthCenter Staff") {
+            else if (role === "HealthCenterStaff") {
                 const healthCenterStaff = new HealthCenterStaff(name, mail, password, role, address, phoneNumber, hesCode);
                 healthCenterStaff.Uid = userUID;
                 return set(ref(db, `Users/${userCredential.user.uid}`), healthCenterStaff);
