@@ -40,7 +40,7 @@ export default {
     // symptoms: Array
   },
   setup() {
-    const symptoms = ['aAAAA', 'BBBBBCS', 'ASFASFASFAS', '2RRRRRRRRR', 'FASFSFACXA68'];
+    const symptoms = ['Öksürük', 'Baş Ağrısı', 'Halsizlik'];
     
     return {
       symptoms
